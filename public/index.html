@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/fixed.css">
+    <link rel="stylesheet" href="css/animate.css">
+
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <title>React App</title>
+
+    <style>
+        .navbar {
+               padding: 10px;
+           }
+           .dropdown-menu{   background-color:#262627;}
+           .dropdown-item{ color: #D1B385}
+           .navbar-nav li{
+               padding-right: 15px;
+           }
+           .navbar-nav .nav-link {
+               color: #A0A4A9;
+           }
+           .navbar-nav .nav-link:hover{
+               color: #D1B385 !important;
+               border-bottom: solid 1px;
+               transition-property: all;
+               transition-duration: .2s; 
+               transition-timing-function:linear; 
+               transition-delay: 0s;  
+           }
+       
+   </style>
+
+
+  </head>
+  <body>
+      <div>
+     
+      <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+          <!-- Item of navbar-->
+          <ul class="navbar-nav mr-auto">
+                  <li class="nav-item">
+                    <a class="nav-link" href="#home"> SUMMARY <i style="padding-left: 10px" class="fas fa-arrow-right"></i></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#Features">DESIGN SURVEY <i style="padding-left: 10px" class="fas fa-arrow-right"></i></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">PREVIEW & SCORE <i style="padding-left: 10px" class="fas fa-arrow-right"></i></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">COLLECT RESPONSES <i  style="padding-left: 10px" class="fas fa-arrow-right"></i></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#"> ANALYZE RESULTS </a>
+                  </li>
+            </ul>
+              <ul class="navbar-nav ml-auto">
+                  <li class="nav-item">
+                    <a  class="nav-link" href="../html/log-in.html">Next <i style="padding-left: 5px"class="fas fa-arrow-right fa-0.1x"></i></a>
+                  </li>
+            </ul>
+       
+        <!-- End Item of navbar-->
+    </nav>
+    </div><br />
+
+    
+    <div id="root"></div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+  </body>
+</html>

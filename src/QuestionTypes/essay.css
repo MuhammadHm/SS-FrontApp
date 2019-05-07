@@ -1,0 +1,14 @@
+.essay {
+    display: block;
+    width: 100%;
+    min-height: 100px;
+    overflow: auto;
+    line-height: 18px;
+    text-align: left;
+    font-family: inherit;
+    font-weight: normal;
+    font-style: normal;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    
+}

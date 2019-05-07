@@ -1,0 +1,12 @@
+.mulChoice{
+    border: solid gray;
+    text-align: center;
+    background-color: gray;
+    width: 50%;
+    height: 90%;
+}
+
+
+.radio{
+    text-align: left;
+}
