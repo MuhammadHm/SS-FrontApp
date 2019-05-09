@@ -44,7 +44,7 @@ class CheckBox extends Component {
         return (
             <div className="mulChoice">
                 <input name="choice" type="text" placeholder="Enter an answer choice" onChange={this.setChioceText} />
-                <button onClick={()=>{this.addChoiceHandler();this.passChoicesArray()}} >Add Choice</button>
+                <button onClick={()=>{this.addChoiceHandler();this.passChoicesArray()}} className="btn btn-success">Add Choice</button>
 
                 <div className="control">
                 {
@@ -54,7 +54,7 @@ class CheckBox extends Component {
                                 <label>
                                     <input type="checkbox" name="choice" />
                                     <span>  {choice.body}</span> 
-                                    <button onClick={this.deleteChoiceHandler.bind(this,index)}> ×  </button>
+                                    <button onClick={this.deleteChoiceHandler.bind(this,index)} class="close" data-dismiss="alert" aria-label="Close">  <span aria-hidden="true"> &times; </span>  </button>
 
                                     </label>
                             </div> 

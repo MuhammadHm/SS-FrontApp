@@ -1,6 +1,5 @@
 import React from 'react';
 import "./Question.css";
-import Multichoice from "./../QuestionTypes/multiChoice";
 
 
 
@@ -30,9 +29,8 @@ const question=(props)=>{
         <div className="question">
 
             <li className="question-text">
-               <div>Question {props.id}: </div> 
-               <br />
-               <div>{props.body}</div>
+               <label>Q {props.id} :  </label> 
+               <span>  {props.body}</span>
                <br />
                <span>
                     <input 
@@ -44,7 +42,11 @@ const question=(props)=>{
                </span>
 
                <span className="dropdown">
-                    <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <button className="btn btn-default dropdown-toggle" 
+                    type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" 
+                    aria-expanded="false"
+                    style={ {'font-size' : '20px'} }
+                    >
                         Type
                     </button>
                     <span className="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -59,37 +61,22 @@ const question=(props)=>{
                 </span>
 
 
-                <div >
+                <div className="questionType">
                     {props.answerType()}          
                  </div>
-
-               <span className="group">
-                    <input id="check" type="checkbox" className="check"  name="Required" onChange={props.isRequired} /><span> Required </span>
-				</span>
-               <button onClick={props.saveQuestion} style={buttonStyle}>save</button>
-               <button onClick={props.deleteQuestion} style={buttonStyle}>delete</button>
+                 
+                <div className="contents">
+                <span className="group">
+                        <input id="check" type="checkbox" className="check"  name="Required" onChange={props.isRequired} /><span> Required </span>
+                    </span>
+                <button onClick={props.deleteQuestion} className="btn btn-danger" >delete</button>
+                </div>
                
             </li>
            
         </div>
     );
 
-}
-
-const handleQuestionType=(type)=>{
-    
-    console.log(type);
-    if(type==="multiChoice"){
-
-        return(
-            <div>
-                <Multichoice />
-
-            </div>
-        );
-
-    }
- 
 }
 
 

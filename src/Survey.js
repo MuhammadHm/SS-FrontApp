@@ -6,14 +6,18 @@ import CheckBox from "./QuestionTypes/checkBox";
 import Essay from "./QuestionTypes/essay";
 import Scale from "./QuestionTypes/scale";
 import Textbox from "./QuestionTypes/textbox";
-//import { Header } from  './Survey/Survey';
+import Date from "./QuestionTypes/date";
 
-class  Survey extends Component {
+
+class Survey extends Component {
   
   
   constructor(){
     super();
     this.state = {
+      user_id: '',
+      title : '',
+      welcomeMessage : ' ',
       questionsArray : [
           {
              id: 1,
@@ -23,13 +27,29 @@ class  Survey extends Component {
              answers : ''
           }
       ],
+      
       Body : "",
       index : 0
     }
   }
-  
 
-
+  componentDidMount(){ 
+ 
+    fetch('http://localhost:8080/survey/sendsurveyinfo')
+    .then(response =>  response.json())
+      .then(data => {
+        this.setState({
+          user_id : data.user_id,
+          title : data.title,
+          welcomeMessage : data.welcomeMessage
+        });
+        console.log(data);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+    
+  }
   //new question
   addQuestionHandler= ()=>{
     console.log('add clicked');
@@ -51,7 +71,6 @@ class  Survey extends Component {
       questionsArray : questions
       });
   }
-
   //deleting specifique question 
   handleDeleteQuestion = (index)=>{
     
@@ -63,7 +82,6 @@ class  Survey extends Component {
       
     });
   }
-
   setQuestion(index,element){     // element can be used only in setState
     this.setState({
       Body : element.target.value
@@ -77,7 +95,6 @@ class  Survey extends Component {
       });
      
   }
-
   saveQuestion=(index)=>{
     let questions=this.state.questionsArray;
     questions[index].body=this.state.Body;
@@ -86,12 +103,6 @@ class  Survey extends Component {
           questionsArray : questions
       });
   }
-
-  saveSurvey=()=>{   // must be arrow function to arrive to 'this'
-    let questions=this.state.questionsArray;
-    console.log(questions);
-  }
-
   handleRequired=(index)=>{
    
     let questions=this.state.questionsArray;
@@ -108,7 +119,6 @@ class  Survey extends Component {
     });  
     
   }
-
   handleQuestionType=(index,element)=>{
 
    
@@ -122,7 +132,6 @@ class  Survey extends Component {
       
      
   }
-
   handleAnswers=(answers)=>{
     let question=this.state.questionsArray;
     question[this.state.index].answers=answers;
@@ -130,9 +139,6 @@ class  Survey extends Component {
       questionsArray : question
   });
   }
-  
-
-
   setAnswerType=(index)=>{
       let type=this.state.questionsArray[index].answerType;
       //let answers=this.state.questionsArray[index].answers;
@@ -148,26 +154,42 @@ class  Survey extends Component {
       else if(type === "scale")
           return(<div> <Scale  answers={this.handleAnswers.bind(this)} /> </div>); 
       else if(type === "date")
-          return(<div> <Textbox /> </div>);     
+          return(<div> <Date /> </div>);     
          
-     }
+  }
   
-
-
+  saveSurvey= ()=>{   // must be arrow function to arrive to 'this'
+  const survey={
+      user_id: this.state.user_id,
+      title : this.state.title,
+      welcomeMessage : this.state.welcomeMessage,
+      questionsArray : this.state.questionsArray
+    };
+    fetch('http://localhost:8080/survey/savesurvey', {
+          method: 'POST',
+          headers: {
+            'Accept' : 'application/json',
+            'Content-Type' : 'application/json',  
+          },
+          body: JSON.stringify(survey)
+      })
+      .then(response =>  response.json())
+      .then(data => { alert('your survey submitted'); } )
+      .catch(err => console.log(err)); 
+      
+  }
 
   render(){
 
       const buttonStyle={
-         padding: '3px 3px 3px',
-         fontSize: '20px',
-         margin : '10px 10px'     
+         margin : '20px 20px'     
       };
 
       return (
-        <div className="App">
-          <h1>Survey</h1>
+        <div className="Survey">
+          <h1>{this.state.title}</h1>
           <div className="Questions">
-            <ul>
+            <ul className="ul">
                 {
                   this.state.questionsArray.map((question,index)=>{
                    return (<Question 
@@ -185,9 +207,9 @@ class  Survey extends Component {
                 }
 
             </ul>
-            <button onClick={this.addQuestionHandler} style={buttonStyle}>New Question</button>
-            <button onClick={this.deleteQuestionHandler} style={buttonStyle}>Delete Question</button><br /><br />
-            <button onClick={this.saveSurvey} style={buttonStyle}>Save Survey</button>
+            <button onClick={this.deleteQuestionHandler} style={buttonStyle} className="btn btn-danger btn-lg">Delete Question</button>
+            <button onClick={this.addQuestionHandler} style={buttonStyle} className="btn btn-success btn-lg">New Question</button><br />
+            <button onClick={this.saveSurvey} style={buttonStyle} className="btn btn-info btn-lg">Save Survey</button>
           </div>
         </div>
     );

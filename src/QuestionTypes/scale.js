@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './scale.css'
 
 class Scale extends Component {
 
@@ -7,7 +8,7 @@ class Scale extends Component {
         this.state = {
             value : 0,
             min : 0,
-            max : 100,
+            max : 10,
             step : 1
         }
     }
@@ -49,19 +50,19 @@ class Scale extends Component {
 
         return (
             <div>
-                <div >
-                    <label >Min</label>
-                    <input onBlur={this.passParams} type="text"  className="value" onChange={this.handleMin}/>
+                <div  >
+                    <label className="value">Minimum Value : </label>
+                    <input onBlur={this.passParams} type="text"  className="value" onChange={this.handleMin} placeholder="0" />
                 </div>
                 
                 <div >
-                    <label >Max</label>
-                    <input onBlur={this.passParams} type="text"  className="value" onChange={this.handleMax}/>
+                    <label className="value">Maximum Value : </label>
+                    <input onBlur={this.passParams} type="text"  className="value" onChange={this.handleMax} placeholder="10" />
                 </div>
 
                 <div >
-                    <label >Step</label>
-                    <input onBlur={this.passParams} type="text"  className="value" onChange={this.handleStep}/>
+                    <label className="value">Step : </label>
+                    <input onBlur={this.passParams} type="text"  className="value" onChange={this.handleStep} placeholder="1" />
                 </div>
        
                 <div className="d-flex justify-content-center my-4">
@@ -74,7 +75,7 @@ class Scale extends Component {
 
                 <div>
                 <div >
-                    <label >Value</label>
+                    <label className="value">Value : </label>
                     <input onBlur={this.passParams} type="text"  className="value" value={this.state.value}/>
                 </div>
             </div>

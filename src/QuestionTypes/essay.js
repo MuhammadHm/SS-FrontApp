@@ -10,7 +10,7 @@ class Essay extends Component {
         return (
             <div className="essay">
 
-                <input name="essay" type="textarea" />
+                <textarea  rows="7" className="textArea"></textarea>
                 
 
             </div>
