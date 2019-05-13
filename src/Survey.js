@@ -8,7 +8,7 @@ import Scale from "./QuestionTypes/scale";
 import Textbox from "./QuestionTypes/textbox";
 import Date from "./QuestionTypes/date";
 
-
+ 
 class Survey extends Component {
   
   
@@ -120,9 +120,7 @@ class Survey extends Component {
     
   }
   handleQuestionType=(index,element)=>{
-
-   
-    
+ 
     let questions=this.state.questionsArray;
     questions[index].answerType=element.target.name;
 
@@ -207,9 +205,15 @@ class Survey extends Component {
                 }
 
             </ul>
-            <button onClick={this.deleteQuestionHandler} style={buttonStyle} className="btn btn-danger btn-lg">Delete Question</button>
-            <button onClick={this.addQuestionHandler} style={buttonStyle} className="btn btn-success btn-lg">New Question</button><br />
-            <button onClick={this.saveSurvey} style={buttonStyle} className="btn btn-info btn-lg">Save Survey</button>
+            <div className="nav">
+            <ul className="navbar-nav mr-auto">
+            <button className="nav-item" onClick={this.addQuestionHandler} style={buttonStyle} className="btn btn-success ">New Question</button>
+            </ul>
+            <button className="nav-item" onClick={this.deleteQuestionHandler} style={buttonStyle} className="btn btn-danger ">Delete Last Question</button>
+            <ul className="navbar-nav ml-auto"> 
+            <button className="nav-item" onClick={this.saveSurvey} style={buttonStyle}  className="btn btn-outline-primary">Save Survey</button>
+            </ul>
+            </div>
           </div>
         </div>
     );
