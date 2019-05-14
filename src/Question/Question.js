@@ -30,7 +30,7 @@ const question=(props)=>{
 
             <li className="question-text">
                <label>Q {props.id} :  </label> 
-               <span>  {props.body}</span>
+               <span className="lead"> {props.body}</span>
                <br />
                <span>
                     <input 
