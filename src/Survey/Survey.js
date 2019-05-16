@@ -1,12 +1,12 @@
 import React,{Component} from 'react';
 import './Survey.css';
-import Question from './Question/Question';
-import MultiChoice from './QuestionTypes/multiChoice';
-import CheckBox from "./QuestionTypes/checkBox";
-import Essay from "./QuestionTypes/essay";
-import Scale from "./QuestionTypes/scale";
-import Textbox from "./QuestionTypes/textbox";
-import Date from "./QuestionTypes/date";
+import Question from '../Question/Question';
+import MultiChoice from '../QuestionTypes/multiChoice';
+import CheckBox from "../QuestionTypes/checkBox";
+import Essay from "../QuestionTypes/essay";
+import Scale from "../QuestionTypes/scale";
+import Textbox from "../QuestionTypes/textbox";
+import Date from "../QuestionTypes/date";
 
  
 class Survey extends Component {
