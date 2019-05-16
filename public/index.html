@@ -23,7 +23,7 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>React App</title>
+    <title>Create Survey</title>
 
     <style>
         .navbar {
@@ -61,16 +61,20 @@
           <ul class="navbar-nav mr-auto">
                 
                   <li class="nav-item">
-                    <a class="nav-link" href="#Features">DESIGN SURVEY <i style="padding-left: 10px" class="fas fa-arrow-right"></i></a>
+                    <a class="nav-link" href="/createsurvey">DESIGN SURVEY <i style="padding-left: 10px" class="fas fa-arrow-right"></i></a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#">PREVIEW & SCORE <i style="padding-left: 10px" class="fas fa-arrow-right"></i></a>
+                    <a class="nav-link" href="/preview/:id">PREVIEW & SCORE <i style="padding-left: 10px" class="fas fa-arrow-right"></i></a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#">COLLECT RESPONSES <i  style="padding-left: 10px" class="fas fa-arrow-right"></i></a>
+                    <a class="nav-link" href="/publish">PUBLISH SURVEY <i style="padding-left: 10px" class="fas fa-arrow-right"></i></a>
+                  </li>
+
+                  <li class="nav-item">
+                    <a class="nav-link" href="responses">COLLECT RESPONSES <i  style="padding-left: 10px" class="fas fa-arrow-right"></i></a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#"> ANALYZE RESULTS </a>
+                    <a class="nav-link" href="/analyze"> ANALYZE RESULTS </a>
                   </li>
             </ul>
               <ul class="navbar-nav ml-auto">

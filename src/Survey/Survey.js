@@ -1,13 +1,12 @@
 import React,{Component} from 'react';
 import './Survey.css';
-import Question from './Question/Question';
-import MultiChoice from './QuestionTypes/multiChoice';
-import CheckBox from "./QuestionTypes/checkBox";
-import Essay from "./QuestionTypes/essay";
-import Scale from "./QuestionTypes/scale";
-import Textbox from "./QuestionTypes/textbox";
-import Date from "./QuestionTypes/date";
-
+import Question from '../Question/Question';
+import MultiChoice from '../QuestionTypes/multiChoice';
+import CheckBox from "../QuestionTypes/checkBox";
+import Essay from "../QuestionTypes/essay";
+import Scale from "../QuestionTypes/scale";
+import Textbox from "../QuestionTypes/textbox";
+import Date from "../QuestionTypes/date";
 
 class Survey extends Component {
   
@@ -39,6 +38,7 @@ class Survey extends Component {
     .then(response =>  response.json())
       .then(data => {
         this.setState({
+          survey_id: data.survey_id,
           user_id : data.user_id,
           title : data.title,
           welcomeMessage : data.welcomeMessage
@@ -160,6 +160,7 @@ class Survey extends Component {
   
   saveSurvey= ()=>{   // must be arrow function to arrive to 'this'
   const survey={
+      survey_id : this.state.survey_id,
       user_id: this.state.user_id,
       title : this.state.title,
       welcomeMessage : this.state.welcomeMessage,
@@ -186,7 +187,9 @@ class Survey extends Component {
       };
 
       return (
+        
         <div className="Survey">
+         <h1>{this.state.survey_id}</h1>
           <h1>{this.state.title}</h1>
           <div className="Questions">
             <ul className="ul">
@@ -214,8 +217,8 @@ class Survey extends Component {
         </div>
     );
   }
-
 }
+
 
 
 export default Survey;
