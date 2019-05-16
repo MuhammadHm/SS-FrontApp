@@ -9,10 +9,7 @@ class Essay extends Component {
 
         return (
             <div className="essay">
-
-                <textarea  rows="7" className="textArea"></textarea>
-                
-
+                <textarea  rows="7" cols="50" className="textArea"></textarea>
             </div>
         );
     }

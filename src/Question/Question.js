@@ -2,9 +2,6 @@ import React from 'react';
 import "./Question.css";
 
 
-
-
-
 const question=(props)=>{
 
     const buttonStyle={
@@ -14,8 +11,9 @@ const question=(props)=>{
             height : '30px',
             margin : '20px 10px' 
         };
-    const textStyle={
-            width: '90%',
+    
+        const textStyle={
+            width: '85%',
             padding: '12px 20px',
             margin: '8px 8px',
             boxSizing: 'border-box',
@@ -23,17 +21,15 @@ const question=(props)=>{
         };
 
 
-  
     return(
 
         <div className="question">
-
             <li className="question-text">
-               <label>Q {props.id} :  </label> 
-               <span className="lead"> {props.body}</span>
+               <label className="bounceIn"> Question {props.id} : </label> 
+               <span> {props.body}</span>
                <br />
                <span>
-                    <input 
+                    <input autoFocus
                         name="questionBody" 
                         type="text" placeholder="Enter your question" 
                         onBlur={props.setQuestion}
@@ -47,7 +43,7 @@ const question=(props)=>{
                     aria-expanded="false"
                     style={ {'font-size' : '20px'} }
                     >
-                        Type
+                        Type of questions
                     </button>
                     <span className="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <button className="dropdown-item" onClick={props.questionType} name="mulchoice">Multiple Choice</button>
@@ -68,8 +64,8 @@ const question=(props)=>{
                 <div className="contents">
                 <span className="group">
                         <input id="check" type="checkbox" className="check"  name="Required" onChange={props.isRequired} /><span> Required </span>
-                    </span>
-                <button onClick={props.deleteQuestion} className="btn btn-danger" >delete</button>
+                </span>
+                <button  onClick={props.deleteQuestion} className="btn btn-outline-primary" >Delete this Question </button>
                 </div>
                
             </li>
