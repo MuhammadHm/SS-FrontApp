@@ -5,39 +5,68 @@ class MultiChoice extends Component {
     constructor() {
         super();
         this.state = {
-            choicesArray: [
-                /*{
-                   body : '',
-                }*/
+            
+            choicesArray: [             
+                 /* { body : ''} */             
             ],
-            Body: ""
+
+            answersArray : [
+                /*{
+                    body : '',
+                    checked : false
+                }*/
+             ]
         }
     }
+
     componentDidMount(){
         this.getChoicesArray();
     }
     
-    
     getChoicesArray=()=>{
+
+        let answersArray=[...this.props.choicesArray];
+        for(let i=0;i<answersArray.length;i++)
+            answersArray[i]={ body : answersArray[i].body ,  checked : false };
+
         this.setState({
-            choicesArray : this.props.choicesArray
+            choicesArray : this.props.choicesArray,
+            answersArray : answersArray
         });
     }
 
-    
+    handleInput=(index,e)=>{
+        
+        let answersArray= this.state.answersArray;
+        for(let i=0;i<answersArray.length;i++)
+            answersArray[i]={ body : answersArray[i].body ,  checked : false };
+
+        answersArray[index]= { body : answersArray[index].body , checked : e.target.checked };
+        this.setState({
+                answersArray : answersArray
+        });
+
+    } 
+    passState=()=>{
+        this.props.getInput(this.state.answersArray,"mulchoice",this.props.body);
+     }
+
+    onClick=(index,e)=>{
+        this.handleInput(index,e);
+        this.passState();
+    }
     render() {
         
         return (
             <div className="mulChoice">
                
                 <div className="control">
-                {
-                    
+                {                   
                     this.state.choicesArray.map((choice, index) => {
                         return (
                             <div className="radio" key={index+1}>
                                 <label>
-                                    <input type="radio" name="choice" />
+                                    <input onChange={this.onClick.bind(this,index)} type="radio" name="choice" />
                                     <span> {choice.body}</span> 
                                 </label>       
                             </div> 
@@ -45,9 +74,6 @@ class MultiChoice extends Component {
                     })
                  }
                 </div>
-
-
-
 
             </div>
         );

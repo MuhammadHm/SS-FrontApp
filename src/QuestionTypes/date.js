@@ -17,8 +17,6 @@ class Date extends Component {
                 <input name="day" type="text" style={style} placeholder= "Day" />/
                 <input name="month" type="text" style={style} placeholder= "Month" />/
                 <input name="year" type="text" style={style} placeholder= "Year" /> 
-                <br />
-                <input name="time" type="text" style={{margin : "0.6%"}} placeholder= "Time" />
 
 
             </div>

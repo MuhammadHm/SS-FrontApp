@@ -15,6 +15,7 @@ class Survey extends Component {
   constructor(){
     super();
     this.state = {
+      survey_id: '',
       user_id: '',
       title : '',
       welcomeMessage : ' ',
@@ -138,6 +139,7 @@ class Survey extends Component {
       questionsArray : question
   });
   }
+
   setAnswerType=(index)=>{
       let type=this.state.questionsArray[index].answerType;
       //let answers=this.state.questionsArray[index].answers;
@@ -217,6 +219,7 @@ class Survey extends Component {
             <ul className="navbar-nav ml-auto"> 
             <button className="nav-item" onClick={this.saveSurvey} style={buttonStyle}  className="btn btn-outline-primary">Save Survey</button>
             </ul>
+             <h4> Save your survey before Previewing it </h4>
             </div>
           </div>
         </div>

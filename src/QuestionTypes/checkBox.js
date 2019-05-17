@@ -34,7 +34,7 @@ class CheckBox extends Component {
         });
     }
 
-    passChoicesArray=()=>{
+    passChoicesArray=()=>{     
         this.props.answers(this.state.choicesArray);
     }
 
