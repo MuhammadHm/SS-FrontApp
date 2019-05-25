@@ -1,0 +1,50 @@
+body{
+    font-family: sans-serif;
+    margin: 0px;
+}
+.nav{
+    height: 100%;
+    width: 270px;
+    background-color: #35302D;
+    opacity: .9;
+    padding-top: 40px;
+}
+.nav ul{
+    padding: 0px;
+    list-style: none;
+}
+.nav li:hover{
+    border-left: 9px solid #3e84c1;
+    background-color: #34383d;
+}
+.nav a{
+    display: block;
+    padding: 30px 20px;
+    color: #ccc;
+    text-decoration: none;
+    font-size: 25px;
+    border-bottom: 1px solid #DDD;
+}
+
+.nav a:hover{
+    color: #FFF;    
+    transition: .5s;
+}
+.logo{
+    font-weight: 800px;
+
+}
+.logo a{
+    border-bottom: none;
+    padding-top: 10px;
+    letter-spacing: 3pxl;
+    border-bottom: 2px solid #3e84c1;
+    font-size: 30px;
+}
+.logo span:hover{
+    transition: .5s;
+    color: #3e84c1;
+}
+.logo span{
+    padding-left: 10px;
+}
