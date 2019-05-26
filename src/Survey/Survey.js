@@ -8,7 +8,9 @@ import Scale from "../QuestionTypes/scale";
 import Textbox from "../QuestionTypes/textbox";
 import Date from "../QuestionTypes/date";
 
- 
+
+
+
 class Survey extends Component {
   
   
@@ -162,7 +164,7 @@ class Survey extends Component {
   saveSurvey= ()=>{   // must be arrow function to arrive to 'this'
   const survey={
       survey_id : this.state.survey_id,
-      user_id: this.state.user_id,
+      user_id: this.state.user_id, 
       title : this.state.title,
       welcomeMessage : this.state.welcomeMessage,
       questionsArray : this.state.questionsArray
@@ -188,7 +190,7 @@ class Survey extends Component {
       };
 
       return (
-        
+       
         <div className="Survey">
          <h1>{this.state.survey_id}</h1>
           <h1>{this.state.title}</h1>
@@ -211,16 +213,21 @@ class Survey extends Component {
                 }
 
             </ul>
-            <div className="nav">
-            <ul className="navbar-nav mr-auto">
-            <button className="nav-item" onClick={this.addQuestionHandler} style={buttonStyle} className="btn btn-success ">New Question</button>
-            </ul>
-            <button className="nav-item" onClick={this.deleteQuestionHandler} style={buttonStyle} className="btn btn-danger ">Delete Last Question</button>
-            <ul className="navbar-nav ml-auto"> 
-            <button className="nav-item" onClick={this.saveSurvey} style={buttonStyle}  className="btn btn-outline-primary">Save Survey</button>
-            </ul>
-             <h4> Save your survey before Previewing it </h4>
+            <div>
+              <hr class="main-hr" />
+                  <button class="icon-btn add-btn" onClick={this.addQuestionHandler}>
+                      <div class="add-icon"></div>
+                      <div class="btn-txt">Add</div>
+                  </button>
+                  <button class="icon-btn add-btn" onClick={this.deleteQuestionHandler}>  
+                      <div class="btn-txt">Remove</div>
+                  </button>
             </div>
+            <div className="nav">
+            <button className="nav-item" onClick={this.saveSurvey} style={buttonStyle}  className="btn btn-outline-primary">Save Survey</button>
+            </div>
+            <h4> Save your survey before Previewing it </h4>
+            
           </div>
         </div>
     );

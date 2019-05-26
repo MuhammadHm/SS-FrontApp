@@ -1,34 +1,112 @@
 body{
-  background-color: #16485A;
+  background-color: #E8ECF8;
+  margin: 0px;
 }
 
 .Survey {
   text-align: center;
   margin-top: 0px;
   font-size: 22px;
-  width: 100%;
-  height: 100%;
- 
+  width: 80%;
+  float: right; 
+  margin-left: 0px;
 }
 .Questions{
   text-align: center;
   color: #1E1E1E;
 }
-
 .ul{
   list-style-type: none;
 }
-.btn-danger{
-   margin-right: 900px !important;
-   background-color: #8470FF;
-   border-color: #8470FF
+ h4{
+  color: #3e84c1;
+  font-weight: bold;
 }
-.btn-success{
-    background-color: #8470FF;
-    border-color: #8470FF
+
+/* Add and delete questions*/
+.main-hr {
+  width: 30%;
+  border: none;
 }
-.btn-info{
-  background-color: #00C5CD;
-  border-color: #00C5CD;
-    
+.icon-btn {
+  width: 50px;
+  height: 50px;
+  border: 1px solid #cdcdcd;
+  background: white;
+  border-radius: 25px;
+  overflow: hidden;
+  position: relative;
+  transition: width 0.2s ease-in-out;
+  color: #383f50;
+
+}
+.add-btn:hover {
+  width: 120px;
+}
+.add-btn::before,
+.add-btn::after {
+  transition: width 0.2s ease-in-out, border-radius 0.2s ease-in-out;
+  content: "";
+  position: absolute;
+  height: 4px;
+  width: 10px;
+  top: calc(50% - 2px);
+  background: #38598B;
+}
+.add-btn::after {
+  right: 14px;
+  overflow: hidden;
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+}
+.add-btn::before {
+  left: 14px;
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+}
+.icon-btn:focus {
+  outline: none;
+}
+.btn-txt {
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.add-btn:hover::before,
+.add-btn:hover::after {
+  width: 4px;
+  border-radius: 2px;
+}
+.add-btn:hover .btn-txt {
+  opacity: 1;
+}
+.add-icon::after,
+.add-icon::before {
+  transition: all 0.2s ease-in-out;
+  content: "";
+  position: absolute;
+  height: 20px;
+  width: 2px;
+  top: calc(50% - 10px);
+  background: #38598B;
+  overflow: hidden;
+}
+.add-icon::before {
+  left: 22px;
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+}
+.add-icon::after {
+  right: 22px;
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+}
+.add-btn:hover .add-icon::before {
+  left: 15px;
+  height: 4px;
+  top: calc(50% - 2px);
+}
+.add-btn:hover .add-icon::after {
+  right: 15px;
+  height: 4px;
+  top: calc(50% - 2px);
 }

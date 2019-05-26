@@ -6,3 +6,12 @@
 .radio{
     text-align: left;
 }
+input{
+    border-radius: 10px;
+}
+.mulChoice input{
+ padding: 8px;
+ border-radius: 10px;
+ margin: 10px;
+ 
+}

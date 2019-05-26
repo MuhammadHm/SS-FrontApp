@@ -66,10 +66,6 @@ class MultiChoice extends Component {
                     })
                  }
                 </div>
-
-
-
-
             </div>
         );
     }

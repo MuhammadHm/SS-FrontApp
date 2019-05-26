@@ -8,8 +8,6 @@ const question=(props)=>{
             padding: '3px 3px 3px',
             fontSize: '15px',
             width : '60px',
-            height : '30px',
-            margin : '20px 10px' 
         };
     
         const textStyle={
@@ -67,9 +65,9 @@ const question=(props)=>{
                 </span>
                 <button  onClick={props.deleteQuestion} className="btn btn-outline-primary" >Delete this Question </button>
                 </div>
-               
+
             </li>
-           
+            
         </div>
     );
 

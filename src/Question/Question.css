@@ -1,23 +1,16 @@
 .question{
-    text-align: left;
-    width: 100%;
-    position: relative;
-    right: 1.5%;
-    margin: auto;
-    margin-top:  30px;
-    margin-right:  30px;
-    margin-bottom:  30px;
-    border-bottom: #EBEFD0 solid 1px;
+    text-align: left;    
+    border-bottom: #383f50 solid 3px;
+    margin-right: 100px;
 }
 .question:first-child{
-    border-top: #EBEFD0 solid 1px;
+    border-top: #38598B solid 3px;
 }
 .question-text{
    margin: 2%;
-   color: #EBEFD0;
+   color: #383f50;
 }
 .questionType{
-    width: 100%;
     margin-top: 2%;
     margin-left:  0.8%;
 }
@@ -36,27 +29,29 @@
 .btn-outline-primary:hover{
     background-color:  #A2A8D3;
     border-color:  #A2A8D3;
-    
 }
 input[type=checkbox]{
    border-radius: 80%;
    padding: 10px;
 }
 .dropdown-toggle {
-    color: #E7EAF6;
+    color: #383f50;
     border: solid 1px ;
     padding: 10px;
+    float: right;
 }
 .btn:hover{
-    background-color:  #A2A8D3;
-    border-color:  #A2A8D3;
+    background-color:  #2E3353;
+    border-color:  #2E3353;
     color: #E7EAF6;
     box-shadow: none;
 }
 
 .dropdown-menu{
-   background-color: #708090;
+   background-color: #2E3353;
 }
 .dropdown-item{
     color: #E7EAF6;
 }
+
+  
