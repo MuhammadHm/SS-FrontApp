@@ -1,10 +1,15 @@
 .mulChoice{
     text-align: left;
-
 }
-
 .radio{
     text-align: left;
+}
+.radio button{
+    float: left;
+    color: #2E3353;
+}
+.checkbox button{
+    float: left;
 }
 input{
     border-radius: 10px;
@@ -15,3 +20,45 @@ input{
  margin: 10px;
  
 }
+.add-choice{
+    border-radius: 4px;
+    background-color: #2E3353;
+    border: none;
+    color: #fff;
+    text-align: center;
+    font-size: 22px;
+    padding: 10px;
+    width: 145px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 16px;
+    box-shadow: 0 10px 20px -8px rgba(0, 0, 0,.7);
+}
+.add-choice{
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+.add-choice:after {
+    content: '+';
+    position: absolute;
+    opacity: 0;  
+    top: 10px;
+    right: -8px;
+    transition: 0.5s;
+  }
+  .add-choice:hover{
+    padding-right: 24px;
+    padding-left:8px;
+  }
+  
+  .add-choice:hover:after {
+    opacity: 1;
+    right: 10px;
+  }
+
+
+
+
+  
