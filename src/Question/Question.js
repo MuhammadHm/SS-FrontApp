@@ -41,7 +41,7 @@ const question=(props)=>{
                     aria-expanded="false"
                     style={ {'font-size' : '20px'} }
                     >
-                        Type of questions
+                        Question Type
                     </button>
                     <span className="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <button className="dropdown-item" onClick={props.questionType} name="mulchoice">Multiple Choice</button>

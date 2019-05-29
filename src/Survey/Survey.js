@@ -178,7 +178,7 @@ class Survey extends Component {
           body: JSON.stringify(survey)
       })
       .then(response =>  response.json())
-      .then(data => { alert('your survey submitted'); } )
+      .then(data => { alert('Your survey saved sucessfuly'); } )
       .catch(err => console.log(err)); 
       
   }
@@ -192,8 +192,9 @@ class Survey extends Component {
       return (
        
         <div className="Survey">
-         <h1>{this.state.survey_id}</h1>
-          <h1>{this.state.title}</h1>
+          <h1 className="title">{this.state.title}</h1>
+          <h4 >{this.state.welcomeMessage}</h4>
+
           <div className="Questions">
             <ul className="ul">
                 {
@@ -226,7 +227,7 @@ class Survey extends Component {
             <div className="nav">
             <button className="nav-item" onClick={this.saveSurvey} style={buttonStyle}  className="btn btn-outline-primary">Save Survey</button>
             </div>
-            <h4> Save your survey before Previewing it </h4>
+            <h4> Save this survey before previewing it </h4>
             
           </div>
         </div>

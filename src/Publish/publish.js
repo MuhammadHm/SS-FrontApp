@@ -39,14 +39,16 @@ class Publish extends Component {
             "color" : "#383f50",
             "width" : "600px",
             "padding" : "20px",
-            "margin-left" : "300px"
+            "margin-left" : "25%",
+            "margin-top" : "2%",
+            "text-align" : "left"
         };
 
         let link=`http://localhost:3000/preview/${this.state.survey_id}`;
 
         return (
             <div className="textbox">
-                <label style={style} > Link to your Survey : </label>
+                <label style={style} >Share your survey via this web link : </label>
                 <br />
                 <input name="text" type="text" value={link} style={style} />
               

@@ -15,9 +15,9 @@ class Sidebar extends Component {
                     <ul>
                         <li><a href="/createsurvey">Design Survey</a></li>
                         <li><a href="/preview/id">Preview &amp; Score</a></li>
-                        <li><a href="/publish">Publish Survey</a></li>
-                        <li><a href="/responses">Collect Responses</a></li>
-                        <li><a href="/analyze">Analyze Result</a></li>
+                       
+                        <li><a href="/publish">Collect Responses</a></li>
+                        <li><a href="/analyze">Analyze Results</a></li>
                     </ul>
                 </div>
 
