@@ -13,6 +13,8 @@ class App extends Component {
         return(
             <div>
                 <BrowserRouter>
+                <Switch>
+
                     <Route path="/createsurvey" render={({match}) => (                        
                       <div>
                         <Sidebar />
@@ -47,6 +49,14 @@ class App extends Component {
                        </div>             
                     )}/>
 
+
+                    <Route path="/" render={({match}) => (                        
+                      <div>
+                        <Sidebar />
+                        <Survey />  
+                      </div>           
+                    )} />
+                    </Switch>
                 </BrowserRouter>
             </div>
         );
