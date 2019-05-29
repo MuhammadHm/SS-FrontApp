@@ -1,10 +1,16 @@
 .question{
     text-align: left;    
-    border-bottom: #383f50 solid 3px;
+    border: #2E3353 solid 2px;
     margin-right: 100px;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-right-radius: 6%;
 }
-.question:first-child{
-    border-top: #38598B solid 3px;
+
+
+.question .question-input{
+    border: none;
+    border-bottom: #2E3353 3px solid;
 }
 .question-text{
    margin: 2%;
@@ -21,19 +27,16 @@
     margin-left:  0.8%;
 }
 .btn-outline-primary{
-    background-color: #38598B;
-    border-color: #38598B;   
+    background-color: #2E3353;
+    border-color: #2E3353;   
     color: #E7EAF6;
     margin-left: 40%;
 }
 .btn-outline-primary:hover{
-    background-color:  #A2A8D3;
-    border-color:  #A2A8D3;
+    background-color:  #2E3353;
+    border-color:  #2E3353;
 }
-input[type=checkbox]{
-   border-radius: 80%;
-   padding: 10px;
-}
+
 .dropdown-toggle {
     color: #383f50;
     border: solid 1px ;
@@ -49,9 +52,11 @@ input[type=checkbox]{
 
 .dropdown-menu{
    background-color: #2E3353;
+   
 }
 .dropdown-item{
     color: #E7EAF6;
 }
+
 
   

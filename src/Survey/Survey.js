@@ -223,9 +223,7 @@ class Survey extends Component {
                   <button class="icon-btn add-btn" onClick={this.deleteQuestionHandler}>  
                       <div class="btn-txt">Remove</div>
                   </button>
-            </div>
-            <div className="nav">
-            <button className="nav-item" onClick={this.saveSurvey} style={buttonStyle}  className="btn btn-outline-primary">Save Survey</button>
+                  <button className="save-survey" onClick={this.saveSurvey} style={buttonStyle}  className="btn btn-outline-primary">Save Survey</button>
             </div>
             <h4> Save this survey before previewing it </h4>
             

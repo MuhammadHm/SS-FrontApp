@@ -44,8 +44,7 @@ class CheckBox extends Component {
         return (
             <div className="mulChoice">
                 <input name="choice" type="text" placeholder="Enter an answer choice" onChange={this.setChioceText} />
-                <button onClick={()=>{this.addChoiceHandler();this.passChoicesArray()}} className="btn btn-success">Add Choice</button>
-
+                <button onClick={()=>{this.addChoiceHandler();this.passChoicesArray()}} className="add-choice"><span>Add choice</span></button>
                 <div className="control">
                 {
                     this.state.choicesArray.map((choice, index) => {

@@ -11,9 +11,8 @@ const question=(props)=>{
         };
     
         const textStyle={
-            width: '85%',
+            width: '80%',
             padding: '12px 20px',
-            margin: '8px 8px',
             boxSizing: 'border-box',
             fontSize : '18px'
         };
@@ -27,7 +26,7 @@ const question=(props)=>{
                <span> {props.body}</span>
                <br />
                <span>
-                    <input autoFocus
+                    <input autoFocus className="question-input"
                         name="questionBody" 
                         type="text" placeholder="Enter your question" 
                         onBlur={props.setQuestion}
