@@ -36,10 +36,10 @@ class Publish extends Component {
         
         let style={
             "font-size" : "25px",
-            "color" : "#1E1E1E",
+            "color" : "#383f50",
             "width" : "600px",
             "padding" : "20px",
-            "margin" : "20px"
+            "margin-left" : "300px"
         };
 
         let link=`http://localhost:3000/preview/${this.state.survey_id}`;

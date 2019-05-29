@@ -8,7 +8,7 @@ class Sidebar extends Component {
         return(
              
             <body>
-                <div id="menu" class="nav">
+                <div id="menu" class="nav1">
                     <h1 class="logo">
                     <a class="s-logo" href="http://localhost:8080/home">Survey<span>Space</span></a>
                     </h1>

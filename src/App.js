@@ -17,8 +17,8 @@ class App extends Component {
 
                     <Route path="/createsurvey" render={({match}) => (                        
                       <div>
-                        <Sidebar />
-                        <Survey />  
+                        <Sidebar/>
+                        <Survey/>  
                       </div>           
                     )} />
 
@@ -45,6 +45,7 @@ class App extends Component {
                     <Route path="/analyze" render={({match}) => (                        
                        <div>
                          <Sidebar />
+                       
                          
                        </div>             
                     )}/>
