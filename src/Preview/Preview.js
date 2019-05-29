@@ -6,6 +6,7 @@ import Textbox from './PreviewTypes/textbox';
 import Essay from './PreviewTypes/essay';
 import Scale from './PreviewTypes/scale';
 import Date from './PreviewTypes/date';
+import './Preview.css'
 
 
 
@@ -150,7 +151,7 @@ render(){
             this.state.questionsArray.map((question,index)=>{
 
                 return(
-                    <div key={index}>
+                    <div key={index} className="preview">
                         <li>
                             <QuestionPrev 
                             question_id={question.id}
