@@ -8,9 +8,7 @@ import Scale from './PreviewTypes/scale';
 import Date from './PreviewTypes/date';
 
 
-
 class Preview extends Component {
-
 
 constructor(){
     super();
@@ -38,7 +36,6 @@ constructor(){
         index : ''
     }
 }
-
 
 componentDidMount(){
 
@@ -148,9 +145,8 @@ render(){
         <ul>
         {                  
             this.state.questionsArray.map((question,index)=>{
-
                 return(
-                    <div key={index}>
+                    <div key={index} >
                         <li>
                             <QuestionPrev 
                             question_id={question.id}
