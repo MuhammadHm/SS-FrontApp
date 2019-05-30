@@ -6,6 +6,7 @@ import Textbox from './PreviewTypes/textbox';
 import Essay from './PreviewTypes/essay';
 import Scale from './PreviewTypes/scale';
 import Date from './PreviewTypes/date';
+import './Preview.css'
 
 
 class Preview extends Component {
@@ -146,7 +147,11 @@ render(){
         {                  
             this.state.questionsArray.map((question,index)=>{
                 return(
+<<<<<<< HEAD
                     <div key={index} >
+=======
+                    <div key={index} className="preview">
+>>>>>>> 642bf760f9df8695512c839c8c4c806682b84ba0
                         <li>
                             <QuestionPrev 
                             question_id={question.id}
