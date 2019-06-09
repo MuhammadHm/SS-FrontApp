@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import "./textbox.css";
 
 class Textbox extends Component {
     

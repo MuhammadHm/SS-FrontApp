@@ -24,7 +24,6 @@ class App extends Component {
 
                     <Route path="/preview/:id" render={({match}) => (                        
                        <div>
-                         <Sidebar />
                          <Preview id={match.params.id} />
                        </div>             
                     )} />

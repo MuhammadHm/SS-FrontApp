@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import "./scale.css";
 class Scale extends Component {
 
     constructor() {
