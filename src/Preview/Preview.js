@@ -147,11 +147,7 @@ render(){
         {                  
             this.state.questionsArray.map((question,index)=>{
                 return(
-<<<<<<< HEAD
-                    <div key={index} >
-=======
                     <div key={index} className="preview">
->>>>>>> 642bf760f9df8695512c839c8c4c806682b84ba0
                         <li>
                             <QuestionPrev 
                             question_id={question.id}
