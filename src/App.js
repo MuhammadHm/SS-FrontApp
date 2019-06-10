@@ -1,26 +1,60 @@
 import React,{Component} from 'react';
-import {BrowserRouter ,Route , Switch ,Link} from 'react-router-dom';
+import {BrowserRouter ,Route , Switch } from 'react-router-dom';
 import Survey from './Survey/Survey';
 import Preview from './Preview/Preview';
 import Publish from './Publish/publish';
 import Sidebar from './Side Bar/Sidebar';
-import SurveyInfo from './SurveyInfo'
 
 class App extends Component {
 
+  constructor(){
+    super();
+    this.state = {
+      survey_id: '',
+      user_id: '',
+      title : '',
+      welcomeMessage : ' '
+    }
+  }
+
+
+  componentDidMount(){ 
+ 
+    fetch('http://localhost:8080/survey/sendsurveyinfo')
+    .then(response =>  response.json())
+      .then(data => {
+        this.setState({
+          survey_id: data.survey_id,
+          user_id : data.user_id,
+          title : data.title,
+          welcomeMessage : data.welcomeMessage
+        });
+        console.log(this.state);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+    
+  }
 
     render(){
 
         return(
             <div >
-              <SurveyInfo  >
                   <BrowserRouter>
                   <Switch>
 
                       <Route path="/createsurvey" render={({match}) => (                        
                         <div>
-                          <Sidebar />
-                          <Survey />  
+                          <Sidebar survey_id={this.state.survey_id}
+                          user_id={this.state.user_id}
+                          />
+                          <Survey
+                          survey_id={this.state.survey_id}
+                          user_id={this.state.user_id}
+                          title={this.state.title}
+                          welcomeMessage={this.state.welcomeMessage}
+                          />  
                         </div>           
                       )} />
 
@@ -34,7 +68,7 @@ class App extends Component {
                       <Route path="/publish" render={({match}) => (                        
                         <div>
                           <Sidebar />
-                          <Publish />
+                          <Publish survey_id={this.state.survey_id} />
                         </div>             
                       )} />                    
                       
@@ -61,7 +95,6 @@ class App extends Component {
                       )} />
                       </Switch>
                   </BrowserRouter>
-                </SurveyInfo>
             </div>
         );
     }

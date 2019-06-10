@@ -9,8 +9,6 @@ import Textbox from "../QuestionTypes/textbox";
 import Date from "../QuestionTypes/date";
 
 
-
-
 class Survey extends Component {
   
   
@@ -38,20 +36,14 @@ class Survey extends Component {
 
   componentDidMount(){ 
  
-    fetch('http://localhost:8080/survey/sendsurveyinfo')
-    .then(response =>  response.json())
-      .then(data => {
+
         this.setState({
-          survey_id: data.survey_id,
-          user_id : data.user_id,
-          title : data.title,
-          welcomeMessage : data.welcomeMessage
+          survey_id: this.props.survey_id,
+          user_id : this.props.user_id,
+          title : this.props.title,
+          welcomeMessage : this.props.welcomeMessage
         });
-        console.log(data);
-      })
-      .catch(error => {
-        console.log(error);
-      });
+       
     
   }
   //new question
@@ -60,7 +52,7 @@ class Survey extends Component {
     let questions=this.state.questionsArray;
 
     questions.push({id : (questions.length+1) , body : '',isRequired: false ,
-     answerType : ''});
+     answerType : 'textbox'});
     this.setState({
           questionsArray : questions
       
@@ -163,10 +155,10 @@ class Survey extends Component {
   
   saveSurvey= ()=>{   // must be arrow function to arrive to 'this'
   const survey={
-      survey_id : this.state.survey_id,
-      user_id: this.state.user_id, 
-      title : this.state.title,
-      welcomeMessage : this.state.welcomeMessage,
+      survey_id : this.props.survey_id,
+      user_id: this.props.user_id, 
+      title : this.props.title,
+      welcomeMessage : this.props.welcomeMessage,
       questionsArray : this.state.questionsArray
     };
     fetch('http://localhost:8080/survey/savesurvey', {
@@ -183,6 +175,8 @@ class Survey extends Component {
       
   }
 
+  
+
   render(){
 
       const buttonStyle={
@@ -192,8 +186,8 @@ class Survey extends Component {
       return (
        
         <div className="Survey">
-          <h1 className="title">{this.state.title}</h1>
-          <h4 >{this.state.welcomeMessage}</h4>
+          <h1 className="title">{this.props.title}</h1>
+          <h4 >{this.props.welcomeMessage}</h4>
 
           <div className="Questions">
             <ul className="ul">
@@ -215,17 +209,17 @@ class Survey extends Component {
 
             </ul>
             <div>
-              <hr class="main-hr" />
-                  <button class="icon-btn add-btn" onClick={this.addQuestionHandler}>
-                      <div class="add-icon"></div>
-                      <div class="btn-txt">Add</div>
+              <hr className="main-hr" />
+                  <button className="icon-btn add-btn" onClick={this.addQuestionHandler}>
+                      <div className="add-icon"></div>
+                      <div className="btn-txt">Add</div>
                   </button>
-                  <button class="icon-btn add-btn" onClick={this.deleteQuestionHandler}>  
-                      <div class="btn-txt">Remove</div>
+                  <button className="icon-btn add-btn" onClick={this.deleteQuestionHandler}>  
+                      <div className="btn-txt">Remove</div>
                   </button>
-                  <button className="save-survey" onClick={this.saveSurvey} style={buttonStyle}  className="btn btn-outline-primary">Save Survey</button>
+                  <button  onClick={this.saveSurvey} style={buttonStyle}  className="save-survey btn btn-outline-primary"><a href="http://localhost:3003/publish" target="_blank">Save Survey</a></button>
             </div>
-            <h4> Save this survey before previewing it </h4>
+            <h4> Save your survey before previewing it </h4>
             
           </div>
         </div>

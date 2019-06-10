@@ -129,7 +129,7 @@ submitAnswers=()=>{
 decidePreview=()=>{
     if(this.props.id !== 'id'){
         return (
-            <button className="nav-item" onClick={this.submitAnswers}   className="btn btn-outline-primary">Submit</button>
+            <button onClick={this.submitAnswers}  className="nav-item btn btn-outline-primary">Submit</button>
         );        
     }
     return(<div></div>);
@@ -144,7 +144,7 @@ render(){
         <h3>{this.state.welcomeMessage}</h3>
 
         <ul>
-        {                  
+         {                  
             this.state.questionsArray.map((question,index)=>{
                 return(
                     <div key={index} className="preview">
@@ -162,7 +162,7 @@ render(){
  
                 );
             })
-        }
+         }
             
         </ul>
         <div> {this.decidePreview()} </div>

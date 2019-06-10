@@ -4,11 +4,7 @@ import "./Question.css";
 
 const question=(props)=>{
 
-    const buttonStyle={
-            padding: '3px 3px 3px',
-            fontSize: '15px',
-            width : '60px',
-        };
+   
     
         const textStyle={
             width: '80%',
@@ -38,7 +34,7 @@ const question=(props)=>{
                     <button className="btn btn-default dropdown-toggle" 
                     type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" 
                     aria-expanded="false"
-                    style={ {'font-size' : '20px'} }
+                    style={ {'fontSize' : '20px'} }
                     >
                         Question Type
                     </button>
@@ -62,7 +58,7 @@ const question=(props)=>{
                 <span className="group">
                         <input id="check" type="checkbox" className="check"  name="Required" onChange={props.isRequired} /><span> Required </span>
                 </span>
-                <button  onClick={props.deleteQuestion} className="btn btn-outline-primary" >Delete this Question </button>
+                <button  onClick={props.deleteQuestion} className="btn btn-outline-primary" >Delete Question </button>
                 </div>
 
             </li>
