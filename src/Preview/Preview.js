@@ -7,7 +7,7 @@ import Essay from './PreviewTypes/essay';
 import Scale from './PreviewTypes/scale';
 import Date from './PreviewTypes/date';
 import './Preview.css'
-
+import Sidebar from './../Side Bar/Sidebar'
 
 class Preview extends Component {
 
@@ -135,11 +135,24 @@ decidePreview=()=>{
     return(<div></div>);
 }
 
+decideSideBar=()=>{
+    if(this.props.id === 'id'){
+        return (           
+        <Sidebar />     
+     );        
+    }
+    return(<div></div>);
+}
+
 render(){
 
     return(
+    <div>                         
+    <div>{this.decideSideBar()}</div>
 
-    <div>
+    <div className="preview-title">
+      
+
         <h1>{this.state.title}</h1>
         <h3>{this.state.welcomeMessage}</h3>
 
@@ -167,7 +180,7 @@ render(){
         </ul>
         <div> {this.decidePreview()} </div>
     </div>
-
+    </div>
     );
 }
 
