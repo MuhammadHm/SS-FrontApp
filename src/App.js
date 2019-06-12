@@ -58,12 +58,20 @@ class App extends Component {
                         </div>           
                       )} />
 
+<<<<<<< HEAD
                       <Route path="/preview/:id" render={({match}) => (                        
                         <div>
                           <Sidebar />
                           <Preview id={match.params.id} />
                         </div>             
                       )} />
+=======
+                    <Route path="/preview/:id" render={({match}) => (                        
+                       <div>
+                         <Preview id={match.params.id} />
+                       </div>             
+                    )} />
+>>>>>>> 12764ee5f3f8df9e261248763a8e25a5cf4a2fec
 
                       <Route path="/publish" render={({match}) => (                        
                         <div>
