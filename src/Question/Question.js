@@ -27,6 +27,7 @@ const question=(props)=>{
                         type="text" placeholder="Enter your question" 
                         onBlur={props.setQuestion}
                         onChange={props.setQuestion}
+                        
                         style={textStyle} />
                </span>
 

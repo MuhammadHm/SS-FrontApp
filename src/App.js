@@ -4,7 +4,7 @@ import Survey from './Survey/Survey';
 import Preview from './Preview/Preview';
 import Publish from './Publish/publish';
 import Sidebar from './Side Bar/Sidebar';
-
+import Edit from './Survey/edit';
 class App extends Component {
 
   constructor(){
@@ -58,20 +58,12 @@ class App extends Component {
                         </div>           
                       )} />
 
-<<<<<<< HEAD
-                    <Route path="/preview/:id" render={({match}) => (                        
-                       <div>
-                         <Preview id={match.params.id} />
-                       </div>             
-                    )} />
-=======
                       <Route path="/preview/:id" render={({match}) => (                        
                         <div>
                           <Sidebar />
                           <Preview id={match.params.id} />
                         </div>             
                       )} />
->>>>>>> 8e8d57316d08d4c04fac4b9909219268e5df38bd
 
                       <Route path="/publish" render={({match}) => (                        
                         <div>
@@ -92,6 +84,12 @@ class App extends Component {
                         
                           
                         </div>             
+                      )}/>
+                      <Route path="/edit/:id" render={({match}) => (                        
+                         <div>
+                         <Sidebar />
+                         <Edit id={match.params.id} />
+                       </div>                
                       )}/>
 
 
