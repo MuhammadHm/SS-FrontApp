@@ -1,12 +1,13 @@
 import React,{Component} from 'react';
 import './Survey.css';
-import Question from '../Question/Question';
+import Question from '../Question/EditeQuestion';
 import MultiChoice from '../QuestionTypes/multiChoice';
 import CheckBox from "../QuestionTypes/checkBox";
 import Essay from "../QuestionTypes/essay";
 import Scale from "../QuestionTypes/scale";
 import Textbox from "../QuestionTypes/textbox";
 import Date from "../QuestionTypes/date";
+import EditeQuestion from '../Question/EditeQuestion';
 
 
 class Edit extends Component {
@@ -20,16 +21,10 @@ class Edit extends Component {
           title : '',
           welcomeMessage : ' ',
           questionsArray : [
-              {
-                 id: 1,
-                 body : '',
-                 isRequired: false ,
-                 answerType : 'textbox',
-                 answers : ''
-              }
+             
           ],
           
-          Body : "",
+       
           index : 0
         }
       }
@@ -88,29 +83,24 @@ class Edit extends Component {
       }
       setQuestion(index,element){     // element can be used only in setState
 
-       // if(!this.state.questionsArray[index].body){
-        this.setState({
-          Body : element.target.value
-        });
-        console.log("questions" ,this.state.questionsArray)
-        let questions=this.state.questionsArray;
-        questions[index].body=this.state.Body;
+        let questions = this.state.questionsArray;
+        questions[index].body = element.target.value;
     
           this.setState({
               questionsArray : questions
           });
-       // }
        
          
       }
-      saveQuestion=(index)=>{
+      /*
+      saveQuestion=(index,element)=>{
         let questions=this.state.questionsArray;
-        questions[index].body=this.state.Body;
+        questions[index].body=element.target.value;
     
           this.setState({
               questionsArray : questions
           });
-      }
+      }*/
       handleRequired=(index)=>{
        
         let questions=this.state.questionsArray;
@@ -165,7 +155,7 @@ class Edit extends Component {
              
       }
       
-      saveSurvey= ()=>{   // must be arrow function to arrive to 'this'
+      saveSurvey= ()=>{   // must be arrow function to use 'this'
       const survey={
           survey_id : this.props.survey_id,
           user_id: this.props.user_id, 
@@ -205,16 +195,16 @@ class Edit extends Component {
                 <ul className="ul">
                     {
                       this.state.questionsArray.map((question,index)=>{
-                       return (<Question 
+                       return (<EditeQuestion 
                         key={index}
                         id={index+1} 
                         body={question.body} 
                         deleteQuestion={this.handleDeleteQuestion.bind(this,index)}
                         setQuestion={this.setQuestion.bind(this,index)}
-                        saveQuestion={this.saveQuestion.bind(this,index)}
                         isRequired={this.handleRequired.bind(this,index)}
                         questionType={this.handleQuestionType.bind(this,index)}
                         answerType={this.setAnswerType.bind(this,index)}
+                        
                         />)
                         })
                     }

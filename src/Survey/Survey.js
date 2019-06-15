@@ -24,7 +24,7 @@ class Survey extends Component {
              id: 1,
              body : '',
              isRequired: false ,
-             answerType : 'textbox',
+             answerType : '',
              answers : ''
           }
       ],
@@ -52,7 +52,7 @@ class Survey extends Component {
     let questions=this.state.questionsArray;
 
     questions.push({id : (questions.length+1) , body : '',isRequired: false ,
-     answerType : 'textbox'});
+     answerType : ''});
     this.setState({
           questionsArray : questions
       
@@ -67,11 +67,11 @@ class Survey extends Component {
       questionsArray : questions
       });
   }
-  //deleting specifique question 
+  //deleting specific question 
   handleDeleteQuestion = (index)=>{
     
     let questions=this.state.questionsArray;
-    questions.splice(index,1);    //deleteing question
+    questions.splice(index,1);    //deleting question
     console.log('deleted index : ',index);
     this.setState({
       questionsArray : questions
@@ -186,14 +186,15 @@ class Survey extends Component {
       return (
        
         <div className="Survey">
-          <h1 className="title">{this.props.title}</h1>
-          <h4 >{this.props.welcomeMessage}</h4>
+          <h1>{this.props.title}</h1>
+          <h3>{this.props.welcomeMessage}</h3>
+         
 
           <div className="Questions">
             <ul className="ul">
                 {
-                  this.state.questionsArray.map((question,index)=>{
-                   return (<Question 
+                    this.state.questionsArray.map((question,index)=>{
+                    return (<Question 
                     key={index+1}
                     id={index+1} 
                     body={question.body} 
@@ -212,14 +213,12 @@ class Survey extends Component {
               <hr className="main-hr" />
                   <button className="icon-btn add-btn" onClick={this.addQuestionHandler}>
                       <div className="add-icon"></div>
-                      <div className="btn-txt">Add</div>
+                      <div className="btn-txt">NEW QUESTION</div>
                   </button>
-                  <button className="icon-btn add-btn" onClick={this.deleteQuestionHandler}>  
-                      <div className="btn-txt">Remove</div>
-                  </button>
+                 <br />
                   <button  onClick={this.saveSurvey} style={buttonStyle}  className="save-survey btn btn-outline-primary">Save Survey</button>
             </div>
-            <h4> Save your survey before previewing it </h4>
+           
             
           </div>
         </div>

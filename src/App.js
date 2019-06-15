@@ -5,6 +5,8 @@ import Preview from './Preview/Preview';
 import Publish from './Publish/publish';
 import Sidebar from './Side Bar/Sidebar';
 import Edit from './Survey/edit';
+import UserPreview from './Preview/UserPreview';
+import Responses from './Responses/Responses';
 class App extends Component {
 
   constructor(){
@@ -58,44 +60,45 @@ class App extends Component {
                         </div>           
                       )} />
 
-<<<<<<< HEAD
-                      <Route path="/preview/:id" render={({match}) => (                        
-                        <div>
-                          <Sidebar />
-                          <Preview id={match.params.id} />
-                        </div>             
-                      )} />
-=======
                     <Route path="/preview/:id" render={({match}) => (                        
                        <div>
                          <Preview id={match.params.id} />
                        </div>             
-                    )} />
->>>>>>> 12764ee5f3f8df9e261248763a8e25a5cf4a2fec
+                    )} /> 
+                    <Route path="/userpreview/:id" render={({match}) => (                        
+                       <div>
+                         <UserPreview id={match.params.id} />
+                       </div>             
+                    )} /> 
 
                       <Route path="/publish" render={({match}) => (                        
                         <div>
-                          <Sidebar />
+                          <Sidebar survey_id={this.state.survey_id}
+                          user_id={this.state.user_id} />
                           <Publish survey_id={this.state.survey_id} />
                         </div>             
                       )} />                    
                       
-                      <Route path="/responses" render={({match}) => (                        
+                      <Route path="/responses/:id" render={({match}) => (                        
                         <div>
-                          <Sidebar />
+                          <Sidebar survey_id={this.state.survey_id}
+                          user_id={this.state.user_id}/>
+                          <Responses survey_id={match.params.id} />
                           
                         </div>             
                       )} />
                       <Route path="/analyze" render={({match}) => (                        
                         <div>
-                          <Sidebar />
+                          <Sidebar survey_id={this.state.survey_id}
+                          user_id={this.state.user_id} />
                         
                           
                         </div>             
                       )}/>
                       <Route path="/edit/:id" render={({match}) => (                        
                          <div>
-                         <Sidebar />
+                         <Sidebar survey_id={this.state.survey_id}
+                          user_id={this.state.user_id} />
                          <Edit id={match.params.id} />
                        </div>                
                       )}/>
@@ -103,7 +106,8 @@ class App extends Component {
 
                       <Route path="/" render={({match}) => (                        
                         <div>
-                          <Sidebar />
+                          <Sidebar survey_id={this.state.survey_id}
+                          user_id={this.state.user_id}/>
                           <Survey />  
                         </div>           
                       )} />

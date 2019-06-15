@@ -2,9 +2,7 @@ import React from 'react';
 import "./Question.css";
 
 
-const question=(props)=>{
-
-   
+const EditQuestion=(props)=>{
     
         const textStyle={
             width: '80%',
@@ -26,7 +24,6 @@ const question=(props)=>{
                         name="questionBody" 
                         type="text" placeholder="Enter your question" 
                         onBlur={props.setQuestion}
-                        onChange={props.setQuestion}
                         style={textStyle} />
                </span>
 
@@ -69,4 +66,4 @@ const question=(props)=>{
 }
 
 
-export default question;
+export default EditQuestion;

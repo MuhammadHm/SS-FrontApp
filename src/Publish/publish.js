@@ -44,7 +44,7 @@ class Publish extends Component {
             "textAlign" : "left"
         };
 
-        let link=`http://localhost:3000/preview/${this.props.survey_id}`;
+        let link=`http://localhost:3000/userpreview/${this.props.survey_id}`;
 
         return (
             <div className="textbox">
