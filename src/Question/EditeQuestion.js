@@ -10,14 +10,14 @@ const EditQuestion=(props)=>{
             boxSizing: 'border-box',
             fontSize : '18px'
         };
-
+        let x=props.body;
 
     return(
 
         <div className="question">
             <li className="question-text">
                <label className="bounceIn"> Question {props.id} : </label> 
-               <span> {props.body}</span>
+               <span> {x}</span>
                <br />
                <span>
                     <input autoFocus className="question-input"
