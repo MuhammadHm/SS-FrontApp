@@ -10,6 +10,7 @@ import Date from "../QuestionTypes/date";
 
 class Survey extends Component {
 
+
   constructor() {
     super();
     this.state = {
@@ -17,28 +18,27 @@ class Survey extends Component {
       user_id: '',
       title: '',
       welcomeMessage: ' ',
-      questionsArray: [
-        {
-          id: 1,
-          body: '',
-          isRequired: false,
-          answerType: '',
-          answers: ''
-        }
-      ],
-
-      Body: "",
+      questionsArray: [],
       index: 0
     }
   }
   componentDidMount() {
 
-    this.setState({
-      survey_id: this.props.survey_id,
-      user_id: this.props.user_id,
-      title: this.props.title,
-      welcomeMessage: this.props.welcomeMessage
-    });
+    fetch(`http://localhost:8080/survey/sendsurvey/${this.props.survey_id}`)
+      .then(response => response.json())
+      .then(data => {
+        this.setState({
+          survey_id: this.props.survey_id,
+          user_id: data.user_id,
+          title: data.title,
+          welcomeMessage: data.welcomeMessage,
+          questionsArray: data.questionsArray
+
+        });
+      })
+      .catch(error => {
+        console.log(error);
+      });
 
   }
   //new question
@@ -66,6 +66,7 @@ class Survey extends Component {
 
     });
   }
+  // saving question
   setQuestion(index, element) {
 
     let questions = this.state.questionsArray;
@@ -128,15 +129,15 @@ class Survey extends Component {
       return (<div> <Date /> </div>);
 
   }
-  saveSurvey = () => {   // must be arrow function to arrive to 'this'
+  saveSurvey = () => {
     const survey = {
-      survey_id: this.props.survey_id,
-      user_id: this.props.user_id,
-      title: this.props.title,
-      welcomeMessage: this.props.welcomeMessage,
+      survey_id: this.state.survey_id,
+      user_id: this.state.user_id,
+      title: this.state.title,
+      welcomeMessage: this.state.welcomeMessage,
       questionsArray: this.state.questionsArray
     };
-    fetch('http://localhost:8080/survey/savesurvey', {
+    fetch('http://localhost:8080/survey/editsurvey', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -145,16 +146,16 @@ class Survey extends Component {
       body: JSON.stringify(survey)
     })
       .then(response => response.json())
-      .then(data => { alert('Your survey saved sucessfuly'); })
+      .then(data => { alert('Your survey edited sucessfuly'); })
       .catch(err => console.log(err));
 
   }
   saveAsTemplate = () => {
     const survey = {
-      survey_id: this.props.survey_id,
-      user_id: this.props.user_id,
-      title: this.props.title,
-      welcomeMessage: this.props.welcomeMessage,
+      survey_id: this.state.survey_id,
+      user_id: this.state.user_id,
+      title: this.state.title,
+      welcomeMessage: this.state.welcomeMessage,
       questionsArray: this.state.questionsArray
     };
     fetch('http://localhost:8080/survey/saveastemplate', {
@@ -166,21 +167,21 @@ class Survey extends Component {
       body: JSON.stringify(survey)
     })
       .then(response => response.json())
-      .then(data => { alert('Your template saved sucessfuly'); })
+      .then(data => { alert('Your template saved successfully'); })
       .catch(err => console.log(err));
 
   }
 
   render() {
+
     const buttonStyle = {
       margin: '20px 20px'
     };
 
     return (
-
       <div className="Survey">
-        <h1>{this.props.title}</h1>
-        <h3>{this.props.welcomeMessage}</h3>
+        <h1>{this.state.title}</h1>
+        <h3>{this.state.welcomeMessage}</h3>
 
         <div className="Questions">
           <ul className="ul">
@@ -203,10 +204,10 @@ class Survey extends Component {
             <hr className="main-hr" />
             <button className="icon-btn add-btn" onClick={this.addQuestionHandler}>
               <div className="add-icon"></div>
-              <div className="btn-txt">NEW </div>
+              <div className="btn-txt">NEW QUESTION</div>
             </button>
             <br />
-            <button onClick={this.saveSurvey} style={buttonStyle} className="save-survey btn btn-outline-primary">Save Survey</button>
+            <button onClick={this.saveSurvey} style={buttonStyle} className="save-survey btn btn-outline-primary">Edit Survey</button>
             <br />
             <button onClick={this.saveAsTemplate} style={buttonStyle} className="save-survey btn btn-outline-primary">Save As Template</button>
           </div>

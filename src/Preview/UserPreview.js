@@ -9,7 +9,7 @@ import Date from './PreviewTypes/date';
 import './Preview.css'
 import Sidebar from './../Side Bar/Sidebar'
 
-class Preview extends Component {
+class UserPreview extends Component {
 
 constructor(){
     super();
@@ -126,12 +126,11 @@ submitAnswers=()=>{
 }
 
 
+
 render(){
 
     return(
     <div>                         
-    <div><Sidebar survey_id={this.state.survey_id}
-                          user_id={this.state.user_id} />  </div>
 
     <div className="preview-title">
       
@@ -161,6 +160,7 @@ render(){
          }
             
         </ul>
+        <div>  <button onClick={this.submitAnswers}  className="nav-item btn btn-outline-primary">Submit</button></div>
     </div>
     </div>
     );
@@ -168,4 +168,4 @@ render(){
 
 }
 
-export default Preview;
+export default UserPreview;

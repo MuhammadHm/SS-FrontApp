@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import "./checkBox.css";
 
 class MultiChoice extends Component {
 

@@ -35,16 +35,16 @@ class Publish extends Component {
     render() {
         
         let style={
-            "font-size" : "25px",
+            "fontSize" : "25px",
             "color" : "#383f50",
             "width" : "600px",
             "padding" : "20px",
-            "margin-left" : "25%",
-            "margin-top" : "2%",
-            "text-align" : "left"
+            "marginLeft" : "25%",
+            "marginTop" : "2%",
+            "textAlign" : "left"
         };
 
-        let link=`http://localhost:3000/preview/${this.state.survey_id}`;
+        let link=`http://localhost:3000/userpreview/${this.props.survey_id}`;
 
         return (
             <div className="textbox">
