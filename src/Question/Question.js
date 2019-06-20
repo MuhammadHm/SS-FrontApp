@@ -17,7 +17,7 @@ render() {
         <div className="question">
             <li className="question-text">
                 <label className="bounceIn"> Question {this.props.id} : </label>
-                <span> Old Question : {x}</span>
+                <span> {x}</span>
                 <br />
                 <span>
                     <input autoFocus className="question-input"
