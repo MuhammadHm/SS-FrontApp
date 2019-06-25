@@ -41,7 +41,7 @@ class Date extends Component {
     render() {
         let style={
             width : "8%",
-            margin : "100px",
+            margin : "50px",
             textAlign : "center"
         };
         

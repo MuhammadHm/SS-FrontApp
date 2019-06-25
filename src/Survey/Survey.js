@@ -170,6 +170,34 @@ class Survey extends Component {
       .catch(err => console.log(err));
 
   }
+  swapUp = (index) =>{
+    if(index-1 >= 0){
+        let questions=this.state.questionsArray;
+        let b = questions[index-1];
+        questions[index-1] =  questions[index];
+        questions[index] = b;
+
+        this.setState({
+          questionsArray : questions
+        });
+    }
+
+  }
+  swapDown = (index) =>{
+    let questions=this.state.questionsArray;
+    if(index+1 <= questions.length-1){
+       
+        let b = questions[index+1];
+        questions[index+1] =  questions[index];
+        questions[index] = b;
+
+        this.setState({
+          questionsArray : questions
+        });
+    }
+
+  }
+
 
   render() {
     const buttonStyle = {
@@ -195,6 +223,8 @@ class Survey extends Component {
                   isRequired={this.handleRequired.bind(this, index)}
                   questionType={this.handleQuestionType.bind(this, index)}
                   answerType={this.setAnswerType.bind(this, index)}
+                  swapUp={this.swapUp.bind(this,index)}
+                  swapDown={this.swapDown.bind(this,index)}
                 />)
               })
             }
@@ -205,9 +235,9 @@ class Survey extends Component {
               <div className="add-icon"></div>
               <div className="btn-txt">NEW </div>
             </button>
-            <br />
+            <br /> <br />
             <button onClick={this.saveSurvey} style={buttonStyle} className="save-survey btn btn-outline-primary">Save Survey</button>
-            <br />
+            
             <button onClick={this.saveAsTemplate} style={buttonStyle} className="save-survey btn btn-outline-primary">Save As Template</button>
           </div>
         </div>
