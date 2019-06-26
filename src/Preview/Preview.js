@@ -13,6 +13,7 @@ class Preview extends Component {
 
 constructor(){
     super();
+
     this.state={
         survey_id :'',
         user_id: '',
@@ -34,10 +35,12 @@ constructor(){
             answer : ""
            }*/
         ],
-        index : ''
-    }
-}
+        index : '',
+        isPrint : false,
+       
 
+    };
+}
 componentDidMount(){
 
     fetch(`http://localhost:8080/survey/sendsurvey/${this.props.id}`)
@@ -58,7 +61,6 @@ componentDidMount(){
       });
     
 }
-
 renderQuestionType=(type,answers,questionBody)=>{
     
     if(type === "mulchoice")
@@ -75,7 +77,6 @@ renderQuestionType=(type,answers,questionBody)=>{
         return(<div> <Date getInput={this.getInput} body={questionBody} /> </div>);     
        
 }
-
 getInput=(answer ,questionType ,questionBody)=>{
 
     let userInput=this.state.userInput;
@@ -95,16 +96,35 @@ getInput=(answer ,questionType ,questionBody)=>{
   });
 
 }
-search=(nameKey, myArray)=>{
-    for (var i=0; i < myArray.length; i++) {
-        if (myArray[i].questionBody === nameKey) {
-            return i;
-        }
-    }
-    return -1;
+printSurvey=async()=>{
+    await this.setState({
+        isPrint : true 
+    })
+
+    window.print();
+
+    await this.setState({
+        isPrint : false 
+    })
+
 }
+decidePrint = (isPrint)=>{
+    const buttonStyle = {
+        marginLeft: '50%',
+       // marginBottom: '10%'
+      };
 
-
+    if(! isPrint){
+       return(
+           <div>
+                <div><Sidebar survey_id={this.state.survey_id}
+                user_id={this.state.user_id} />  </div>
+                <button onClick={this.printSurvey} style={buttonStyle} className="btn btn-secondary btn-lg">Print Survey</button>
+            </div>
+            );
+    }
+    return(<div></div>);
+}
 submitAnswers=()=>{
  const result={
       survey_id : this.state.survey_id,
@@ -124,25 +144,26 @@ submitAnswers=()=>{
       .catch(err => console.log(err)); 
     
 }
-
-
+search=(nameKey, myArray)=>{
+    for (var i=0; i < myArray.length; i++) {
+        if (myArray[i].questionBody === nameKey) {
+            return i;
+        }
+    }
+    return -1;
+}
 render(){
-
+  
     return(
     <div>                         
-    <div><Sidebar survey_id={this.state.survey_id}
-                          user_id={this.state.user_id} />  </div>
-
-    <div className="preview-title">
-      
-
+        {this.decidePrint(this.state.isPrint)}
+    <div className="preview-title"> 
         <h1>{this.state.title}</h1>
         <h3>{this.state.welcomeMessage}</h3>
-
         <ul>
          {                  
             this.state.questionsArray.map((question,index)=>{
-                return(
+                return(                   
                     <div key={index} className="preview">
                         <li>
                             <QuestionPrev 
@@ -155,17 +176,14 @@ render(){
                              />
                         </li>
                     </div>
- 
                 );
             })
-         }
-            
+         }            
         </ul>
     </div>
     </div>
     );
 }
-
 }
 
 export default Preview;

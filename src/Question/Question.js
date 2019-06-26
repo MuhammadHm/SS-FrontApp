@@ -13,11 +13,14 @@ render() {
     };
     let x = this.props.body;
 
+
     return (
         <div className="question">
             <li className="question-text">
                 <label className="bounceIn"> Question {this.props.id} : </label>
-                <span> Old Question : {x}</span>
+                <button className="btn btn-outline-primary" onClick={this.props.swapUp} style={{ marginLeft: '84%',marginBottom : "2%" }} title="Swap up" ><i className="fas fa-chevron-up"></i> </button>
+                <br />
+                <span> {x}</span>
                 <br />
                 <span>
                     <input autoFocus className="question-input"
@@ -47,8 +50,12 @@ render() {
                 <div className="contents">
                     <span className="group">
                         <input id="check" type="checkbox" className="check" name="Required" onChange={this.props.isRequired} /><span> Required </span>
+
                     </span>
-                    <button onClick={this.props.deleteQuestion} className="btn btn-outline-primary" >Delete Question </button>
+                    
+                    <button onClick={this.props.deleteQuestion} className="btn btn-outline-primary"  >Delete Question </button>
+                    <button onClick={this.props.swapDown} style={{ marginLeft: '41.5%'}} className="btn btn-outline-primary" title="Swap down"><i className="fas fa-chevron-down "></i> </button>
+
                 </div>
             </li>
         </div>
