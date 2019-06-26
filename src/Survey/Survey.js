@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import cookie from 'cookie'; 
 import './Survey.css';
 import Question from '../Question/Question';
 import MultiChoice from '../QuestionTypes/multiChoice';
@@ -111,6 +112,7 @@ class Survey extends Component {
     });
   }
   setAnswerType = (index) => {
+    console.log("cookie : "  + cookie.user);
     let type = this.state.questionsArray[index].answerType;
     //let answers=this.state.questionsArray[index].answers;
     this.state.index = index;
