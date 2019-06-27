@@ -197,7 +197,9 @@ class Survey extends Component {
     }
 
   }
-
+  handleSaveQuestion=(question,index)=>{
+    
+  }
 
   render() {
     const buttonStyle = {
@@ -219,6 +221,7 @@ class Survey extends Component {
                   id={index + 1}
                   body={question.body}
                   deleteQuestion={this.handleDeleteQuestion.bind(this, index)}
+                  saveQuestion={this.handleSaveQuestion.bind(this,question, index)}
                   setQuestion={this.setQuestion.bind(this, index)}
                   isRequired={this.handleRequired.bind(this, index)}
                   questionType={this.handleQuestionType.bind(this, index)}
