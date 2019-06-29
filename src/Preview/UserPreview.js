@@ -111,6 +111,7 @@ submitAnswers=()=>{
       user_id: this.state.user_id,
       answers : this.state.userInput
     };
+    if (navigator.onLine){
     fetch('http://localhost:8080/results/submit', {
           method: 'POST',
           headers: {
@@ -120,14 +121,30 @@ submitAnswers=()=>{
           body: JSON.stringify(result)
       })
       .then(response =>  response.json())
-      .then(data => { alert('your survey submitted'); } )
+      .then(data => { 
+        localStorage.removeItem('submait');
+        alert('your survey submitted'); } )
       .catch(err => console.log(err)); 
-    
+    }
+      else 
+      { 
+        localStorage.setItem('submait',JSON.stringify(result));
+      }
 }
 
 
 
 render(){
+
+    let connect = null;
+    if (!navigator.onLine)
+      {if (localStorage.getItem('submait') === null)
+        connect=(<h3>you are offline now click in save survey to save survey in browser</h3>);
+      else
+        connect=(<h3>you are offline now </h3>);
+      }
+    else 
+      connect = null;
 
     return(
     <div>                         
@@ -160,6 +177,7 @@ render(){
          }
             
         </ul>
+        {connect}
         <div>  <button onClick={this.submitAnswers}  className="nav-item btn btn-outline-primary">Submit</button></div>
     </div>
     </div>

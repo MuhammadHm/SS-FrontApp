@@ -137,6 +137,7 @@ class Survey extends Component {
       welcomeMessage: this.state.welcomeMessage,
       questionsArray: this.state.questionsArray
     };
+    if (navigator.onLine){
     fetch('http://localhost:8080/survey/editsurvey', {
       method: 'POST',
       headers: {
@@ -146,9 +147,15 @@ class Survey extends Component {
       body: JSON.stringify(survey)
     })
       .then(response => response.json())
-      .then(data => { alert('Your survey edited sucessfuly'); })
+      .then(data => { 
+        localStorage.removeItem('survey');
+        alert('Your survey edited sucessfuly');})
       .catch(err => console.log(err));
-
+    }
+    else 
+    { 
+      localStorage.setItem('survey',JSON.stringify(survey));
+    }
   }
   saveAsTemplate = () => {
     const survey = {
@@ -158,6 +165,7 @@ class Survey extends Component {
       welcomeMessage: this.state.welcomeMessage,
       questionsArray: this.state.questionsArray
     };
+    if (navigator.onLine){
     fetch('http://localhost:8080/survey/saveastemplate', {
       method: 'POST',
       headers: {
@@ -167,8 +175,16 @@ class Survey extends Component {
       body: JSON.stringify(survey)
     })
       .then(response => response.json())
-      .then(data => { alert('Your template saved successfully'); })
+      .then(data => { 
+        localStorage.removeItem('template');
+        alert('Your template saved successfully');
+    })
       .catch(err => console.log(err));
+    }
+    else 
+    { 
+      localStorage.setItem('template',JSON.stringify(survey));
+    }
 
   }
 
@@ -177,7 +193,15 @@ class Survey extends Component {
     const buttonStyle = {
       margin: '20px 20px'
     };
-
+    let connect = null;
+    if (!navigator.onLine)
+      {if (localStorage.getItem('survey') === null)
+        connect=(<h3>you are offline now click in save survey to save survey in browser</h3>);
+      else
+        connect=(<h3>you are offline now </h3>);
+      }
+    else 
+      connect = null;
     return (
       <div className="Survey">
         <h1>{this.state.title}</h1>
@@ -206,6 +230,7 @@ class Survey extends Component {
               <div className="add-icon"></div>
               <div className="btn-txt">NEW QUESTION</div>
             </button>
+            {connect}
             <br />
             <button onClick={this.saveSurvey} style={buttonStyle} className="save-survey btn btn-outline-primary">Edit Survey</button>
             <br />

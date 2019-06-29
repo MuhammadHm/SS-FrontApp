@@ -18,9 +18,30 @@ class App extends Component {
       welcomeMessage: ' '
     }
   }
-  componentDidMount() {
+  
+  sendFile=(link,value,message) =>{
+    if (localStorage.getItem(value) !== null)
+    {let result=localStorage.getItem(value);
+       fetch(link, {
+            method: 'POST',
+            headers: {
+              'Accept' : 'application/json',
+              'Content-Type' : 'application/json',  
+            },
+            body: result
+        })
+        .then(response =>  response.json())
+        .then(data => { 
+          localStorage.removeItem(value);
+          alert(message); } )
+        .catch(err => console.log(err)); 
+      }
 
-    fetch('http://localhost:8080/survey/sendsurveyinfo')
+  }
+
+   componentDidMount() {
+
+      fetch('http://localhost:8080/survey/sendsurveyinfo')
       .then(response => response.json())
       .then(data => {
         this.setState({
@@ -34,6 +55,12 @@ class App extends Component {
       .catch(error => {
         console.log(error);
       });
+
+      this.sendFile('http://localhost:8080/results/submit','submit','your survey submitted');
+      this.sendFile('http://localhost:8080/survey/savesurvey','survey','Your survey saved sucessfuly');
+      this.sendFile('http://localhost:8080/survey/saveastemplate','template','Your template saved successfully');
+      this.sendFile('http://localhost:8080/survey/editsurvey','esurvey','Your survey edited sucessfuly');
+      this.sendFile('http://localhost:8080/survey/saveastemplate','Your template saved successfully');
 
   }
   render() {

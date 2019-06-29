@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import cookie from 'cookie'; 
+//import cookie from "react-cookie";
 import './Survey.css';
 import Question from '../Question/Question';
 import MultiChoice from '../QuestionTypes/multiChoice';
@@ -112,7 +112,6 @@ class Survey extends Component {
     });
   }
   setAnswerType = (index) => {
-    console.log("cookie : "  + cookie.user);
     let type = this.state.questionsArray[index].answerType;
     //let answers=this.state.questionsArray[index].answers;
     this.state.index = index;
@@ -138,6 +137,7 @@ class Survey extends Component {
       welcomeMessage: this.props.welcomeMessage,
       questionsArray: this.state.questionsArray
     };
+    if (navigator.onLine){
     fetch('http://localhost:8080/survey/savesurvey', {
       method: 'POST',
       headers: {
@@ -147,10 +147,19 @@ class Survey extends Component {
       body: JSON.stringify(survey)
     })
       .then(response => response.json())
-      .then(data => { alert('Your survey saved sucessfuly'); })
+      .then(data => { 
+        localStorage.removeItem('survey');
+        alert('Your survey saved sucessfuly');
+      })
       .catch(err => console.log(err));
+  }
+  else 
+  { 
+    localStorage.setItem('survey',JSON.stringify(survey));
 
   }
+
+}
   saveAsTemplate = () => {
     const survey = {
       survey_id: this.props.survey_id,
@@ -159,6 +168,7 @@ class Survey extends Component {
       welcomeMessage: this.props.welcomeMessage,
       questionsArray: this.state.questionsArray
     };
+    if (navigator.onLine){
     fetch('http://localhost:8080/survey/saveastemplate', {
       method: 'POST',
       headers: {
@@ -168,9 +178,15 @@ class Survey extends Component {
       body: JSON.stringify(survey)
     })
       .then(response => response.json())
-      .then(data => { alert('Your template saved sucessfuly'); })
+      .then(data => { 
+        localStorage.removeItem('template');
+        alert('Your template saved sucessfuly'); })
       .catch(err => console.log(err));
-
+    }
+    else 
+    { 
+      localStorage.setItem('template',JSON.stringify(survey));
+    }
   }
   swapUp = (index) =>{
     if(index-1 >= 0){
@@ -207,13 +223,21 @@ class Survey extends Component {
     const buttonStyle = {
       margin: '20px 20px'
     };
+    let connect = null;
+    if (!navigator.onLine)
+      {if (localStorage.getItem('survey') === null)
+        connect=(<h3>you are offline now click in save survey to save survey in browser</h3>);
+      else
+        connect=(<h3>you are offline now </h3>);
+      }
+    else 
+      connect = null;
 
     return (
 
       <div className="Survey">
         <h1>{this.props.title}</h1>
         <h3>{this.props.welcomeMessage}</h3>
-
         <div className="Questions">
           <ul className="ul">
             {
@@ -240,6 +264,7 @@ class Survey extends Component {
               <div className="add-icon"></div>
               <div className="btn-txt">NEW </div>
             </button>
+            {connect}
             <br /> <br />
             <button onClick={this.saveSurvey} style={buttonStyle} className="save-survey btn btn-outline-primary">Save Survey</button>
             
