@@ -7,6 +7,10 @@ import Sidebar from './Side Bar/Sidebar';
 import Edit from './Survey/edit';
 import UserPreview from './Preview/UserPreview';
 import Responses from './Responses/Responses';
+import Report from './Responses/Report';
+
+import Cookies from 'js-cookie';
+
 class App extends Component {
 
   constructor() {
@@ -18,9 +22,30 @@ class App extends Component {
       welcomeMessage: ' '
     }
   }
-  componentDidMount() {
+  
+  sendFile=(link,value,message) =>{
+    if (localStorage.getItem(value) !== null)
+    {let result=localStorage.getItem(value);
+       fetch(link, {
+            method: 'POST',
+            headers: {
+              'Accept' : 'application/json',
+              'Content-Type' : 'application/json',  
+            },
+            body: result
+        })
+        .then(response =>  response.json())
+        .then(data => { 
+          localStorage.removeItem(value);
+          alert(message); } )
+        .catch(err => console.log(err)); 
+      }
 
-    fetch('http://localhost:8080/survey/sendsurveyinfo')
+  }
+
+   componentDidMount() {
+
+      fetch(`http://localhost:8080/survey/sendsurveyinfo/${Cookies.get('user')}`)
       .then(response => response.json())
       .then(data => {
         this.setState({
@@ -34,6 +59,12 @@ class App extends Component {
       .catch(error => {
         console.log(error);
       });
+
+      this.sendFile('http://localhost:8080/results/submit','submit','your survey submitted');
+      this.sendFile('http://localhost:8080/survey/savesurvey','survey','Your survey saved sucessfuly');
+      this.sendFile('http://localhost:8080/survey/saveastemplate','template','Your template saved successfully');
+      this.sendFile('http://localhost:8080/survey/editsurvey','esurvey','Your survey edited sucessfuly');
+      this.sendFile('http://localhost:8080/survey/saveastemplate','Your template saved successfully');
 
   }
   render() {
@@ -98,6 +129,16 @@ class App extends Component {
                 />
               </div>
             )} />
+
+            <Route path="/report/:id" render={({ match }) => (
+              <div>
+                <Sidebar survey_id={this.state.survey_id}
+                  user_id={this.state.user_id} />
+
+                <Report survey_id={match.params.id} />
+
+              </div>
+            )} />   
 
             <Route path="/" render={({ match }) => (
               <div>

@@ -12,7 +12,7 @@ class Publish extends Component {
     }
 
 
-
+/*
     componentDidMount(){
     
         fetch(`http://localhost:8080/survey/publish`)
@@ -28,7 +28,7 @@ class Publish extends Component {
             console.log(error);
           });
         
-    }
+    }*/
     
     
     
