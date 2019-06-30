@@ -110,7 +110,7 @@ printSurvey=async()=>{
 }
 decidePrint = (isPrint)=>{
     const buttonStyle = {
-        marginLeft: '50%',
+        marginLeft: '70%',
        // marginBottom: '10%'
       };
 
@@ -118,8 +118,9 @@ decidePrint = (isPrint)=>{
        return(
            <div>
                 <div><Sidebar survey_id={this.state.survey_id}
-                user_id={this.state.user_id} />  </div>
-                <button onClick={this.printSurvey} style={buttonStyle} className="btn btn-secondary btn-lg">Print Survey</button>
+                     user_id={this.state.user_id} /> 
+                 </div>
+                <button  onClick={this.printSurvey} style={buttonStyle} className="btn btn-secondary btn-lg">Print Survey</button>
             </div>
             );
     }
@@ -158,8 +159,8 @@ render(){
     <div>                         
         {this.decidePrint(this.state.isPrint)}
     <div className="preview-title"> 
-        <h1>{this.state.title}</h1>
-        <h3>{this.state.welcomeMessage}</h3>
+        <h1><span  className="surveyName">Survey Name : </span>{this.state.title}</h1>
+        <h1><span className="surveyName">Welcome Message : </span>{this.state.welcomeMessage}</h1>
         <ul>
          {                  
             this.state.questionsArray.map((question,index)=>{
