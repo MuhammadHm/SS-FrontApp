@@ -7,6 +7,10 @@ import Sidebar from './Side Bar/Sidebar';
 import Edit from './Survey/edit';
 import UserPreview from './Preview/UserPreview';
 import Responses from './Responses/Responses';
+import Report from './Responses/Report';
+
+import Cookies from 'js-cookie';
+
 class App extends Component {
 
   constructor() {
@@ -41,7 +45,7 @@ class App extends Component {
 
    componentDidMount() {
 
-      fetch('http://localhost:8080/survey/sendsurveyinfo')
+      fetch(`http://localhost:8080/survey/sendsurveyinfo/${Cookies.get('user')}`)
       .then(response => response.json())
       .then(data => {
         this.setState({
@@ -125,6 +129,16 @@ class App extends Component {
                 />
               </div>
             )} />
+
+            <Route path="/report/:id" render={({ match }) => (
+              <div>
+                <Sidebar survey_id={this.state.survey_id}
+                  user_id={this.state.user_id} />
+
+                <Report survey_id={match.params.id} />
+
+              </div>
+            )} />   
 
             <Route path="/" render={({ match }) => (
               <div>
