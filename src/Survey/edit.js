@@ -148,13 +148,13 @@ class Survey extends Component {
     })
       .then(response => response.json())
       .then(data => { 
-        localStorage.removeItem('survey');
+        localStorage.removeItem('esurvey');
         alert('Your survey edited sucessfuly');})
       .catch(err => console.log(err));
     }
     else 
     { 
-      localStorage.setItem('survey',JSON.stringify(survey));
+      localStorage.setItem('esurvey',JSON.stringify(survey));
     }
   }
   saveAsTemplate = () => {
@@ -176,14 +176,14 @@ class Survey extends Component {
     })
       .then(response => response.json())
       .then(data => { 
-        localStorage.removeItem('template');
+        localStorage.removeItem('etemplate');
         alert('Your template saved successfully');
     })
       .catch(err => console.log(err));
     }
     else 
     { 
-      localStorage.setItem('template',JSON.stringify(survey));
+      localStorage.setItem('etemplate',JSON.stringify(survey));
     }
 
   }
@@ -195,7 +195,7 @@ class Survey extends Component {
     };
     let connect = null;
     if (!navigator.onLine)
-      {if (localStorage.getItem('survey') === null)
+      {if (localStorage.getItem('esurvey') === null)
         connect=(<h3>you are offline now click in save survey to save survey in browser</h3>);
       else
         connect=(<h3>you are offline now </h3>);

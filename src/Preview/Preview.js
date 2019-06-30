@@ -37,6 +37,7 @@ constructor(){
         ],
         index : '',
         isPrint : false,
+        err : null
        
 
     };
@@ -125,12 +126,29 @@ decidePrint = (isPrint)=>{
     }
     return(<div></div>);
 }
+isRequired=()=>{
+    for (let i=0;i<this.state.questionsArray.length;i++)
+        {   if (this.state.questionsArray[i].isRequired)
+                if (this.state.userInput[i].answer === undefined)
+                {this.setState({
+                    err : (<h3>Some questions are required</h3>) 
+                });
+                return;}
+        }
+    this.setState({
+        err : null
+    });  
+    return;  
+}
+
+
 submitAnswers=()=>{
  const result={
       survey_id : this.state.survey_id,
       user_id: this.state.user_id,
       answers : this.state.userInput
     };
+
     fetch('http://localhost:8080/results/submit', {
           method: 'POST',
           headers: {

@@ -7,7 +7,7 @@ import Essay from './PreviewTypes/essay';
 import Scale from './PreviewTypes/scale';
 import Date from './PreviewTypes/date';
 import './Preview.css'
-import Sidebar from './../Side Bar/Sidebar'
+//import Sidebar from './../Side Bar/Sidebar'
 
 class UserPreview extends Component {
 
@@ -103,7 +103,21 @@ search=(nameKey, myArray)=>{
     }
     return -1;
 }
-
+isRequired=()=>{
+  console.log(this.state.userInput[1].answer);
+  for (let i=0;i<this.state.questionsArray.length;i++)
+      {   if (this.state.questionsArray[i].isRequired)
+              if (this.state.userInput[i].answer === undefined)
+              {this.setState({
+                  err : (<h3 style={{color:"#c90909"}} >Some questions are required</h3>) 
+              });
+              return false;}
+      }
+  this.setState({
+      err : null
+  });  
+  return true;  
+}
 
 submitAnswers=()=>{
  const result={
@@ -111,25 +125,27 @@ submitAnswers=()=>{
       user_id: this.state.user_id,
       answers : this.state.userInput
     };
-    if (navigator.onLine){
-    fetch('http://localhost:8080/results/submit', {
-          method: 'POST',
-          headers: {
-            'Accept' : 'application/json',
-            'Content-Type' : 'application/json',  
-          },
-          body: JSON.stringify(result)
-      })
-      .then(response =>  response.json())
-      .then(data => { 
-        localStorage.removeItem('submait');
-        alert('your survey submitted'); } )
-      .catch(err => console.log(err)); 
-    }
-      else 
-      { 
-        localStorage.setItem('submait',JSON.stringify(result));
+    if (this.isRequired()){
+      if (navigator.onLine){
+      fetch('http://localhost:8080/results/submit', {
+            method: 'POST',
+            headers: {
+              'Accept' : 'application/json',
+              'Content-Type' : 'application/json',  
+            },
+            body: JSON.stringify(result)
+        })
+        .then(response =>  response.json())
+        .then(data => { 
+          localStorage.removeItem('submit');
+          alert('your survey submitted'); } )
+        .catch(err => console.log(err)); 
       }
+        else 
+        { 
+          localStorage.setItem('submit',JSON.stringify(result));
+        }
+    }
 }
 
 
@@ -138,7 +154,7 @@ render(){
 
     let connect = null;
     if (!navigator.onLine)
-      {if (localStorage.getItem('submait') === null)
+      {if (localStorage.getItem('submit') === null)
         connect=(<h3>you are offline now click in save survey to save survey in browser</h3>);
       else
         connect=(<h3>you are offline now </h3>);
@@ -154,6 +170,8 @@ render(){
 
         <h1>{this.state.title}</h1>
         <h3>{this.state.welcomeMessage}</h3>
+        <h3>(*)  Required answer</h3>
+        <br /> <br />
 
         <ul>
          {                  
@@ -178,6 +196,7 @@ render(){
             
         </ul>
         {connect}
+        {this.err}
         <div>  <button onClick={this.submitAnswers}  className="nav-item btn btn-outline-primary">Submit</button></div>
     </div>
     </div>
