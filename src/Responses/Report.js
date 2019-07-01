@@ -1,12 +1,6 @@
 import React, { Component } from 'react';
 import Sidebar from './../Side Bar/Sidebar'
-import MultiChoice from './../Preview/PreviewTypes/multiChoice';
-import Checkbox from './../Preview/PreviewTypes/checkBox';
-import Textbox from './../Preview/PreviewTypes/textbox';
-import Essay from './../Preview/PreviewTypes/essay';
-import Scale from './../Preview/PreviewTypes/scale';
-import Date from './../Preview/PreviewTypes/date';
-import Preview from './../Preview/Preview';
+
 
 class Report extends Component {
 
@@ -22,6 +16,7 @@ class Report extends Component {
                 questionbody: '',
                 answerType: '',
                 count: 0, 
+                check : []
                 }
               ],
               answer : [],
@@ -60,7 +55,7 @@ class Report extends Component {
                <div>
                     <div><Sidebar survey_id={this.state.survey_id}
                     user_id={this.state.user_id} />  </div>
-                    <button onClick={this.printReport} style={buttonStyle} className="btn btn-secondary btn-lg">Print Report</button>
+                    <button onClick={this.printReport} style={buttonStyle} className="btn btn-secondary btn-lg">Print </button>
                 </div>
                 );
         }
@@ -78,23 +73,37 @@ class Report extends Component {
         })
     
     }
-    renderQuestionType=(type,answers,questionBody)=>{
+    renderQuestionType=(type,question)=>{
     
         if(type === "mulchoice")
-            return(<div> <MultiChoice choicesArray={answers}  /> </div>);
+            return(<div> 
+                {question.check.map((answer, index) => {
+                    return(<li>A {index+1} : {answer.questionBody} , count : {answer.count}</li>)
+            })}  </div>);
         else if(type === "checkbox")
-            return(<div>  <Checkbox choicesArray={answers}  /> </div>);      
+            return(<div> 
+                {question.check.map((answer, index) => {
+                    return(<li>A {index+1} : {answer.questionBody} , count : {answer.count}</li>)
+            })}  </div>);    
         else if(type === "textbox")
-            return(<div> <Textbox  /> </div>); 
+            return(<div> 
+                {question.report.map((answer, index) => {
+                    return(<li>A {index+1} : {answer} </li>)
+            })}  </div>); 
         else if(type === "essay")
-            return(<div> <Essay  /> </div>); 
+            return(<div> 
+                {question.report.map((answer, index) => {
+                    return(<li> A {index+1}: {answer} </li>)
+            })}  </div>);
         else if(type === "scale")
-            return(<div> <Scale answers={answers}   /> </div>); 
+            return(<li> {question.scale} </li>); 
         else if(type === "date")
-            return(<div> <Date  /> </div>);     
+            return(<div> 
+                {question.date.map((answer, index) => {
+                    return(<li key={index}>A {index+1}: {answer.day} / {answer.month} / {answer.year} </li>)
+            })}  </div>);     
            
     }
-
 
     render(){
 
@@ -111,23 +120,21 @@ class Report extends Component {
                 {
                     this.state.result.map((question, index) => {
                         return (
-                            <div key={index}>    
-                                <h2>Q {index+1} : {question.questionbody}</h2> <span>Answers Count : {question.count}</span>
-                                                              
+                            <div>
+                                <div key={index}>    
+                                    <h2>Q {index+1} : {question.questionbody}</h2> 
+                                    <h5 style={{"marginLeft" : "10%"}}>Answers : {question.count}</h5>                           
+                                    <ul>{
+                                        this.renderQuestionType(question.answerType,question)
+                                    }</ul> 
+
+                                </div><br />
                             </div>
                         )
                     })
                 
                 }
-                <div>{
-                    this.state.answer.map((answer, index) => {
-                        return(
-                        <div key={index}>
-                        {answer[0].answer[0].body}
-                    
-                        </div>)
-                    })
-                }</div> 
+                
                 </div> 
              </div>
             </div>  
