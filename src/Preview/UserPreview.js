@@ -150,8 +150,6 @@ render(){
     <div>                         
 
     <div className="preview-title">
-      
-
         <h1>{this.state.title}</h1>
         <h3>{this.state.welcomeMessage}</h3>
 

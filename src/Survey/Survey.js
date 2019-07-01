@@ -266,10 +266,10 @@ class Survey extends Component {
               <div className="btn-txt">NEW </div>
             </button>
             {connect}
-            <br /> <br />
+            <div className="save-button">
             <button onClick={this.saveSurvey} style={buttonStyle} className="save-survey btn btn-outline-primary">Save Survey</button>
-            
             <button onClick={this.saveAsTemplate} style={buttonStyle} className="save-survey btn btn-outline-primary">Save As Template</button>
+            </div>
           </div>
         </div>
       </div>

@@ -8,7 +8,6 @@ import Edit from './Survey/edit';
 import UserPreview from './Preview/UserPreview';
 import Responses from './Responses/Responses';
 import Report from './Responses/Report';
-
 import Cookies from 'js-cookie';
 
 class App extends Component {
