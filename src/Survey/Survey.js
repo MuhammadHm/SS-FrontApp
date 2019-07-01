@@ -28,7 +28,6 @@ class Survey extends Component {
           answers: ''
         }
       ],
-
       Body: "",
       index: 0
     }
@@ -45,7 +44,6 @@ class Survey extends Component {
   }
   //new question
   addQuestionHandler = () => {
-    console.log('add clicked');
     let questions = this.state.questionsArray;
 
     questions.push({
@@ -70,13 +68,17 @@ class Survey extends Component {
   }
   setQuestion(index, element) {
 
-    let questions = this.state.questionsArray;
-    questions[index].body = element.target.value;
+    this.setState({
+      Body: element.target.value
+    });
 
+  }
+  saveQuestion = (index)=>{
+    let questions = this.state.questionsArray;
+    questions[index].body = this.state.Body;
     this.setState({
       questionsArray: questions
     });
-
   }
   handleRequired = (index) => {
 
@@ -200,6 +202,7 @@ class Survey extends Component {
           questionsArray : questions
         });
     }
+    console.log(this.state.questionsArray)
 
   }
   swapDown = (index) =>{
@@ -214,11 +217,10 @@ class Survey extends Component {
           questionsArray : questions
         });
     }
+    console.log(this.state.questionsArray)
 
   }
-  handleSaveQuestion=(question,index)=>{
-    
-  }
+ 
 
   render() {
     const buttonStyle = {
@@ -248,8 +250,8 @@ class Survey extends Component {
                   id={index + 1}
                   body={question.body}
                   deleteQuestion={this.handleDeleteQuestion.bind(this, index)}
-                  saveQuestion={this.handleSaveQuestion.bind(this,question, index)}
                   setQuestion={this.setQuestion.bind(this, index)}
+                  saveQuestion={this.saveQuestion.bind(this, index)}
                   isRequired={this.handleRequired.bind(this, index)}
                   questionType={this.handleQuestionType.bind(this, index)}
                   answerType={this.setAnswerType.bind(this, index)}

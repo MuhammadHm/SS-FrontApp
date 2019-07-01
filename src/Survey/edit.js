@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+//import cookie from "react-cookie";
 import './Survey.css';
 import Question from '../Question/Question';
 import MultiChoice from '../QuestionTypes/multiChoice';
@@ -7,9 +8,9 @@ import Essay from "../QuestionTypes/essay";
 import Scale from "../QuestionTypes/scale";
 import Textbox from "../QuestionTypes/textbox";
 import Date from "../QuestionTypes/date";
+import Cookies from 'js-cookie';
 
-class Survey extends Component {
-
+class Edit extends Component {
 
   constructor() {
     super();
@@ -18,32 +19,33 @@ class Survey extends Component {
       user_id: '',
       title: '',
       welcomeMessage: ' ',
-      questionsArray: [],
+      questionsArray: [
+        
+      ],
+      Body: "",
       index: 0
     }
   }
   componentDidMount() {
-
     fetch(`http://localhost:8080/survey/sendsurvey/${this.props.survey_id}`)
-      .then(response => response.json())
-      .then(data => {
-        this.setState({
-          survey_id: this.props.survey_id,
-          user_id: data.user_id,
-          title: data.title,
-          welcomeMessage: data.welcomeMessage,
-          questionsArray: data.questionsArray
-
-        });
-      })
-      .catch(error => {
-        console.log(error);
+    .then(response => response.json())
+    .then(data => {
+      this.setState({
+        survey_id: data.id,
+        user_id: data.user_id,
+        title: data.title,
+        welcomeMessage: data.welcomeMessage,
+        questionsArray : data.questionsArray
       });
+      
+    })
+    .catch(error => {
+      console.log(error);
+    });
 
   }
   //new question
   addQuestionHandler = () => {
-    console.log('add clicked');
     let questions = this.state.questionsArray;
 
     questions.push({
@@ -66,16 +68,19 @@ class Survey extends Component {
 
     });
   }
-  // saving question
   setQuestion(index, element) {
 
-    let questions = this.state.questionsArray;
-    questions[index].body = element.target.value;
+    this.setState({
+      Body: element.target.value
+    });
 
+  }
+  saveQuestion = (index)=>{
+    let questions = this.state.questionsArray;
+    questions[index].body = this.state.Body;
     this.setState({
       questionsArray: questions
     });
-
   }
   handleRequired = (index) => {
 
@@ -129,7 +134,7 @@ class Survey extends Component {
       return (<div> <Date /> </div>);
 
   }
-  saveSurvey = () => {
+  editSurvey = () => {   
     const survey = {
       survey_id: this.state.survey_id,
       user_id: this.state.user_id,
@@ -149,20 +154,23 @@ class Survey extends Component {
       .then(response => response.json())
       .then(data => { 
         localStorage.removeItem('survey');
-        alert('Your survey edited sucessfuly');})
+        alert('Your survey edited sucessfuly');
+      })
       .catch(err => console.log(err));
-    }
-    else 
-    { 
-      localStorage.setItem('survey',JSON.stringify(survey));
-    }
   }
+  else 
+  { 
+    localStorage.setItem('survey',JSON.stringify(survey));
+
+  }
+
+}
   saveAsTemplate = () => {
     const survey = {
-      survey_id: this.state.survey_id,
-      user_id: this.state.user_id,
-      title: this.state.title,
-      welcomeMessage: this.state.welcomeMessage,
+      survey_id: this.props.survey_id,
+      user_id: this.props.user_id,
+      title: this.props.title,
+      welcomeMessage: this.props.welcomeMessage,
       questionsArray: this.state.questionsArray
     };
     if (navigator.onLine){
@@ -177,19 +185,46 @@ class Survey extends Component {
       .then(response => response.json())
       .then(data => { 
         localStorage.removeItem('template');
-        alert('Your template saved successfully');
-    })
+        alert('Your template saved sucessfuly'); })
       .catch(err => console.log(err));
     }
     else 
     { 
       localStorage.setItem('template',JSON.stringify(survey));
     }
+  }
+  swapUp = (index) =>{
+    if(index-1 >= 0){
+        let questions=this.state.questionsArray;
+        let b = questions[index-1];
+        questions[index-1] =  questions[index];
+        questions[index] = b;
+
+        this.setState({
+          questionsArray : questions
+        });
+    }
+    console.log(this.state.questionsArray)
 
   }
+  swapDown = (index) =>{
+    let questions=this.state.questionsArray;
+    if(index+1 <= questions.length-1){
+       
+        let b = questions[index+1];
+        questions[index+1] =  questions[index];
+        questions[index] = b;
+
+        this.setState({
+          questionsArray : questions
+        });
+    }
+    console.log(this.state.questionsArray)
+
+  }
+ 
 
   render() {
-
     const buttonStyle = {
       margin: '20px 20px'
     };
@@ -202,11 +237,12 @@ class Survey extends Component {
       }
     else 
       connect = null;
+
     return (
+
       <div className="Survey">
         <h1>{this.state.title}</h1>
         <h3>{this.state.welcomeMessage}</h3>
-
         <div className="Questions">
           <ul className="ul">
             {
@@ -217,9 +253,12 @@ class Survey extends Component {
                   body={question.body}
                   deleteQuestion={this.handleDeleteQuestion.bind(this, index)}
                   setQuestion={this.setQuestion.bind(this, index)}
+                  saveQuestion={this.saveQuestion.bind(this, index)}
                   isRequired={this.handleRequired.bind(this, index)}
                   questionType={this.handleQuestionType.bind(this, index)}
                   answerType={this.setAnswerType.bind(this, index)}
+                  swapUp={this.swapUp.bind(this,index)}
+                  swapDown={this.swapDown.bind(this,index)}
                 />)
               })
             }
@@ -228,12 +267,11 @@ class Survey extends Component {
             <hr className="main-hr" />
             <button className="icon-btn add-btn" onClick={this.addQuestionHandler}>
               <div className="add-icon"></div>
-              <div className="btn-txt">NEW QUESTION</div>
+              <div className="btn-txt">NEW </div>
             </button>
             {connect}
-            <br />
-            <button onClick={this.saveSurvey} style={buttonStyle} className="save-survey btn btn-outline-primary">Edit Survey</button>
-            <br />
+            <br /> <br />
+            <button onClick={this.editSurvey} style={buttonStyle} className="save-survey btn btn-outline-primary">Edit </button>           
             <button onClick={this.saveAsTemplate} style={buttonStyle} className="save-survey btn btn-outline-primary">Save As Template</button>
           </div>
         </div>
@@ -242,4 +280,4 @@ class Survey extends Component {
   }
 }
 
-export default Survey;
+export default Edit;

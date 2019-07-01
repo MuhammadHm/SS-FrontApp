@@ -54,7 +54,6 @@ componentDidMount(){
             questionsArray : data.questionsArray
         
         });
-        console.log("data",data);
       })
       .catch(error => {
         console.log(error);
@@ -159,8 +158,8 @@ render(){
     <div>                         
         {this.decidePrint(this.state.isPrint)}
     <div className="preview-title"> 
-        <h1><span  className="surveyName">Survey Name : </span>{this.state.title}</h1>
-        <h1><span className="surveyName">Welcome Message : </span>{this.state.welcomeMessage}</h1>
+        <h1><span  className="surveyName">Title : </span>{this.state.title}</h1>
+        <h1><span className="surveyName"> Message : </span>{this.state.welcomeMessage}</h1>
         <ul>
          {                  
             this.state.questionsArray.map((question,index)=>{

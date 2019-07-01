@@ -4,6 +4,41 @@ import "./Question.css";
 class Question extends Component {
 
 
+    constructor(){
+        super();
+        this.state={
+           onEnter : false,
+           onLeave : false
+        }
+    }
+
+ onEnter =()=>{
+        this.setState({
+            onEnter : true,
+            onLeave : false
+        })
+ } 
+ onLeave =()=>{
+    this.setState({
+        onEnter : false,
+        onLeave : true
+    })
+}
+handelHover=(enter,leave)=>{
+    if(enter && !leave){
+        return(
+            <span style={{"marginLeft" : "40%"}}>
+                <button onClick={this.props.saveQuestion} className="btn btn-success"  >Save</button>
+                <button onClick={this.props.deleteQuestion} className="btn btn-danger" >Delete</button>
+            </span>
+        )
+    }
+    return (<div></div>)
+
+}
+
+
+
 render() {
     const textStyle = {
         width: '80%',
@@ -13,7 +48,7 @@ render() {
     };
 
     return (
-        <div className="question" >
+        <div className="question" onMouseEnter={this.onEnter} onMouseLeave={this.onLeave}>
             <li className="question-text">
                 <label className="bounceIn"> Question {this.props.id} : </label>
                 <button className="btn btn-outline-primary" onClick={this.props.swapUp} style={{ marginLeft: '84%',marginBottom : "2%" }} title="Swap up" ><i className="fas fa-chevron-up"></i> </button>
@@ -48,10 +83,9 @@ render() {
                 <div className="contents">
                     <span className="group">
                         <input id="check" type="checkbox" className="check" name="Required" onChange={this.props.isRequired} /><span> Required </span>
-
                     </span>
-                    <button onClick={this.props.deleteQuestion} className="btn btn-outline-primary"  >Delete Question </button>
-                    <button onClick={this.props.swapDown} style={{ marginLeft: '41.5%'}} className="btn btn-outline-primary" title="Swap down"><i className="fas fa-chevron-down "></i> </button>
+                    <button onClick={this.props.swapDown} style={{ marginLeft: '95.5%'}} className="btn btn-outline-primary" title="Swap down"><i className="fas fa-chevron-down "></i> </button>
+                    {this.handelHover(this.state.onEnter,this.state.onLeave)}
 
                 </div>
             </li>

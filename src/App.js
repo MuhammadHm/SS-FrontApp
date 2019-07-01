@@ -4,7 +4,7 @@ import Survey from './Survey/Survey';
 import Preview from './Preview/Preview';
 import Publish from './Publish/publish';
 import Sidebar from './Side Bar/Sidebar';
-import Edit from './Survey/edit';
+import Edit from './Survey/Edit';
 import UserPreview from './Preview/UserPreview';
 import Responses from './Responses/Responses';
 import Report from './Responses/Report';
@@ -53,7 +53,6 @@ class App extends Component {
           title: data.title,
           welcomeMessage: data.welcomeMessage
         });
-        console.log(this.state);
       })
       .catch(error => {
         console.log(error);
@@ -131,9 +130,7 @@ class App extends Component {
 
             <Route path="/report/:id" render={({ match }) => (
               <div>
-                <Sidebar survey_id={this.state.survey_id}
-                  user_id={this.state.user_id} />
-
+              
                 <Report survey_id={match.params.id} />
 
               </div>
