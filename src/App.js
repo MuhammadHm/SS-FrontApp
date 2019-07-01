@@ -7,6 +7,7 @@ import Sidebar from './Side Bar/Sidebar';
 import Edit from './Survey/edit';
 import UserPreview from './Preview/UserPreview';
 import Responses from './Responses/Responses';
+import Analyze from './Analyze/analyze'
 class App extends Component {
 
   constructor() {
@@ -111,8 +112,7 @@ class App extends Component {
 
             <Route path="/analyze" render={({ match }) => (
               <div>
-                <Sidebar survey_id={this.state.survey_id}
-                  user_id={this.state.user_id} />
+                  <Analyze />
               </div>
             )} />
 

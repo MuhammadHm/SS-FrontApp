@@ -1,13 +1,21 @@
 .preview-title{
-    margin-left: 300px;
-    
+    margin-left: 300px;  
 }
 .preview-title h1{
     text-align:left;
-    padding-top: 10%;
-    font-size: 70PX;
     color: #383f50;
 }
-.preview-title h3{
-    color: #383f50;
+.preview-title h1:first-child{
+    padding-top: 7%;
+}
+.preview-title .surveyName{
+    color: #2E3353;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+.btn-lg{
+    position: absolute !important;
+    top: 80%;
+    left: 14%;
+
+
 }
