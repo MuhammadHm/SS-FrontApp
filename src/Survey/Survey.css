@@ -37,9 +37,9 @@ body{
   position: relative;
   transition: width 0.2s ease-in-out;
   color: #383f50;
-  position: absolute;
-  left: 89%;
-  top: 86%;
+  position:fixed;
+  left: 94%;
+  top: 46%;
 }
 .add-btn:hover {
   width: 120px;
