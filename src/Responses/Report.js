@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Sidebar from './../Side Bar/Sidebar'
+import './Report.css'
 
 
 class Report extends Component {
@@ -110,12 +111,12 @@ class Report extends Component {
         return(
             <div>
             {this.decidePrint(this.state.isPrint)}
-            <div style={{"marginLeft" : "20%"}} >
-                <h1>Creator : {this.state.userName}</h1>
-                <h1>Title :  {this.state.title}</h1>
-                <h1>Message : {this.state.welcomeMessage}</h1>
-                <h1>IN : {this.state.regDate}</h1>
-                <h1>Answers Summary : </h1>
+            <div className="report" style={{"marginLeft" : "20%"}} >
+                <h2 className="report-item">Creator : {this.state.userName}</h2>
+                <h2 className="report-item">Title :  {this.state.title}</h2>
+                <h2 className="report-item">Message : {this.state.welcomeMessage}</h2>
+                <h2 className="report-item">IN : {this.state.regDate}</h2>
+                <h2 className="report-item">Answers Summary : </h2>
                 <div style={{"marginLeft" : "10%"}}>
                 {
                     this.state.result.map((question, index) => {
