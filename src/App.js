@@ -132,9 +132,7 @@ class App extends Component {
 
             <Route path="/report/:id" render={({ match }) => (
               <div>
-                <Sidebar survey_id={this.state.survey_id}
-                  user_id={this.state.user_id} />
-
+              
                 <Report survey_id={match.params.id} />
 
               </div>

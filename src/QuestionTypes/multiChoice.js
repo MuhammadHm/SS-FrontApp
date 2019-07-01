@@ -55,7 +55,7 @@ class MultiChoice extends Component {
                                 <label>
                                     <input type="radio" name="choice" />
                                     <span>  {choice.body}</span> 
-                                    <button className="close" onClick={this.deleteChoiceHandler.bind(this,index)} class="close" data-dismiss="alert" aria-label="Close">  <span aria-hidden="true"> &times; </span>  </button>
+                                    <button className="close" onClick={this.deleteChoiceHandler.bind(this,index)} className="close" data-dismiss="alert" aria-label="Close">  <span aria-hidden="true"> &times; </span>  </button>
                                 </label>
                                    
                             </div> 
