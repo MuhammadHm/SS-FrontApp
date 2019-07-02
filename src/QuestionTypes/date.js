@@ -13,11 +13,9 @@ class Date extends Component {
         
         return (
             <div className="textbox">
-
-                <input name="day" type="text" style={style} placeholder= "Day" />/
-                <input name="month" type="text" style={style} placeholder= "Month" />/
+                <input name="day" type="text" style={style} placeholder= "Day" />
+                <input name="month" type="text" style={style} placeholder= "Month" />
                 <input name="year" type="text" style={style} placeholder= "Year" /> 
-
 
             </div>
         );

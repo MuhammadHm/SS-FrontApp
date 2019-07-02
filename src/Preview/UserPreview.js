@@ -6,8 +6,8 @@ import Textbox from './PreviewTypes/textbox';
 import Essay from './PreviewTypes/essay';
 import Scale from './PreviewTypes/scale';
 import Date from './PreviewTypes/date';
-import './Preview.css'
-//import Sidebar from './../Side Bar/Sidebar'
+import './UserPreview.css'
+import Sidebar from './../Side Bar/Sidebar'
 
 class UserPreview extends Component {
 
@@ -166,11 +166,10 @@ render(){
     <div>                         
 
     <div className="preview-title">
-        <h1>{this.state.title}</h1>
-        <h3>{this.state.welcomeMessage}</h3>
-        <h3>(*)  Required answer</h3>
-        <br /> <br />
-
+     
+        <h1><span  className="surveyName">Title :  </span>{this.state.title}</h1>
+        <h1><span className="surveyName"> Message : </span>{this.state.welcomeMessage}</h1>
+      
         <ul>
          {                  
             this.state.questionsArray.map((question,index)=>{
