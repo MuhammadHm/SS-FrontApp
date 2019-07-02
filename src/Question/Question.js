@@ -37,8 +37,6 @@ handelHover=(enter,leave)=>{
 
 }
 
-
-
 render() {
     const textStyle = {
         width: '80%',
@@ -91,7 +89,7 @@ render() {
             </li>
         </div>
      );
-    }
+}
 }
 
 export default Question;

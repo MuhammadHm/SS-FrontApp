@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-//import cookie from "react-cookie";
 import './Survey.css';
 import Question from '../Question/Question';
 import MultiChoice from '../QuestionTypes/multiChoice';
@@ -9,6 +8,7 @@ import Scale from "../QuestionTypes/scale";
 import Textbox from "../QuestionTypes/textbox";
 import Date from "../QuestionTypes/date";
 import Cookies from 'js-cookie';
+import cookie from "react-cookie";
 
 class Survey extends Component {
 
@@ -42,7 +42,6 @@ class Survey extends Component {
     });
 
   }
-  //new question
   addQuestionHandler = () => {
     let questions = this.state.questionsArray;
 
@@ -54,8 +53,7 @@ class Survey extends Component {
       questionsArray: questions
 
     });
-  }
-  //deleting specific question 
+  } 
   handleDeleteQuestion = (index) => {
 
     let questions = this.state.questionsArray;
@@ -77,7 +75,8 @@ class Survey extends Component {
     let questions = this.state.questionsArray;
     questions[index].body = this.state.Body;
     this.setState({
-      questionsArray: questions
+      questionsArray: questions,
+      Body : ''
     });
   }
   handleRequired = (index) => {
@@ -132,7 +131,7 @@ class Survey extends Component {
       return (<div> <Date /> </div>);
 
   }
-  saveSurvey = () => {   // must be arrow function to arrive to 'this'
+  saveSurvey = () => {  
     const survey = {
       survey_id: this.props.survey_id,
       user_id: this.props.user_id,
@@ -221,23 +220,22 @@ class Survey extends Component {
 
   }
  
-
   render() {
     const buttonStyle = {
       margin: '20px 20px'
     };
     let connect = null;
     if (!navigator.onLine)
-      {if (localStorage.getItem('survey') === null)
-        connect=(<h3>you are offline now click in save survey to save survey in browser</h3>);
+      {
+      if (localStorage.getItem('survey') === null)
+        connect=(<h3>You are offline! Save your survey  </h3>);
       else
-        connect=(<h3>you are offline now </h3>);
+        connect=(<h3>You are offline! </h3>);
       }
     else 
       connect = null;
 
     return (
-
       <div className="Survey">
         <h1>{this.props.title}</h1>
         <h3>{this.props.welcomeMessage}</h3>
@@ -278,5 +276,4 @@ class Survey extends Component {
     );
   }
 }
-
 export default Survey;
