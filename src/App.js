@@ -4,7 +4,7 @@ import Survey from './Survey/Survey';
 import Preview from './Preview/Preview';
 import Publish from './Publish/publish';
 import Sidebar from './Side Bar/Sidebar';
-import Edit from './Survey/Edit';
+import Edit from './Survey/edit';
 import UserPreview from './Preview/UserPreview';
 import Responses from './Responses/Responses';
 import Report from './Responses/Report';
@@ -44,7 +44,7 @@ class App extends Component {
 
    componentDidMount() {
 
-      fetch(`http://localhost:8080/survey/sendsurveyinfo/${Cookies.get('user')}`)
+      fetch('http://localhost:8080/survey/sendsurveyinfo')
       .then(response => response.json())
       .then(data => {
         this.setState({
@@ -62,7 +62,7 @@ class App extends Component {
       this.sendFile('http://localhost:8080/survey/savesurvey','survey','Your survey saved sucessfuly');
       this.sendFile('http://localhost:8080/survey/saveastemplate','template','Your template saved successfully');
       this.sendFile('http://localhost:8080/survey/editsurvey','esurvey','Your survey edited sucessfuly');
-      this.sendFile('http://localhost:8080/survey/saveastemplate','Your template saved successfully');
+      this.sendFile('http://localhost:8080/survey/saveastemplate','etemplate','Your template saved successfully');
 
   }
   render() {
@@ -114,7 +114,7 @@ class App extends Component {
             <Route path="/analyze" render={({ match }) => (
               <div>
                 <Sidebar survey_id={this.state.survey_id}
-                  user_id={this.state.user_id} />
+                  user_id={this.state.user_id} />   
               </div>
             )} />
 

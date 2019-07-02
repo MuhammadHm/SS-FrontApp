@@ -109,7 +109,7 @@ printSurvey=async()=>{
 }
 decidePrint = (isPrint)=>{
     const buttonStyle = {
-        marginLeft: '70%',
+        marginLeft: '50%',
        // marginBottom: '10%'
       };
 
@@ -117,9 +117,8 @@ decidePrint = (isPrint)=>{
        return(
            <div>
                 <div><Sidebar survey_id={this.state.survey_id}
-                     user_id={this.state.user_id} /> 
-                 </div>
-                <button  onClick={this.printSurvey} style={buttonStyle} className="btn btn-secondary btn-lg">Print Survey</button>
+                user_id={this.state.user_id} />  </div>
+                <button onClick={this.printSurvey} style={buttonStyle} className="btn btn-secondary btn-lg">Print Survey</button>
             </div>
             );
     }
