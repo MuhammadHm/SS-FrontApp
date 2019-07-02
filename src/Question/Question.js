@@ -38,6 +38,7 @@ handelHover=(enter,leave)=>{
 }
 
 render() {
+    
     const textStyle = {
         width: '80%',
         padding: '12px 20px',
