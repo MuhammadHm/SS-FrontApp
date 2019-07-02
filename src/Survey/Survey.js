@@ -269,8 +269,8 @@ class Survey extends Component {
             </button>
             {connect}
             <div className="save-button">
-            <button onClick={this.saveSurvey} style={buttonStyle} className="save-survey btn btn-outline-primary">Save Survey</button>
-            <button onClick={this.saveAsTemplate} style={buttonStyle} className="save-survey btn btn-outline-primary">Save As Template</button>
+            <button onClick={this.saveSurvey} style={buttonStyle} className=" btn btn-outline-primary">Save Survey</button>
+            <button onClick={this.saveAsTemplate} style={buttonStyle} className=" btn btn-outline-primary">Save As Template</button>
             </div>
           </div>
         </div>

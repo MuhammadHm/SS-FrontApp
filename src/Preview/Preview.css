@@ -1,3 +1,4 @@
+
 .preview-title{
     margin-left: 300px;  
 }
@@ -15,11 +16,7 @@
 }
 
 .btn-lg{
-    position: absolute !important;
+    position: fixed !important;
     top: 80%;
     left: 14%;
-}
-.btn-outline-primary{
-    position: fixed;
-    left: 35%;
 }

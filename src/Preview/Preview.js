@@ -109,7 +109,7 @@ printSurvey=async()=>{
 }
 decidePrint = (isPrint)=>{
     const buttonStyle = {
-        marginLeft: '70%',
+        marginLeft: '50%',
        // marginBottom: '10%'
       };
 
