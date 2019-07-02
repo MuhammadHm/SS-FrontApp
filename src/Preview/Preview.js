@@ -117,7 +117,10 @@ decidePrint = (isPrint)=>{
        return(
            <div>
                 <div><Sidebar survey_id={this.state.survey_id}
-                user_id={this.state.user_id} />  </div>
+                user_id={this.state.user_id} 
+                lang={this.props.lang} 
+                styleLang={this.props.styleLang}
+                />  </div>
                 <button onClick={this.printSurvey} style={buttonStyle} className="btn btn-secondary btn-lg">Print Survey</button>
             </div>
             );
@@ -172,6 +175,9 @@ render(){
                             answers={question.answers} 
                             isRequired={question.isRequired}
                             renderQuestionType={this.renderQuestionType}
+                            lang={this.props.lang}
+                            styleLang={this.state.language}
+
                              />
                         </li>
                     </div>

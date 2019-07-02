@@ -3,6 +3,15 @@ import './Sidebar.css'
 
 class Sidebar extends Component {
 
+
+
+    decideStyle(){
+        if(this.props.styleLang==="ar")
+            return "nav2"
+        else
+            return "nav1"           
+    }
+
     render() {
         let lang=this.props.lang;
         let preview = `/preview/${this.props.survey_id}`
@@ -11,7 +20,7 @@ class Sidebar extends Component {
         let responses = `/responses/${this.props.survey_id}`
         let report=`/report/${this.props.survey_id}`
         return (
-            <div id="menu" className="nav1">
+            <div id="menu" className={this.decideStyle()}>    
                 <h1 className="logo">
                     <a className="s-logo" href={backHome}>Survey<span>Space</span></a>
                 </h1>

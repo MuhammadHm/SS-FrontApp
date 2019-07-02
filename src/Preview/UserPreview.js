@@ -183,6 +183,9 @@ render(){
                             answers={question.answers} 
                             isRequired={question.isRequired}
                             renderQuestionType={this.renderQuestionType}
+                            lang={this.props.lang}
+                            styleLang={this.props.styleLang}
+
                              />
                         </li>
                     </div>

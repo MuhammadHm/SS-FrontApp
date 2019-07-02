@@ -255,6 +255,9 @@ class Survey extends Component {
                   answerType={this.setAnswerType.bind(this, index)}
                   swapUp={this.swapUp.bind(this,index)}
                   swapDown={this.swapDown.bind(this,index)}
+                  lang={this.props.lang}
+                  styleLang={this.props.styleLang}
+
                 />)
               })
             }

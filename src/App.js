@@ -71,13 +71,13 @@ class App extends Component {
   }
 
   getJsonLanguage= ()=>{
-    let lang=this.state.language;
-    if(lang === 'ar'){
+    
+    if(this.state.language === 'ar'){
         this.setState({
           jsonLang : ar
         })
     }
-    else if (lang === 'en') {
+    else {
       this.setState({
         jsonLang : en
       })
@@ -97,20 +97,26 @@ class App extends Component {
                   <Sidebar survey_id={this.state.survey_id}
                     user_id={this.state.user_id}
                     lang={this.state.jsonLang}
+                    styleLang={this.state.language}
                     />
                   <Survey
                     survey_id={this.state.survey_id}
                     user_id={this.state.user_id}
                     title={this.state.title}
                     lang={this.state.jsonLang}
-                    welcomeMessage={this.state.welcomeMessage}/>
+                    welcomeMessage={this.state.welcomeMessage}
+                    styleLang={this.state.language}
+                    />
+
                 </div>
             )} />
 
             <Route path="/preview/:id" render={({ match }) => (
               <div>
                 <Preview lang={this.state.jsonLang}
-                id={match.params.id} />
+                id={match.params.id}
+                styleLang={this.state.language}
+                />
               </div>
             )} />
 
@@ -118,6 +124,7 @@ class App extends Component {
               <div>
                 <UserPreview 
                 lang={this.state.jsonLang}
+                styleLang={this.state.language}
                 id={match.params.id} />
               </div>
             )} />
@@ -127,9 +134,13 @@ class App extends Component {
                 <Sidebar survey_id={this.state.survey_id}
                   user_id={this.state.user_id} 
                   lang={this.state.jsonLang}
+                  styleLang={this.state.language}
+
                   />
                 <Publish survey_id={this.state.survey_id}
-                lang={this.state.jsonLang} />
+                lang={this.state.jsonLang} 
+                styleLang={this.state.language}
+                />
               </div>
             )} />
 
@@ -137,8 +148,12 @@ class App extends Component {
               <div>
                 <Sidebar survey_id={this.state.survey_id}
                   user_id={this.state.user_id} 
-                  lang={this.state.jsonLang} />
-                <Responses survey_id={match.params.id} lang={this.state.jsonLang} />
+                  lang={this.state.jsonLang} 
+                  styleLang={this.state.language}
+                  />
+                <Responses survey_id={match.params.id} lang={this.state.jsonLang}
+                                    styleLang={this.state.language}
+                                    />
               </div>
             )} />
 
@@ -146,7 +161,9 @@ class App extends Component {
               <div>
                 <Sidebar survey_id={this.state.survey_id}
                   user_id={this.state.user_id} 
-                  lang={this.state.jsonLang} />   
+                  lang={this.state.jsonLang} 
+                  styleLang={this.state.language}
+                  />   
               </div>
             )} />
 
@@ -154,10 +171,14 @@ class App extends Component {
               <div>
                 <Sidebar survey_id={this.state.survey_id}
                   user_id={this.state.user_id} 
-                  lang={this.state.jsonLang}/>
+                  lang={this.state.jsonLang}
+                  styleLang={this.state.language}
+                  />
                 <Edit
                   survey_id={match.params.id}
                   lang={this.state.jsonLang}
+                  styleLang={this.state.language}
+
                 />
               </div>
             )} />
@@ -165,19 +186,14 @@ class App extends Component {
             <Route path="/report/:id" render={({ match }) => (
               <div>
               
-                <Report survey_id={match.params.id} lang={this.state.jsonLang} />
+                <Report survey_id={match.params.id} lang={this.state.jsonLang}                  
+                   styleLang={this.state.language}
+                />
 
               </div>
             )} />   
 
-            <Route path="/" render={({ match }) => (
-              <div>
-                <Sidebar survey_id={this.state.survey_id}
-                  user_id={this.state.user_id} 
-                  lang={this.state.jsonLang} />
-                <Survey />
-              </div>
-            )} />
+        
           </Switch>
         </BrowserRouter>
       </div>
