@@ -9,6 +9,7 @@ import UserPreview from './Preview/UserPreview';
 import Responses from './Responses/Responses';
 import Report from './Responses/Report';
 import Cookies from 'js-cookie';
+import Analyze from './Analyze/analyze';
 
 class App extends Component {
 
@@ -44,7 +45,7 @@ class App extends Component {
 
    componentDidMount() {
 
-      fetch('http://localhost:8080/survey/sendsurveyinfo')
+      fetch(`http://localhost:8080/survey/sendsurveyinfo/${Cookies.get('user')}`)
       .then(response => response.json())
       .then(data => {
         this.setState({
@@ -114,7 +115,8 @@ class App extends Component {
             <Route path="/analyze" render={({ match }) => (
               <div>
                 <Sidebar survey_id={this.state.survey_id}
-                  user_id={this.state.user_id} />   
+                  user_id={this.state.user_id} />  
+                  <Analyze /> 
               </div>
             )} />
 

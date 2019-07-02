@@ -8,6 +8,8 @@ import Scale from './PreviewTypes/scale';
 import Date from './PreviewTypes/date';
 import './UserPreview.css'
 import Sidebar from './../Side Bar/Sidebar'
+import cryptr from 'cryptr'
+
 
 class UserPreview extends Component {
 

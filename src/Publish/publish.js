@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './publish.css'
+import cryptr from 'cryptr'
 
 class Publish extends Component {
     
@@ -43,7 +44,7 @@ class Publish extends Component {
             "marginTop" : "2%",
             "textAlign" : "left"
         };
-
+        
         let link=`http://localhost:3000/userpreview/${this.props.survey_id}`;
 
         return (
