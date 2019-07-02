@@ -13,9 +13,13 @@ class QuestionPrev extends Component {
     }
 
     render(){
+        let isRequired=null;
+        if (this.props.isRequired)
+            isRequired = "(*)";
         return(
             <div className="quesionPrev">
-                <h5> Q {this.props.question_id} : {this.props.body} </h5>              
+
+                <h5> Q {this.props.question_id} : {this.props.body} ?  {isRequired} </h5>              
                 <div> {this.props.renderQuestionType(this.props.answerType , this.props.answers , this.props.body )} </div>
             </div>
 

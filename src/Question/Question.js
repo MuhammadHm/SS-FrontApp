@@ -76,7 +76,7 @@ render() {
                         <button className="dropdown-item" onClick={this.props.questionType} name="textbox">Textbox</button>
                         <button className="dropdown-item" onClick={this.props.questionType} name="essay">Essay</button>
                         <button className="dropdown-item" onClick={this.props.questionType} name="scale">Scale</button>
-                        <button className="dropdown-item" onClick={this.props.questionType} name="date">Date / Time</button>
+                        <button className="dropdown-item" onClick={this.props.questionType} name="date">Date </button>
                     </span>
                 </span>
                 <div className="questionType"> {this.props.answerType()} </div>
