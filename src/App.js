@@ -44,7 +44,7 @@ class App extends Component {
 
    componentDidMount() {
 
-      fetch('http://localhost:8080/survey/sendsurveyinfo')
+      fetch(`http://localhost:8080/survey/sendsurveyinfo/${Cookies.get("user")}`)
       .then(response => response.json())
       .then(data => {
         this.setState({
