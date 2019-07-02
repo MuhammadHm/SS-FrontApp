@@ -7,8 +7,7 @@ import Essay from "../QuestionTypes/essay";
 import Scale from "../QuestionTypes/scale";
 import Textbox from "../QuestionTypes/textbox";
 import Date from "../QuestionTypes/date";
-import Cookies from 'js-cookie';
-import cookie from "react-cookie";
+
 
 class Survey extends Component {
 
