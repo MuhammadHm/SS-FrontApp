@@ -4,6 +4,7 @@ import './Sidebar.css'
 class Sidebar extends Component {
 
     render() {
+        let lang=this.props.lang;
         let preview = `/preview/${this.props.survey_id}`
         let back = `http://localhost:8080/back/${this.props.user_id}`
         let backHome =`http://localhost:8080/back/home/${this.props.user_id}`
