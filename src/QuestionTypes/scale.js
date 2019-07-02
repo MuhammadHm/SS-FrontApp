@@ -6,18 +6,13 @@ class Scale extends Component {
     constructor() {
         super();
         this.state = {
-            value : 0,
             min : 0,
             max : 10,
             step : 1
         }
     }
     
-    handleScale=(e)=>{
-            this.setState({
-                value : e.target.value
-            });
-    }
+   
     handleMin=(e)=>{
         this.setState({
             min : e.target.value
@@ -41,7 +36,6 @@ class Scale extends Component {
             min : this.state.min,
             max : this.state.max,
             step : this.state.step,
-            value : this.state.value
         };
         this.props.answers(params);
     }
@@ -51,12 +45,12 @@ class Scale extends Component {
         return (
             <div>
                 <div  >
-                    <label className="value">Minimum Value : </label>
+                    <label className="value">Min value : </label>
                     <input onBlur={this.passParams} type="text"  className="value" onChange={this.handleMin} placeholder="0" />
                 </div>
                 
                 <div >
-                    <label className="value">Maximum Value : </label>
+                    <label className="value">Max value : </label>
                     <input onBlur={this.passParams} type="text"  className="value" onChange={this.handleMax} placeholder="10" />
                 </div>
 
@@ -68,16 +62,13 @@ class Scale extends Component {
                 <div className="d-flex justify-content-center my-4">
                     <div className="range-field w-50">
                     <span className="font-weight-bold blue-text mr-2 mt-1">{this.state.min}</span>
-                    <input className="border-0" type="range" min={this.state.min} max={this.state.max} step={this.state.step} onChange={this.handleScale}/>
+                    <input className="border-0" type="range" min={this.state.min} max={this.state.max} step={this.state.step} />
                     <span className="font-weight-bold blue-text ml-2 mt-1">{this.state.max}</span>
                     </div>
                 </div>
 
                 <div>
-                <div >
-                    <label className="value">Value : </label>
-                    <input onBlur={this.passParams} type="text"  className="value" value={this.state.value}/>
-                </div>
+                
             </div>
                
           </div>

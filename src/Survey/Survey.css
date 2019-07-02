@@ -37,7 +37,9 @@ body{
   position: relative;
   transition: width 0.2s ease-in-out;
   color: #383f50;
-
+  position: absolute;
+  left: 89%;
+  top: 86%;
 }
 .add-btn:hover {
   width: 120px;
@@ -112,4 +114,8 @@ body{
 .title{
   margin: 2rem;
   color: #3e84c1;
+}
+.save-button{
+  position: absolute;
+  left: 22%
 }

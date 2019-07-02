@@ -7,7 +7,9 @@ import Sidebar from './Side Bar/Sidebar';
 import Edit from './Survey/edit';
 import UserPreview from './Preview/UserPreview';
 import Responses from './Responses/Responses';
-import Analyze from './Analyze/analyze'
+import Report from './Responses/Report';
+import Cookies from 'js-cookie';
+
 class App extends Component {
 
   constructor() {
@@ -51,7 +53,6 @@ class App extends Component {
           title: data.title,
           welcomeMessage: data.welcomeMessage
         });
-        console.log(this.state);
       })
       .catch(error => {
         console.log(error);
@@ -61,7 +62,7 @@ class App extends Component {
       this.sendFile('http://localhost:8080/survey/savesurvey','survey','Your survey saved sucessfuly');
       this.sendFile('http://localhost:8080/survey/saveastemplate','template','Your template saved successfully');
       this.sendFile('http://localhost:8080/survey/editsurvey','esurvey','Your survey edited sucessfuly');
-      this.sendFile('http://localhost:8080/survey/saveastemplate','Your template saved successfully');
+      this.sendFile('http://localhost:8080/survey/saveastemplate','etemplate','Your template saved successfully');
 
   }
   render() {
@@ -112,7 +113,8 @@ class App extends Component {
 
             <Route path="/analyze" render={({ match }) => (
               <div>
-                  <Analyze />
+                <Sidebar survey_id={this.state.survey_id}
+                  user_id={this.state.user_id} />   
               </div>
             )} />
 
@@ -125,6 +127,14 @@ class App extends Component {
                 />
               </div>
             )} />
+
+            <Route path="/report/:id" render={({ match }) => (
+              <div>
+              
+                <Report survey_id={match.params.id} />
+
+              </div>
+            )} />   
 
             <Route path="/" render={({ match }) => (
               <div>

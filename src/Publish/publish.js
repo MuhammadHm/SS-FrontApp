@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import './publish.css'
 
 class Publish extends Component {
     
@@ -35,7 +35,7 @@ class Publish extends Component {
     render() {
         
         let style={
-            "fontSize" : "25px",
+            "fontSize" : "35px",
             "color" : "#383f50",
             "width" : "600px",
             "padding" : "20px",
@@ -50,8 +50,7 @@ class Publish extends Component {
             <div className="textbox">
                 <label style={style} >Share your survey via this web link : </label>
                 <br />
-                <input name="text" type="text" value={link} style={style} />
-              
+                <input className="share" name="text" type="text" value={link} style={style} />
             </div>
         );
     }
