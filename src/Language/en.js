@@ -1,7 +1,7 @@
 const en = {
     save : "Save",
     saveAsTemp : "Save as Template",
-    create:"Creat Survey ",
+    create:"Create Survey ",
     Preview:"Preview",
     Print:"Print",
     Publish:"Publish Survey",

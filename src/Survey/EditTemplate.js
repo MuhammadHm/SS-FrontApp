@@ -11,7 +11,9 @@ import Date from "../QuestionTypes/date";
 import Cookies from 'js-cookie';
 const Cryptr = require('cryptr');
 const cryptr = new Cryptr('myTotalySecretKey');
-class Edit extends Component {
+
+
+class EditTemplate extends Component {
 
   constructor() {
     super();
@@ -28,9 +30,9 @@ class Edit extends Component {
     }
   }
   componentDidMount() {
-
+    Cookies.set("template", "true");
     Cookies.set("survey",this.props.survey_id);
-    fetch(`http://localhost:8080/survey/sendsurvey/${this.props.survey_id}`)
+    fetch(`http://localhost:8080/survey/sendtemplate/${this.props.survey_id}`)
     .then(response => response.json())
     .then(data => {
       this.setState({
@@ -137,7 +139,7 @@ class Edit extends Component {
       return (<div> <Date /> </div>);
 
   }
-  editSurvey = () => {   
+ /* editSurvey = () => {   
     const survey = {
       survey_id: this.state.survey_id,
       user_id: this.state.user_id,
@@ -164,6 +166,37 @@ class Edit extends Component {
   else 
   { 
     localStorage.setItem('esurvey',JSON.stringify(survey));
+
+  }
+
+  }*/
+  saveSurvey = () => {  
+    const survey = {
+      survey_id: cryptr.encrypt(cryptr.decrypt(this.props.survey_id)+1),
+      user_id: this.state.user_id,
+      title: this.state.title,
+      welcomeMessage: this.state.welcomeMessage,
+      questionsArray: this.state.questionsArray
+    };
+    if (navigator.onLine){
+    fetch('http://localhost:8080/survey/savesurvey', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(survey)
+    })
+      .then(response => response.json())
+      .then(data => { 
+        localStorage.removeItem('survey');
+        alert('Your survey saved sucessfuly');
+      })
+      .catch(err => console.log(err));
+  }
+  else 
+  { 
+    localStorage.setItem('survey',JSON.stringify(survey));
 
   }
 
@@ -278,7 +311,7 @@ class Edit extends Component {
             </button>
             {connect}
             <br /> <br />
-            <button onClick={this.editSurvey} style={buttonStyle} className="save-survey btn btn-outline-primary">Edit </button>           
+            <button onClick={this.saveSurvey} style={buttonStyle} className="save-survey btn btn-outline-primary">Save as Survey </button>           
             <button onClick={this.saveAsTemplate} style={buttonStyle} className="save-survey btn btn-outline-primary">Save As Template</button>
           </div>
         </div>
@@ -287,4 +320,4 @@ class Edit extends Component {
   }
 }
 
-export default Edit;
+export default EditTemplate;

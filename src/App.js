@@ -5,15 +5,21 @@ import Preview from './Preview/Preview';
 import Publish from './Publish/publish';
 import Sidebar from './Side Bar/Sidebar';
 import Edit from './Survey/edit';
+import EditTemplate from './Survey/EditTemplate';
+import Analyze from './Analyze/analyze';
+//import Chart from './Analyze/test';
+import Pageerr from './pageerr';
 import UserPreview from './Preview/UserPreview';
 import Responses from './Responses/Responses';
 import Report from './Responses/Report';
 import Cookies from 'js-cookie';
 import ar from './Language/ar';
 import en from './Language/en';
-import Analyze from './Analyze/analyze';
-import Chart from './Analyze/test';
-import Pageerr from './pageerr';
+import { template } from '@babel/core';
+const Cryptr = require('cryptr');
+const cryptr = new Cryptr('myTotalySecretKey');
+
+
 
 class App extends Component {
 
@@ -51,14 +57,22 @@ class App extends Component {
   }
 
   async componentDidMount() {
+      let link;
+      //console.log(Cookies.get("template"))
+      //if(Cookies.get("template") == "true" )
+        //link=`http://localhost:8080/survey/sendtemplate/${Cookies.get("survey")}` ;   
+     // else 
+      link=`http://localhost:8080/survey/sendsurveyinfo/${Cookies.get("user")}`;
+
       if (Cookies.get("user") !== undefined){
         this.state.allow=true;
-      await fetch(`http://localhost:8080/survey/sendsurveyinfo/${Cookies.get("user")}`)
+        
+      await fetch(link)
       .then(response => response.json())
       .then(data => {
         this.setState({
           language : Cookies.get("Language"),
-          survey_id: data.survey_id,
+          survey_id: Cookies.get("survey"),
           user_id: data.user_id,
           title: data.title,
           welcomeMessage: data.welcomeMessage
@@ -79,7 +93,7 @@ class App extends Component {
       this.sendFile('http://localhost:8080/survey/saveastemplate','etemplate','Your template saved successfully');
       await this.getJsonLanguage();
   }
-
+  
   getJsonLanguage= ()=>{
     
     if(this.state.language === 'ar'){
@@ -87,7 +101,7 @@ class App extends Component {
           jsonLang : ar
         })
     }
-    else  {
+    else {
       this.setState({
         jsonLang : en
       })
@@ -116,10 +130,12 @@ class App extends Component {
                     user_id={this.state.user_id}
                     title={this.state.title}
                     lang={this.state.jsonLang}
-                    welcomeMessage={this.state.welcomeMessage}/>
+                    welcomeMessage={this.state.welcomeMessage}
+                    styleLang={this.state.language}
+                    />
 
-                </div>  : <Pageerr />
-                }</div>
+                </div>  : <Pageerr /> }
+                </div>
             )} />
 
             <Route path="/preview/:id" render={({ match }) => (
@@ -127,7 +143,9 @@ class App extends Component {
               {this.state.allow ?
               <div>
                 <Preview lang={this.state.jsonLang}
-                id={match.params.id} />
+                id={match.params.id} 
+                styleLang={this.state.language}
+                />
               </div>: <Pageerr />
                 }</div>
             )} />
@@ -152,9 +170,13 @@ class App extends Component {
 
                   />
                 <Publish survey_id={this.state.survey_id}
-                lang={this.state.jsonLang} />
+                lang={this.state.jsonLang} 
+                styleLang={this.state.language}/>
               </div>: <Pageerr />
-                }</div>
+              
+            }</div>
+              
+              
             )} />
 
             <Route path="/responses/:id" render={({ match }) => (
@@ -163,10 +185,16 @@ class App extends Component {
               <div>
                 <Sidebar survey_id={this.state.survey_id}
                   user_id={this.state.user_id} 
-                  lang={this.state.jsonLang} />
-                <Responses survey_id={match.params.id} lang={this.state.jsonLang} />
+                  lang={this.state.jsonLang} 
+                  styleLang={this.state.language}/>
+
+                <Responses survey_id={match.params.id} 
+                lang={this.state.jsonLang} 
+                styleLang={this.state.language}/>
               </div>: <Pageerr />
-                }</div>
+              
+              }</div>
+                 
             )} />
 
             <Route path="/analyze/:id" render={({ match }) => (
@@ -175,11 +203,13 @@ class App extends Component {
               <div>
                 <Sidebar survey_id={this.state.survey_id}
                   user_id={this.state.user_id} 
-                  lang={this.state.jsonLang} />  
+                  lang={this.state.jsonLang} 
+                  styleLang={this.state.language}/>  
                   <br/><br/>
-                  <div style={{ margin: '100px 10px'}}>
+                  <div>
                     <Analyze 
-                      survey_id={match.params.id}  />
+                      survey_id={match.params.id}  
+                      styleLang={this.state.language}/>
                   </div>
               </div>: <Pageerr />
                 }</div>
@@ -202,6 +232,21 @@ class App extends Component {
                 />
               </div>: <Pageerr />
                 }</div>
+            )} />
+
+             <Route path="/edittemplate/:id" render={({ match }) => (
+              <div>
+                <Sidebar survey_id={this.state.survey_id}
+                  user_id={this.state.user_id} 
+                  lang={this.state.jsonLang}
+                  styleLang={this.state.language}
+                  />
+                <EditTemplate
+                  survey_id={match.params.id}
+                  lang={this.state.jsonLang}
+                  styleLang={this.state.language}
+                />
+              </div>
             )} />
 
             <Route path="/report/:id" render={({ match }) => (

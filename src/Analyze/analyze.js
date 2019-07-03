@@ -9,7 +9,6 @@ import FusionTheme from 'fusioncharts/themes/es/fusioncharts.theme.fusion';
 import ReactFC from 'react-fusioncharts';
 ReactFC.fcRoot(FusionCharts, Column2D, FusionTheme);
 
-
 // Resolves charts dependancy
 charts(FusionCharts);
 
@@ -23,7 +22,7 @@ class Analyze extends React.Component {
 }
 
 componentDidMount(){
-  let link ='http://localhost:8080/survey/Analzye/'+this.props.survey_id;
+  let link ='http://localhost:8080/survey/Analzye/6';
   fetch(link)
   .then(response => response.json())
   .then(data => {
@@ -57,6 +56,7 @@ dataSource=(question) =>{
         value: answer.count
       })
     });
+    console.log(dataSource);
     return <ReactFusioncharts 
     type="pie2d"
     dataFormat="JSON"
@@ -90,8 +90,9 @@ dataSource=(question) =>{
     }
   render() {
     return (
-      <div className="report" style={{marginLeft : "30%"  }} >
+      <div className="report" style={{marginLeft : "50%"}} >
                 <h2 className="report-item">Analyze Server  </h2>
+
                 <div style={{"marginLeft" : "10%"}}>
                 {
                     this.state.result.map((question, index) => {

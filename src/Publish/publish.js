@@ -14,6 +14,9 @@ import {
     LinkedinIcon,
     EmailIcon,
   } from 'react-share';
+const Cryptr = require('cryptr');
+const cryptr = new Cryptr('myTotalySecretKey');
+
 
 class Publish extends Component {
     

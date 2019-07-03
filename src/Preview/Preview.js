@@ -41,6 +41,7 @@ constructor(){
 
     };
 }
+
 componentDidMount(){
 
     fetch(`http://localhost:8080/survey/sendsurvey/${this.props.id}`)
