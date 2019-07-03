@@ -7,8 +7,7 @@ import Essay from "../QuestionTypes/essay";
 import Scale from "../QuestionTypes/scale";
 import Textbox from "../QuestionTypes/textbox";
 import Date from "../QuestionTypes/date";
-import Cookies from 'js-cookie';
-import cookie from "react-cookie";
+
 
 class Survey extends Component {
 
@@ -219,6 +218,18 @@ class Survey extends Component {
     console.log(this.state.questionsArray)
 
   }
+  decideStyle(){
+    if(this.props.styleLang==="ar")
+        return {
+          icon : "icon-btn-arabic",
+          text : "icon-btn-arabic-txt"
+        }
+    else
+        return {
+          icon :"icon-btn",
+          text : "btn-txt "
+        }           
+}
  
   render() {
     let lang = this.props.lang;
@@ -256,13 +267,16 @@ class Survey extends Component {
                   answerType={this.setAnswerType.bind(this, index)}
                   swapUp={this.swapUp.bind(this,index)}
                   swapDown={this.swapDown.bind(this,index)}
+                  lang={this.props.lang}
+                  styleLang={this.props.styleLang}
+
                 />)
               })
             }
           </ul>
           <div>
             <hr className="main-hr" />
-            <button className="icon-btn add-btn" onClick={this.addQuestionHandler}>
+            <button className={this.decideStyle().icon} onClick={this.addQuestionHandler}>
               <div className="add-icon"></div>
               <div className="btn-txt">NEW </div>
             </button>

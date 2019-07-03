@@ -1,0 +1,29 @@
+.textbox{
+   margin-left: 20%;
+   padding-top: 50px;
+   font-size: 20px;
+}
+.link-publish{
+    margin-bottom: 70px !important;
+    padding-top: 100px;
+}
+.publish-input{
+    display: block !important;
+    width: 40% !important;
+    padding: 10px !important;
+}
+.icon{
+    display: inline-block;
+    cursor: pointer;
+    padding: 10px;
+}
+.publish{
+    display: block ;
+    font-size: 30px;
+    color: #2E3353;
+}
+.publish-label
+{
+    color: #2E3353;
+    font-size: 30px;
+}
