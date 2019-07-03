@@ -8,6 +8,17 @@
     padding: 15px;
     margin-bottom: 20px;
 }
+.question-arabic{
+    text-align: right;
+    direction: rtl;
+    border: 3px solid #2E3353;
+    border-style: groove;
+    border-radius: 8px;
+    box-shadow: 10px 10px 5px grey;
+    margin-right: 90px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
 input[type=text], select {
     padding: 12px 20px;
     margin: 8px ;
