@@ -22,7 +22,7 @@ class Analyze extends React.Component {
 }
 
 componentDidMount(){
-  let link ='http://localhost:8080/survey/Analzye/6';
+  let link ='http://localhost:8080/survey/Analzye/'+this.props.survey_id;
   fetch(link)
   .then(response => response.json())
   .then(data => {
@@ -56,7 +56,6 @@ dataSource=(question) =>{
         value: answer.count
       })
     });
-    console.log(dataSource);
     return <ReactFusioncharts 
     type="pie2d"
     dataFormat="JSON"
@@ -66,9 +65,9 @@ dataSource=(question) =>{
     renderQuestionType=(type,question)=>{
     
         if(type === "mulchoice")
-          return this.dataSource(question);        
+          return (<div> {this.dataSource(question)}</div>);        
         else if(type === "checkbox")
-          return this.dataSource(question);        
+          return (<div> {this.dataSource(question)}</div>);       
         else if(type === "textbox")
             return(<div> 
                 {question.report.map((answer, index) => {
@@ -90,9 +89,8 @@ dataSource=(question) =>{
     }
   render() {
     return (
-      <div className="report" style={{marginLeft : "50%"}} >
+      <div className="report" style={{marginLeft : "30%"  }} >
                 <h2 className="report-item">Analyze Server  </h2>
-
                 <div style={{"marginLeft" : "10%"}}>
                 {
                     this.state.result.map((question, index) => {

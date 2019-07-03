@@ -7,7 +7,7 @@ import Sidebar from './Side Bar/Sidebar';
 import Edit from './Survey/edit';
 import EditTemplate from './Survey/EditTemplate';
 import Analyze from './Analyze/analyze';
-//import Chart from './Analyze/test';
+import Chart from './Analyze/test';
 import Pageerr from './pageerr';
 import UserPreview from './Preview/UserPreview';
 import Responses from './Responses/Responses';
@@ -62,7 +62,7 @@ class App extends Component {
       //if(Cookies.get("template") == "true" )
         //link=`http://localhost:8080/survey/sendtemplate/${Cookies.get("survey")}` ;   
      // else 
-      link=`http://localhost:8080/survey/sendsurveyinfo/${Cookies.get("user")}`;
+      link=`http://localhost:8080/survey/sendsurveyinfo/${Cookies.get("survey")}`;
 
       if (Cookies.get("user") !== undefined){
         this.state.allow=true;
@@ -206,7 +206,7 @@ class App extends Component {
                   lang={this.state.jsonLang} 
                   styleLang={this.state.language}/>  
                   <br/><br/>
-                  <div>
+                  <div style={{ margin: '100px 10px'}}>
                     <Analyze 
                       survey_id={match.params.id}  
                       styleLang={this.state.language}/>
