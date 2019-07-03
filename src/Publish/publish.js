@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './publish.css'
+
 import {
     FacebookShareButton,
     LinkedinShareButton,
@@ -16,6 +17,8 @@ import {
   } from 'react-share';
 const Cryptr = require('cryptr');
 const cryptr = new Cryptr('myTotalySecretKey');
+
+
 class Publish extends Component {
     
 

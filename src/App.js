@@ -6,7 +6,9 @@ import Publish from './Publish/publish';
 import Sidebar from './Side Bar/Sidebar';
 import Edit from './Survey/edit';
 import EditTemplate from './Survey/EditTemplate';
-
+import Analyze from './Analyze/analyze';
+//import Chart from './Analyze/test';
+import Pageerr from './pageerr';
 import UserPreview from './Preview/UserPreview';
 import Responses from './Responses/Responses';
 import Report from './Responses/Report';
@@ -16,6 +18,9 @@ import en from './Language/en';
 import { template } from '@babel/core';
 const Cryptr = require('cryptr');
 const cryptr = new Cryptr('myTotalySecretKey');
+
+
+
 class App extends Component {
 
   constructor() {
@@ -26,7 +31,8 @@ class App extends Component {
       user_id: '',
       title: '',
       welcomeMessage: '',
-      jsonLang : ''
+      jsonLang : '',
+      allow : true
     }
   }
   
@@ -56,9 +62,11 @@ class App extends Component {
       //if(Cookies.get("template") == "true" )
         //link=`http://localhost:8080/survey/sendtemplate/${Cookies.get("survey")}` ;   
      // else 
-        link=`http://localhost:8080/survey/sendsurveyinfo/${Cookies.get("survey")}`;
+      link=`http://localhost:8080/survey/sendsurveyinfo/${Cookies.get("survey")}`;
 
-      console.log(link)
+      if (Cookies.get("user") !== undefined){
+        this.state.allow=true;
+        
       await fetch(link)
       .then(response => response.json())
       .then(data => {
@@ -73,6 +81,11 @@ class App extends Component {
       .catch(error => {
         console.log(error);
       });
+    }
+    else
+    {
+      this.state.allow=false;
+    }
       this.sendFile('http://localhost:8080/results/submit','submit','your survey submitted');
       this.sendFile('http://localhost:8080/survey/savesurvey','survey','Your survey saved sucessfuly');
       this.sendFile('http://localhost:8080/survey/saveastemplate','template','Your template saved successfully');
@@ -105,6 +118,8 @@ class App extends Component {
             
             <Route path="/createsurvey" render={({ match }) => (
                 <div>
+                {this.state.allow ?
+                <div>
                   <Sidebar survey_id={this.state.survey_id}
                     user_id={this.state.user_id}
                     lang={this.state.jsonLang}
@@ -119,16 +134,20 @@ class App extends Component {
                     styleLang={this.state.language}
                     />
 
+                </div>  : <Pageerr /> }
                 </div>
             )} />
 
             <Route path="/preview/:id" render={({ match }) => (
               <div>
+              {this.state.allow ?
+              <div>
                 <Preview lang={this.state.jsonLang}
-                id={match.params.id}
+                id={match.params.id} 
                 styleLang={this.state.language}
                 />
-              </div>
+              </div>: <Pageerr />
+                }</div>
             )} />
 
             <Route path="/userpreview/:id" render={({ match }) => (
@@ -142,6 +161,8 @@ class App extends Component {
 
             <Route path="/publish" render={({ match }) => (
               <div>
+                {this.state.allow ?
+              <div>
                 <Sidebar survey_id={this.state.survey_id}
                   user_id={this.state.user_id} 
                   lang={this.state.jsonLang}
@@ -150,35 +171,53 @@ class App extends Component {
                   />
                 <Publish survey_id={this.state.survey_id}
                 lang={this.state.jsonLang} 
-                styleLang={this.state.language}
-                />
-              </div>
+                styleLang={this.state.language}/>
+              </div>: <Pageerr />
+              
+            }</div>
+              
+              
             )} />
 
             <Route path="/responses/:id" render={({ match }) => (
               <div>
-                <Sidebar survey_id={this.state.survey_id}
-                  user_id={this.state.user_id} 
-                  lang={this.state.jsonLang} 
-                  styleLang={this.state.language}
-                  />
-                <Responses survey_id={match.params.id} lang={this.state.jsonLang}
-                                    styleLang={this.state.language}
-                                    />
-              </div>
-            )} />
-
-            <Route path="/analyze" render={({ match }) => (
+                {this.state.allow ?
               <div>
                 <Sidebar survey_id={this.state.survey_id}
                   user_id={this.state.user_id} 
                   lang={this.state.jsonLang} 
-                  styleLang={this.state.language}
-                  />   
-              </div>
+                  styleLang={this.state.language}/>
+
+                <Responses survey_id={match.params.id} 
+                lang={this.state.jsonLang} 
+                styleLang={this.state.language}/>
+              </div>: <Pageerr />
+              
+              }</div>
+                 
+            )} />
+
+            <Route path="/analyze/:id" render={({ match }) => (
+              <div>
+                {this.state.allow ?
+              <div>
+                <Sidebar survey_id={this.state.survey_id}
+                  user_id={this.state.user_id} 
+                  lang={this.state.jsonLang} 
+                  styleLang={this.state.language}/>  
+                  <br/><br/>
+                  <div style={{ margin: '100px 10px'}}>
+                    <Analyze 
+                      survey_id={match.params.id}  
+                      styleLang={this.state.language}/>
+                  </div>
+              </div>: <Pageerr />
+                }</div>
             )} />
 
             <Route path="/edit/:id" render={({ match }) => (
+              <div>
+                {this.state.allow ?
               <div>
                 <Sidebar survey_id={this.state.survey_id}
                   user_id={this.state.user_id} 
@@ -191,7 +230,8 @@ class App extends Component {
                   styleLang={this.state.language}
 
                 />
-              </div>
+              </div>: <Pageerr />
+                }</div>
             )} />
 
              <Route path="/edittemplate/:id" render={({ match }) => (
@@ -211,12 +251,15 @@ class App extends Component {
 
             <Route path="/report/:id" render={({ match }) => (
               <div>
+                {this.state.allow ?
+              <div>
               
                 <Report survey_id={match.params.id} lang={this.state.jsonLang}                  
                    styleLang={this.state.language}
                 />
 
-              </div>
+              </div>: <Pageerr />
+                }</div>
             )} />   
 
         

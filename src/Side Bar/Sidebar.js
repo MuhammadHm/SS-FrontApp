@@ -19,10 +19,10 @@ class Sidebar extends Component {
     render() {
         let lang=this.props.lang;
         let preview = `/preview/${this.props.survey_id}`
-        let back = `http://localhost:8080/back/${this.props.user_id}`
-        let backHome =`http://localhost:8080/back/home/${this.props.user_id}`
+        let backHome =`http://localhost:8080/mysurveys`
         let responses = `/responses/${this.props.survey_id}`
         let report=`/report/${this.props.survey_id}`
+        let analyze=`/analyze/${this.props.survey_id}`
         return (
             <div id="menu" className={this.decideStyle().nav}>    
                 <h1 className="logo">
@@ -33,9 +33,9 @@ class Sidebar extends Component {
                     <li><a href={preview} >{lang.Preview} &amp;{lang.Print}</a></li>
                     <li><a href="/publish">{lang.Publish}</a></li>
                     <li><a href={responses}>{lang.Collect}</a></li>
-                    <li><a href="/analyze">{lang.Analyze}</a></li>
+                    <li><a href={analyze}>{lang.Analyze}</a></li>
                     <li><a href={report} >{lang.Generate}</a></li>
-                    <li><a href={back} >{lang.Back}</a></li>
+                    <li><a href={backHome} >{lang.Back}</a></li>
                 </ul>
             </div>
         );

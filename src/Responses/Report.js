@@ -126,7 +126,7 @@ class Report extends Component {
                         return (
                             <div>
                                 <div key={index}>    
-                                    <h2>Q {index+1} : {question.questionbody}</h2> 
+                                    <h2>Q {index+1} : {question.questionbody} ?</h2> 
                                     <h5 style={{"marginLeft" : "10%"}}>Answers : {question.count}</h5>                           
                                     <ul>{
                                         this.renderQuestionType(question.answerType,question)

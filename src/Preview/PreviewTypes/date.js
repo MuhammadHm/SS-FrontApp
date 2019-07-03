@@ -31,7 +31,7 @@ class Date extends Component {
 
     }
     passState=()=>{
-        this.props.getInput(this.state,"date",this.props.body);
+        this.props.getInput(this.state,"date",this.props.body,this.props.id_question);
     }
     onClick=(e)=>{
         this.handleInput(e);

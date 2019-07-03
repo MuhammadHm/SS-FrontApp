@@ -44,7 +44,7 @@ class Checkbox extends Component {
         });
     }
     passState=()=>{
-        this.props.getInput(this.state.answersArray,"checkbox",this.props.body);
+        this.props.getInput(this.state.answersArray,"checkbox",this.props.body,this.props.id_question);
     }
 
     onClick=(index,e)=>{
