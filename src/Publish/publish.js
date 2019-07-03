@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 import './publish.css'
-<<<<<<< HEAD
-import cryptr from 'cryptr'
-=======
 import {
     FacebookShareButton,
     LinkedinShareButton,
@@ -17,7 +14,6 @@ import {
     LinkedinIcon,
     EmailIcon,
   } from 'react-share';
->>>>>>> 90f827e622fd42a4d1e29567dffb99db38cc34ee
 
 class Publish extends Component {
     
@@ -30,21 +26,6 @@ class Publish extends Component {
     }
     
     render() {
-<<<<<<< HEAD
-        
-        let style={
-            "fontSize" : "35px",
-            "color" : "#383f50",
-            "width" : "600px",
-            "padding" : "20px",
-            "marginLeft" : "25%",
-            "marginTop" : "2%",
-            "textAlign" : "left"
-        };
-        
-=======
-
->>>>>>> 90f827e622fd42a4d1e29567dffb99db38cc34ee
         let link=`http://localhost:3000/userpreview/${this.props.survey_id}`;
 
         return (

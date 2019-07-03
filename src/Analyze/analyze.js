@@ -9,6 +9,7 @@ import FusionTheme from 'fusioncharts/themes/es/fusioncharts.theme.fusion';
 import ReactFC from 'react-fusioncharts';
 ReactFC.fcRoot(FusionCharts, Column2D, FusionTheme);
 
+
 // Resolves charts dependancy
 charts(FusionCharts);
 
