@@ -26,11 +26,14 @@ input[type=text], select {
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+    width: 300px;
   }
 
 .question .question-input{
     border: none;
     border-bottom: #2E3353 3px solid;
+    width: 1000px !important;
+   
 }
 .question-text{
    margin: 2%;

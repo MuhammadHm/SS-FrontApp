@@ -10,7 +10,7 @@ class Textbox extends Component {
         return (
             <div className="textbox">
 
-                <input name="text" type="text" />
+                <input className="text-box" name="text" type="text" />
                 
 
             </div>
