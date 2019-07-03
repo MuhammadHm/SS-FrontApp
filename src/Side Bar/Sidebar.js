@@ -4,9 +4,9 @@ import './Sidebar.css'
 class Sidebar extends Component {
 
     render() {
+        let lang=this.props.lang;
         let preview = `/preview/${this.props.survey_id}`
-        let back = `http://localhost:8080/back/${this.props.user_id}`
-        let backHome =`http://localhost:8080/back/home/${this.props.user_id}`
+        let backHome =`http://localhost:8080/mysurveys`
         let responses = `/responses/${this.props.survey_id}`
         let report=`/report/${this.props.survey_id}`
         return (
@@ -21,7 +21,7 @@ class Sidebar extends Component {
                     <li><a href={responses}>Collect Responses</a></li>
                     <li><a href="/analyze">Analyze Results</a></li>
                     <li><a href={report} >Generate Report</a></li>
-                    <li><a href={back} >Back to profile</a></li>
+                    <li><a href={backHome} >Back to profile</a></li>
                 </ul>
             </div>
         );

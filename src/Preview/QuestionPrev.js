@@ -20,7 +20,7 @@ class QuestionPrev extends Component {
             <div className="quesionPrev">
 
                 <h5> Q {this.props.question_id} : {this.props.body} ?  {isRequired} </h5>              
-                <div> {this.props.renderQuestionType(this.props.answerType , this.props.answers , this.props.body )} </div>
+                <div> {this.props.renderQuestionType(this.props.answerType , this.props.answers , this.props.body,this.props.question_id )} </div>
             </div>
 
         );

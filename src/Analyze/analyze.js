@@ -12,47 +12,106 @@ ReactFC.fcRoot(FusionCharts, Column2D, FusionTheme);
 // Resolves charts dependancy
 charts(FusionCharts);
 
-const dataSource = {
-  chart: {
-    caption: "Market Share of Web Servers",
-    plottooltext: "<b>$percentValue</b> of web servers run on $label servers",
-    showlegend: "1",
-    showpercentvalues: "1",
-    legendposition: "bottom",
-    usedataplotcolorforlabels: "1",
-    theme: "fusion"
-  },
-  data: [
-    {
-      label: "Apache",
-      value: "32647479"
-    },
-    {
-      label: "Microsoft",
-      value: "22100932"
-    },
-    {
-      label: "Zeus",
-      value: "14376"
-    },
-    {
-      label: "Other",
-      value: "18674221"
-    }
-  ]
-};
 
 class Analyze extends React.Component {
+  constructor(){
+    super();
+    this.state={
+      result: [],     
+}
+}
+
+componentDidMount(){
+  let link ='http://localhost:8080/survey/Analzye/'+this.props.survey_id;
+  fetch(link)
+  .then(response => response.json())
+  .then(data => {
+      this.setState({
+          result : data,
+      });
+    console.log("data" ,data);
+  })
+  .catch(error => {
+    console.log(error);
+  });
+
+}
+dataSource=(question) =>{
+  let dataSource = {
+    chart: {
+      caption: "answers count is ",
+      plottooltext: "<b>$percentValue</b> of people choice  $label ",
+      showlegend: "1",
+      showpercentvalues: "1",
+      legendposition: "bottom",
+      usedataplotcolorforlabels: "1",
+      theme: "fusion"
+    },
+    data: [] }
+    dataSource.chart.caption+=question.count;
+
+    question.check.map((answer, index) => {
+      dataSource.data.push({
+        label: "{"+answer.questionBody+"}",
+        value: answer.count
+      })
+    });
+    return <ReactFusioncharts 
+    type="pie2d"
+    dataFormat="JSON"
+    dataSource={dataSource}
+  />
+}
+    renderQuestionType=(type,question)=>{
+    
+        if(type === "mulchoice")
+          return this.dataSource(question);        
+        else if(type === "checkbox")
+          return this.dataSource(question);        
+        else if(type === "textbox")
+            return(<div> 
+                {question.report.map((answer, index) => {
+                    return(<li>A {index+1} : {answer} </li>)
+            })}  </div>); 
+        else if(type === "essay")
+            return(<div> 
+                {question.report.map((answer, index) => {
+                    return(<li> A {index+1}: {answer} </li>)
+            })}  </div>);
+        else if(type === "scale")
+            return(<li> {question.scale} </li>); 
+        else if(type === "date")
+            return(<div> 
+                {question.date.map((answer, index) => {
+                    return(<li key={index}>A {index+1}: {answer.day} / {answer.month} / {answer.year} </li>)
+            })}  </div>);     
+           
+    }
   render() {
     return (
-      <ReactFusioncharts
-        type="pie2d"
-        width="100%"
-        height="100%"
-        dataFormat="JSON"
-        dataSource={dataSource}
-      />
+      <div className="report" style={{marginLeft : "30%"  }} >
+                <h2 className="report-item">Analyze Server  </h2>
+                <div style={{"marginLeft" : "10%"}}>
+                {
+                    this.state.result.map((question, index) => {
+                        return (
+                            <div>
+                                <div key={index}>    
+                                    <h2>Q {index+1} : {question.questionbody} ?</h2> 
+                                    <h5 style={{"marginLeft" : "10%"}}>Answers : {question.count}</h5>                           
+                                    {
+                                        this.renderQuestionType(question.answerType,question)
+                                    }
+                                </div><br /><br />
+                            </div>
+                        )
+                    })
+                
+                }
+                
+                </div> 
+             </div>
     );
   }
 }
-export default Analyze;
+export default Analyze; 

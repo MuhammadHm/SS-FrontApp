@@ -29,7 +29,7 @@ class Scale extends Component {
         });
     }
     passState=()=>{
-        this.props.getInput(this.state,"scale",this.props.body);
+        this.props.getInput(this.state,"scale",this.props.body,this.props.id_question);
     }
     onClick=(e)=>{
         this.handleScale(e);

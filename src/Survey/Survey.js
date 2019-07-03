@@ -221,6 +221,7 @@ class Survey extends Component {
   }
  
   render() {
+    let lang = this.props.lang;
     const buttonStyle = {
       margin: '20px 20px'
     };
@@ -267,8 +268,8 @@ class Survey extends Component {
             </button>
             {connect}
             <div className="save-button">
-            <button onClick={this.saveSurvey} style={buttonStyle} className=" btn btn-outline-primary">Save Survey</button>
-            <button onClick={this.saveAsTemplate} style={buttonStyle} className=" btn btn-outline-primary">Save As Template</button>
+            <button onClick={this.saveSurvey} style={buttonStyle} className=" btn btn-outline-primary">{lang.save}</button>
+            <button onClick={this.saveAsTemplate} style={buttonStyle} className=" btn btn-outline-primary">{lang.saveAsTemp}</button>
             </div>
           </div>
         </div>

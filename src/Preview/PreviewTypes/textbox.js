@@ -16,7 +16,7 @@ class Textbox extends Component {
         });
     }
     passState=()=>{
-        this.props.getInput(this.state.answer,"textbox",this.props.body);
+        this.props.getInput(this.state.answer,"textbox",this.props.body,this.props.id_question);
     }
     onClick=(e)=>{
         this.handleInput(e);

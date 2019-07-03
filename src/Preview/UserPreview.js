@@ -36,12 +36,13 @@ constructor(){
             answer : ""
            }*/
         ],
-        index : ''
+        index : '',
+        err : null
     }
 }
 
 componentDidMount(){
-
+    console.log("fetch userpreview");
     fetch(`http://localhost:8080/survey/sendsurvey/${this.props.id}`)
     .then(response =>  response.json())
       .then(data => {
@@ -56,29 +57,30 @@ componentDidMount(){
         console.log("data",data);
       })
       .catch(error => {
+        console.log("fetch userpreview");
         console.log(error);
       });
     
 }
 
-renderQuestionType=(type,answers,questionBody)=>{
+renderQuestionType=(type,answers,questionBody,id_question)=>{
     
     if(type === "mulchoice")
-        return(<div> <MultiChoice choicesArray={answers} getInput={this.getInput} body={questionBody} /> </div>);
+        return(<div> <MultiChoice choicesArray={answers} getInput={this.getInput} body={questionBody} id_question={id_question} /> </div>);
     else if(type === "checkbox")
-        return(<div>  <Checkbox choicesArray={answers} getInput={this.getInput} body={questionBody} /> </div>);      
+        return(<div>  <Checkbox choicesArray={answers} getInput={this.getInput} body={questionBody} id_question={id_question}/> </div>);      
     else if(type === "textbox")
-        return(<div> <Textbox getInput={this.getInput} body={questionBody} /> </div>); 
+        return(<div> <Textbox getInput={this.getInput} body={questionBody} id_question={id_question}/> </div>); 
     else if(type === "essay")
-        return(<div> <Essay getInput={this.getInput} body={questionBody} /> </div>); 
+        return(<div> <Essay getInput={this.getInput} body={questionBody} id_question={id_question}/> </div>); 
     else if(type === "scale")
-        return(<div> <Scale answers={answers} getInput={this.getInput} body={questionBody} /> </div>); 
+        return(<div> <Scale answers={answers} getInput={this.getInput} body={questionBody} id_question={id_question}/> </div>); 
     else if(type === "date")
-        return(<div> <Date getInput={this.getInput} body={questionBody} /> </div>);     
+        return(<div> <Date getInput={this.getInput} body={questionBody} id_question={id_question}/> </div>);     
        
 }
 
-getInput=(answer ,questionType ,questionBody)=>{
+getInput=(answer ,questionType ,questionBody,id_question)=>{
 
     let userInput=this.state.userInput;
     let input={       
@@ -87,11 +89,8 @@ getInput=(answer ,questionType ,questionBody)=>{
         answer : answer
     };
     // getting index of question
-    if(this.search(questionBody,userInput) !== -1)
-        userInput[this.search(questionBody,userInput)]=input;
-    else
-        userInput.push(input);    
-        
+    userInput[id_question-1]=input;
+    
     this.setState({
         userInput : userInput
   });
@@ -106,13 +105,23 @@ search=(nameKey, myArray)=>{
     return -1;
 }
 isRequired=()=>{
-  console.log(this.state.userInput[1].answer);
+  console.log(this.state.userInput);
   for (let i=0;i<this.state.questionsArray.length;i++)
-      {   if (this.state.questionsArray[i].isRequired)
-              if (this.state.userInput[i].answer === undefined)
-              {this.setState({
-                  err : (<h3 style={{color:"#c90909"}} >Some questions are required</h3>) 
-              });
+      {   console.log(this.state.err);
+          if (this.state.questionsArray[i] !== undefined && this.state.questionsArray[i].isRequired )
+              if (this.state.userInput[i] === undefined )
+              {
+                this.setState({
+                    err :  (<h3 style={{color:"#c90909"}} >Some questions are required</h3>) 
+                });
+              
+              console.log("if "+ this.state.err);
+              return false;}
+              else if (this.state.userInput[i].answer === "")
+                {
+                this.setState({
+                    err :  (<h3 style={{color:"#c90909"}} >Some questions are required</h3>) });
+              console.log( "else "+this.state.err);
               return false;}
       }
   this.setState({
@@ -163,6 +172,7 @@ render(){
       }
     else 
       connect = null;
+      let err= this.state.err;
 
     return(
     <div>                         
@@ -195,7 +205,7 @@ render(){
             
         </ul>
         {connect}
-        {this.err}
+        {err}
         <div>  <button onClick={this.submitAnswers}  className="nav-item btn btn-outline-primary">Submit</button></div>
     </div>
     </div>

@@ -49,7 +49,7 @@ class MultiChoice extends Component {
 
     } 
     passState=()=>{
-        this.props.getInput(this.state.answersArray,"mulchoice",this.props.body);
+        this.props.getInput(this.state.answersArray,"mulchoice",this.props.body,this.props.id_question);
      }
 
     onClick=(index,e)=>{

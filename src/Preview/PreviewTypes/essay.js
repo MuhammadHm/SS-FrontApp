@@ -15,7 +15,7 @@ class Essay extends Component {
         });
     }
     passState=()=>{
-        this.props.getInput(this.state.answer,"essay",this.props.body);
+        this.props.getInput(this.state.answer,"essay",this.props.body,this.props.id_question);
     }
     onClick=(e)=>{
         this.handleInput(e);
