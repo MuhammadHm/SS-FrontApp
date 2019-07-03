@@ -119,17 +119,23 @@ class Survey extends Component {
     //let answers=this.state.questionsArray[index].answers;
     this.state.index = index;
     if (type === "mulchoice")
-      return (<div> <MultiChoice answers={this.handleAnswers.bind(this)} oldAnswers={this.state.questionsArray[index].answers} /> </div>);
+      return (<div> <MultiChoice answers={this.handleAnswers.bind(this)} oldAnswers={this.state.questionsArray[index].answers}  lang={this.props.lang}
+      styleLang={this.props.styleLang}/> </div>);
     else if (type === "checkbox")
-      return (<div> <CheckBox answers={this.handleAnswers.bind(this)} /> </div>);
+      return (<div> <CheckBox answers={this.handleAnswers.bind(this)}  lang={this.props.lang}
+      styleLang={this.props.styleLang}/> </div>);
     else if (type === "textbox")
-      return (<div> <Textbox /> </div>);
+      return (<div> <Textbox  lang={this.props.lang}
+        styleLang={this.props.styleLang}/> </div>);
     else if (type === "essay")
-      return (<div> <Essay /> </div>);
+      return (<div> <Essay  lang={this.props.lang}
+        styleLang={this.props.styleLang}/> </div>);
     else if (type === "scale")
-      return (<div> <Scale answers={this.handleAnswers.bind(this)} /> </div>);
+      return (<div> <Scale answers={this.handleAnswers.bind(this)}  lang={this.props.lang}
+      styleLang={this.props.styleLang}/> </div>);
     else if (type === "date")
-      return (<div> <Date /> </div>);
+      return (<div> <Date  lang={this.props.lang}
+        styleLang={this.props.styleLang}/> </div>);
 
   }
   saveSurvey = () => {  

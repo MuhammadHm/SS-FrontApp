@@ -62,6 +62,13 @@ dataSource=(question) =>{
     dataSource={dataSource}
   />
 }
+arithmeticMean=(arr)=>{
+    let mean=0 ;
+    for(let i=0;i<arr.length;i++){
+        mean+=arr[i];
+    }
+    return mean/arr.length;
+}
 renderQuestionType=(type,question)=>{
     
         if(type === "mulchoice")
@@ -79,7 +86,9 @@ renderQuestionType=(type,question)=>{
                     return(<li> A {index+1}: {answer} </li>)
             })}  </div>);
         else if(type === "scale")
-            return(<li> {question.scale} </li>); 
+            return(<div>                                
+              <li>Arithmetic Mean : {this.arithmeticMean(question.scale)}</li>
+            </div>); 
         else if(type === "date")
             return(<div> 
                 {question.date.map((answer, index) => {

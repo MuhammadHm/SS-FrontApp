@@ -58,7 +58,7 @@ class Report extends Component {
                     lang={this.props.lang} 
                     styleLang={this.props.styleLang}
                     />  </div>
-                    <button onClick={this.printReport} style={buttonStyle} className="btn btn-secondary btn-lg">Print </button>
+                    <button onClick={this.printReport} style={buttonStyle} className="btn btn-secondary btn-lg"><i class="fa fa-print" aria-hidden="true"></i> Print </button>
                 </div>
                 );
         }
@@ -99,10 +99,10 @@ class Report extends Component {
                     return(<li> A {index+1}: {answer} </li>)
             })}  </div>);
         else if(type === "scale")
-        return(<div> 
-            {question.scale.map((answer, index) => {
-                return(<li>A {index+1} : {answer} </li>)
-        })}  </div>); 
+            return(<div> 
+                {question.scale.map((answer, index) => {
+                    return(<li>A {index+1} : {answer} </li>)
+            })}  </div>); 
         else if(type === "date")
             return(<div> 
                 {question.date.map((answer, index) => {

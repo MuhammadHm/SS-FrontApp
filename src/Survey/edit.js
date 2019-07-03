@@ -124,17 +124,23 @@ class Edit extends Component {
     //let answers=this.state.questionsArray[index].answers;
     this.state.index = index;
     if (type === "mulchoice")
-      return (<div> <MultiChoice answers={this.handleAnswers.bind(this)}  /> </div>);
+      return (<div> <MultiChoice answers={this.handleAnswers.bind(this)} lang={this.props.lang}
+      styleLang={this.props.styleLang} /> </div>);
     else if (type === "checkbox")
-      return (<div> <CheckBox answers={this.handleAnswers.bind(this)} /> </div>);
+      return (<div> <CheckBox answers={this.handleAnswers.bind(this)} lang={this.props.lang}
+      styleLang={this.props.styleLang}/> </div>);
     else if (type === "textbox")
-      return (<div> <Textbox /> </div>);
+      return (<div> <Textbox lang={this.props.lang}
+        styleLang={this.props.styleLang}/> </div>);
     else if (type === "essay")
-      return (<div> <Essay /> </div>);
+      return (<div> <Essay lang={this.props.lang}
+        styleLang={this.props.styleLang}/> </div>);
     else if (type === "scale")
-      return (<div> <Scale answers={this.handleAnswers.bind(this)} /> </div>);
+      return (<div> <Scale answers={this.handleAnswers.bind(this)} lang={this.props.lang}
+      styleLang={this.props.styleLang}/> </div>);
     else if (type === "date")
-      return (<div> <Date /> </div>);
+      return (<div> <Date lang={this.props.lang}
+        styleLang={this.props.styleLang}/> </div>);
 
   }
   editSurvey = () => {   
@@ -170,10 +176,10 @@ class Edit extends Component {
 }
   saveAsTemplate = () => {
     const survey = {
-      survey_id: this.props.survey_id,
-      user_id: this.props.user_id,
-      title: this.props.title,
-      welcomeMessage: this.props.welcomeMessage,
+      survey_id: this.state.survey_id,
+      user_id: this.state.user_id,
+      title: this.state.title,
+      welcomeMessage: this.state.welcomeMessage,
       questionsArray: this.state.questionsArray
     };
     if (navigator.onLine){
@@ -235,9 +241,9 @@ class Edit extends Component {
     let connect = null;
     if (!navigator.onLine)
       {if (localStorage.getItem('esurvey') === null)
-        connect=(<h3>you are offline now click in save survey to save survey in browser</h3>);
+        connect=(<h3>You are offline now! Click in save survey </h3>);
       else
-        connect=(<h3>you are offline now </h3>);
+        connect=(<h3>You are offline now </h3>);
       }
     else 
       connect = null;
