@@ -32,7 +32,7 @@ input[type=text], select {
 .question .question-input{
     border: none;
     border-bottom: #2E3353 3px solid;
-    width: 1000px !important;
+    width: 700px !important;
    
 }
 .question-text{
