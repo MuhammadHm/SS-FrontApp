@@ -7,9 +7,15 @@ class Sidebar extends Component {
 
     decideStyle(){
         if(this.props.styleLang==="ar")
-            return "nav2"
+            return {
+                nav : "nav2",
+                example : "ex"
+            }
         else
-            return "nav1"           
+            return {
+                nav : "nav1",
+                example : "ex"
+            }         
     }
 
     render() {
@@ -20,7 +26,7 @@ class Sidebar extends Component {
         let responses = `/responses/${this.props.survey_id}`
         let report=`/report/${this.props.survey_id}`
         return (
-            <div id="menu" className={this.decideStyle()}>    
+            <div id="menu" className={this.decideStyle().nav}>    
                 <h1 className="logo">
                     <a className="s-logo" href={backHome}>Survey<span>Space</span></a>
                 </h1>
