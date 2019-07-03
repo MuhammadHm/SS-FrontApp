@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './publish.css'
-
 import {
     FacebookShareButton,
     LinkedinShareButton,
