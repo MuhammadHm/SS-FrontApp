@@ -124,7 +124,7 @@ class Edit extends Component {
     //let answers=this.state.questionsArray[index].answers;
     this.state.index = index;
     if (type === "mulchoice")
-      return (<div> <MultiChoice answers={this.handleAnswers.bind(this)} /> </div>);
+      return (<div> <MultiChoice answers={this.handleAnswers.bind(this)}  /> </div>);
     else if (type === "checkbox")
       return (<div> <CheckBox answers={this.handleAnswers.bind(this)} /> </div>);
     else if (type === "textbox")

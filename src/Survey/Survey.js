@@ -7,6 +7,7 @@ import Essay from "../QuestionTypes/essay";
 import Scale from "../QuestionTypes/scale";
 import Textbox from "../QuestionTypes/textbox";
 import Date from "../QuestionTypes/date";
+import Cookies from 'js-cookie';
 
 
 class Survey extends Component {
@@ -32,6 +33,7 @@ class Survey extends Component {
     }
   }
   componentDidMount() {
+    Cookies.set("saved","false");
 
     this.setState({
       survey_id: this.props.survey_id,
@@ -117,7 +119,7 @@ class Survey extends Component {
     //let answers=this.state.questionsArray[index].answers;
     this.state.index = index;
     if (type === "mulchoice")
-      return (<div> <MultiChoice answers={this.handleAnswers.bind(this)} /> </div>);
+      return (<div> <MultiChoice answers={this.handleAnswers.bind(this)} oldAnswers={this.state.questionsArray[index].answers} /> </div>);
     else if (type === "checkbox")
       return (<div> <CheckBox answers={this.handleAnswers.bind(this)} /> </div>);
     else if (type === "textbox")
@@ -157,9 +159,8 @@ class Survey extends Component {
   else 
   { 
     localStorage.setItem('survey',JSON.stringify(survey));
-
   }
-
+  Cookies.set("saved","true");
 }
   saveAsTemplate = () => {
     const survey = {
@@ -190,31 +191,63 @@ class Survey extends Component {
     }
   }
   swapUp = (index) =>{
+    let questions=this.state.questionsArray;
     if(index-1 >= 0){
-        let questions=this.state.questionsArray;
-        let b = questions[index-1];
-        questions[index-1] =  questions[index];
-        questions[index] = b;
-
-        this.setState({
-          questionsArray : questions
-        });
-    }
+          // 1 st question up
+          let question1={
+            id: index-1,
+            body: questions[index].body,
+            isRequired:  questions[index].isRequired,
+            answerType: questions[index].answerType,
+            answers: questions[index].answers
+           }
+           //2nd question down
+           let question2={
+            id: index,
+            body: questions[index-1].body,
+            isRequired:  questions[index-1].isRequired,
+            answerType: questions[index-1].answerType,
+            answers: questions[index-1].answers
+           }
+           questions[index]=question2;
+           questions[index-1]=question1;
+    
+            this.setState({
+              questionsArray : questions
+            });
+       
+          }
     console.log(this.state.questionsArray)
 
   }
   swapDown = (index) =>{
     let questions=this.state.questionsArray;
+
     if(index+1 <= questions.length-1){
-       
-        let b = questions[index+1];
-        questions[index+1] =  questions[index];
-        questions[index] = b;
+      // 1 st question down
+       let question1={
+        id: index+1,
+        body: questions[index].body,
+        isRequired:  questions[index].isRequired,
+        answerType: questions[index].answerType,
+        answers: questions[index].answers
+       }
+       //2nd question  up
+       let question2={
+        id: index,
+        body: questions[index+1].body,
+        isRequired:  questions[index+1].isRequired,
+        answerType: questions[index+1].answerType,
+        answers: questions[index+1].answers
+       }
+       questions[index]=question2;
+       questions[index+1]=question1;
 
         this.setState({
           questionsArray : questions
         });
-    }
+   
+      }
     console.log(this.state.questionsArray)
 
   }
@@ -259,6 +292,8 @@ class Survey extends Component {
                   key={index + 1}
                   id={index + 1}
                   body={question.body}
+                  answers={question.answers}
+
                   deleteQuestion={this.handleDeleteQuestion.bind(this, index)}
                   setQuestion={this.setQuestion.bind(this, index)}
                   saveQuestion={this.saveQuestion.bind(this, index)}
@@ -269,7 +304,6 @@ class Survey extends Component {
                   swapDown={this.swapDown.bind(this,index)}
                   lang={this.props.lang}
                   styleLang={this.props.styleLang}
-
                 />)
               })
             }

@@ -62,6 +62,7 @@ class App extends Component {
       //if(Cookies.get("template") == "true" )
         //link=`http://localhost:8080/survey/sendtemplate/${Cookies.get("survey")}` ;   
      // else 
+
       link=`http://localhost:8080/survey/sendsurveyinfo/${Cookies.get("survey")}`;
 
       if (Cookies.get("user") !== undefined){

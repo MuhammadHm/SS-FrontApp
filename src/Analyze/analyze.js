@@ -62,7 +62,7 @@ dataSource=(question) =>{
     dataSource={dataSource}
   />
 }
-    renderQuestionType=(type,question)=>{
+renderQuestionType=(type,question)=>{
     
         if(type === "mulchoice")
           return this.dataSource(question);        
@@ -86,7 +86,7 @@ dataSource=(question) =>{
                     return(<li key={index}>A {index+1}: {answer.day} / {answer.month} / {answer.year} </li>)
             })}  </div>);     
            
-    }
+}
   render() {
     return (
       <div className="report" style={{marginLeft : "30%"  }} >

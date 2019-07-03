@@ -53,7 +53,7 @@ class CheckBox extends Component {
                                 <label>
                                     <input type="checkbox" name="choice" />
                                     <span>  {choice.body}</span> 
-                                    <button onClick={this.deleteChoiceHandler.bind(this,index)} class="close" data-dismiss="alert" aria-label="Close">  <span aria-hidden="true"> &times; </span>  </button>
+                                    <button onClick={this.deleteChoiceHandler.bind(this,index)} className="close" data-dismiss="alert" aria-label="Close">  <span aria-hidden="true"> &times; </span>  </button>
 
                                     </label>
                             </div> 

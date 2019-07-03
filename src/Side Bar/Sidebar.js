@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './Sidebar.css'
+import Cookies from 'js-cookie';
 
 class Sidebar extends Component {
 
@@ -23,16 +24,25 @@ class Sidebar extends Component {
         let responses = `/responses/${this.props.survey_id}`
         let report=`/report/${this.props.survey_id}`
         let analyze=`/analyze/${this.props.survey_id}`
+
+        let create = `/createsurvey`;
+        console.log(Cookies.get("saved"))
+        if( Cookies.get("saved") === "true"){
+            create = `/edit/${Cookies.get("survey")}`
+        }
+        
+
+        
+
         return (
             <div id="menu" className={this.decideStyle().nav}>    
                 <h1 className="logo">
                     <a className="s-logo" href={backHome}>Survey<span>Space</span></a>
                 </h1>
                 <ul>
-                    <li><a href="/createsurvey">{lang.create}</a></li>
+                    <li><a href={create}>{lang.create}</a></li>
                     <li><a href={preview} >{lang.Preview} &amp;{lang.Print}</a></li>
                     <li><a href="/publish">{lang.Publish}</a></li>
-                    <li><a href={responses}>{lang.Collect}</a></li>
                     <li><a href={analyze}>{lang.Analyze}</a></li>
                     <li><a href={report} >{lang.Generate}</a></li>
                     <li><a href={backHome} >{lang.Back}</a></li>

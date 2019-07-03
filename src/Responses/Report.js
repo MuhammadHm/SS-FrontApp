@@ -39,7 +39,6 @@ class Report extends Component {
                 result : data.result,
                 answer : data.answer
             });
-          console.log("data" ,data.result);
         })
         .catch(error => {
           console.log(error);
@@ -100,7 +99,10 @@ class Report extends Component {
                     return(<li> A {index+1}: {answer} </li>)
             })}  </div>);
         else if(type === "scale")
-            return(<li> {question.scale} </li>); 
+        return(<div> 
+            {question.scale.map((answer, index) => {
+                return(<li>A {index+1} : {answer} </li>)
+        })}  </div>); 
         else if(type === "date")
             return(<div> 
                 {question.date.map((answer, index) => {
@@ -147,18 +149,3 @@ class Report extends Component {
 }
 
 export default Report;
-
-/*
-   {
-                    this.state.result.map((question, index) => {
-                        return (
-                            <div>    
-                                <div>Q : {index+1} {question.questionbody}</div>
-                                <div> {question.answerType}</div>
-                                <div> {question.count}</div>
-                            </div>
-                        )
-                    })
-                }
-
-*/ 
