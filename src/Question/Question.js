@@ -38,7 +38,6 @@ handelHover=(enter,leave)=>{
 }
 
 render() {
-    
     const textStyle = {
         width: '80%',
         padding: '12px 20px',
@@ -49,7 +48,7 @@ render() {
     return (
         <div className="question" onMouseEnter={this.onEnter} onMouseLeave={this.onLeave}>
             <li className="question-text">
-                <label className="bounceIn"> Question {this.props.id} : </label>
+                <label className="bounceIn"> {this.props.lang.Question} {this.props.id} : </label>
                 <button className="btn btn-outline-primary" onClick={this.props.swapUp} style={{ marginLeft: '84%',marginBottom : "2%" }} title="Swap up" ><i className="fas fa-chevron-up"></i> </button>
                 <br />
                 <span> {this.props.body}</span>

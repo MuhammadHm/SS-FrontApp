@@ -31,13 +31,13 @@ class Sidebar extends Component {
                     <a className="s-logo" href={backHome}>Survey<span>Space</span></a>
                 </h1>
                 <ul>
-                    <li><a href="/createsurvey">{this.props.lang.create}</a></li>
-                    <li><a href={preview} >{this.props.lang.Preview} &amp;{this.props.lang.Print} </a></li>
-                    <li><a href="/publish">{this.props.lang.Publish}</a></li>
-                    <li><a href={responses}>{this.props.lang.Collect}</a></li>
-                    <li><a href="/analyze">{this.props.lang.Analyze}</a></li>
-                    <li><a href={report} >{this.props.lang.Generate}</a></li>
-                    <li><a href={back} >{this.props.lang.Back}</a></li>
+                    <li><a href="/createsurvey">{lang.create}</a></li>
+                    <li><a href={preview} >{lang.Preview} &amp;{lang.Print}</a></li>
+                    <li><a href="/publish">{lang.Publish}</a></li>
+                    <li><a href={responses}>{lang.Collect}</a></li>
+                    <li><a href="/analyze">{lang.Analyze}</a></li>
+                    <li><a href={report} >{lang.Generate}</a></li>
+                    <li><a href={back} >{lang.Back}</a></li>
                 </ul>
             </div>
         );

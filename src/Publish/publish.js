@@ -31,17 +31,16 @@ class Publish extends Component {
 
         return (
             <div className="textbox">
-                <label className="publish" >Share your survey via this web link : </label>
-                <br />
-                <input className="publish" name="text" type="text" value={link} className="publish" />
-                <br />
+                <div className="link-publish">
+                <label className="publish-label" >Share your survey via this web link : </label>
+                <input className="publish-input" name="text" type="text" value={link}  />
+                </div>
                 <label className="publish" >Or Share via social media : </label>   
                 <FacebookShareButton  className="icon" url={link} children={FacebookIcon} ><FacebookIcon size={100}  round={true} /></FacebookShareButton>
                 <WhatsappShareButton  className="icon" url={link} children={WhatsappIcon} ><WhatsappIcon size={100}  round={true} /></WhatsappShareButton>
                 <TwitterShareButton  className="icon" url={link} children={FacebookIcon} ><TwitterIcon size={100}  round={true} /></TwitterShareButton>
                 <EmailShareButton   className="icon" url={link} children={EmailIcon} ><EmailIcon size={100}  round={true} /></EmailShareButton>
-                <LinkedinShareButton  className="icon" url={link} children={FacebookIcon} ><LinkedinIcon size={100}  round={true} /></LinkedinShareButton>
-               
+                <LinkedinShareButton  className="icon" url={link} children={FacebookIcon} ><LinkedinIcon size={100}  round={true} /></LinkedinShareButton> 
             </div>
         );
     }

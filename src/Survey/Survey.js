@@ -218,6 +218,12 @@ class Survey extends Component {
     console.log(this.state.questionsArray)
 
   }
+  decideStyle(){
+    if(this.props.styleLang==="ar")
+        return "nav2"
+    else
+        return "nav1"           
+}
  
   render() {
     let lang = this.props.lang;
