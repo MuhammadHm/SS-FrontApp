@@ -5,12 +5,17 @@ import Preview from './Preview/Preview';
 import Publish from './Publish/publish';
 import Sidebar from './Side Bar/Sidebar';
 import Edit from './Survey/edit';
+import EditTemplate from './Survey/EditTemplate';
+
 import UserPreview from './Preview/UserPreview';
 import Responses from './Responses/Responses';
 import Report from './Responses/Report';
 import Cookies from 'js-cookie';
 import ar from './Language/ar';
 import en from './Language/en';
+import { template } from '@babel/core';
+const Cryptr = require('cryptr');
+const cryptr = new Cryptr('myTotalySecretKey');
 class App extends Component {
 
   constructor() {
@@ -46,13 +51,20 @@ class App extends Component {
   }
 
   async componentDidMount() {
+      let link;
+      //console.log(Cookies.get("template"))
+      //if(Cookies.get("template") == "true" )
+        //link=`http://localhost:8080/survey/sendtemplate/${Cookies.get("survey")}` ;   
+     // else 
+        link=`http://localhost:8080/survey/sendsurveyinfo/${Cookies.get("survey")}`;
 
-      await fetch(`http://localhost:8080/survey/sendsurveyinfo/${Cookies.get("user")}`)
+      console.log(link)
+      await fetch(link)
       .then(response => response.json())
       .then(data => {
         this.setState({
           language : Cookies.get("Language"),
-          survey_id: data.survey_id,
+          survey_id: Cookies.get("survey"),
           user_id: data.user_id,
           title: data.title,
           welcomeMessage: data.welcomeMessage
@@ -61,7 +73,6 @@ class App extends Component {
       .catch(error => {
         console.log(error);
       });
-
       this.sendFile('http://localhost:8080/results/submit','submit','your survey submitted');
       this.sendFile('http://localhost:8080/survey/savesurvey','survey','Your survey saved sucessfuly');
       this.sendFile('http://localhost:8080/survey/saveastemplate','template','Your template saved successfully');
@@ -69,7 +80,7 @@ class App extends Component {
       this.sendFile('http://localhost:8080/survey/saveastemplate','etemplate','Your template saved successfully');
       await this.getJsonLanguage();
   }
-
+  
   getJsonLanguage= ()=>{
     
     if(this.state.language === 'ar'){
@@ -179,6 +190,21 @@ class App extends Component {
                   lang={this.state.jsonLang}
                   styleLang={this.state.language}
 
+                />
+              </div>
+            )} />
+
+             <Route path="/edittemplate/:id" render={({ match }) => (
+              <div>
+                <Sidebar survey_id={this.state.survey_id}
+                  user_id={this.state.user_id} 
+                  lang={this.state.jsonLang}
+                  styleLang={this.state.language}
+                  />
+                <EditTemplate
+                  survey_id={match.params.id}
+                  lang={this.state.jsonLang}
+                  styleLang={this.state.language}
                 />
               </div>
             )} />

@@ -9,12 +9,10 @@ class Sidebar extends Component {
         if(this.props.styleLang==="ar")
             return {
                 nav : "nav2",
-                example : "ex"
             }
         else
             return {
-                nav : "nav1",
-                example : "ex"
+                nav : "nav1",                
             }         
     }
 

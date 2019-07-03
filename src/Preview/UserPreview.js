@@ -8,7 +8,8 @@ import Scale from './PreviewTypes/scale';
 import Date from './PreviewTypes/date';
 import './UserPreview.css'
 import Sidebar from './../Side Bar/Sidebar'
-
+const Cryptr = require('cryptr');
+const cryptr = new Cryptr('myTotalySecretKey');
 class UserPreview extends Component {
 
 constructor(){
