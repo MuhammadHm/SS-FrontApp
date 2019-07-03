@@ -36,6 +36,12 @@ handelHover=(enter,leave)=>{
     return (<div></div>)
 
 }
+decideStyle(){
+    if(this.props.styleLang==="ar")
+        return "question-arabic"
+    else
+        return "question"           
+}
 
 
 render() {
@@ -47,7 +53,7 @@ render() {
     };
 
     return (
-        <div className="question" onMouseEnter={this.onEnter} onMouseLeave={this.onLeave}>
+        <div className={this.decideStyle()} onMouseEnter={this.onEnter} onMouseLeave={this.onLeave}>
             <li className="question-text">
                 <label className="bounceIn"> {this.props.lang.Question} {this.props.id} : </label>
                 <button className="btn btn-outline-primary" onClick={this.props.swapUp} style={{ marginLeft: '84%',marginBottom : "2%" }} title="Swap up" ><i className="fas fa-chevron-up"></i> </button>
@@ -57,7 +63,7 @@ render() {
                 <span>
                     <input autoFocus className="question-input"
                         name="questionBody"
-                        type="text" placeholder="Enter your question"
+                        type="text" placeholder={this.props.lang.Enterquestion}
                         onBlur={this.props.setQuestion}
                         onChange={this.props.setQuestion}
                         style={textStyle} />
@@ -67,21 +73,21 @@ render() {
                         type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false"
                         style={{ 'fontSize': '20px' }}>
-                        Question Type
+                        {this.props.lang.QuestionType}
                     </button>
                     <span className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <button className="dropdown-item" onClick={this.props.questionType} name="mulchoice">Multiple Choice</button>
-                        <button className="dropdown-item" onClick={this.props.questionType} name="checkbox">Checkboxes</button>
-                        <button className="dropdown-item" onClick={this.props.questionType} name="textbox">Textbox</button>
-                        <button className="dropdown-item" onClick={this.props.questionType} name="essay">Essay</button>
-                        <button className="dropdown-item" onClick={this.props.questionType} name="scale">Scale</button>
-                        <button className="dropdown-item" onClick={this.props.questionType} name="date">Date </button>
+                        <button className="dropdown-item" onClick={this.props.questionType} name="mulchoice"> {this.props.lang.MultipleChoice}</button>
+                        <button className="dropdown-item" onClick={this.props.questionType} name="checkbox">{this.props.lang.Checkboxes}</button>
+                        <button className="dropdown-item" onClick={this.props.questionType} name="textbox">{this.props.lang.Textbox}</button>
+                        <button className="dropdown-item" onClick={this.props.questionType} name="essay">{this.props.lang.Essay}</button>
+                        <button className="dropdown-item" onClick={this.props.questionType} name="scale">{this.props.lang.Scale}</button>
+                        <button className="dropdown-item" onClick={this.props.questionType} name="date">{this.props.lang.Date} </button>
                     </span>
                 </span>
                 <div className="questionType"> {this.props.answerType()} </div>
                 <div className="contents">
                     <span className="group">
-                        <input id="check" type="checkbox" className="check" name="Required" onChange={this.props.isRequired} /><span> Required </span>
+                        <input id="check" type="checkbox" className="check" name="Required" onChange={this.props.isRequired} /><span> {this.props.lang.Required} </span>
                     </span>
                     <button onClick={this.props.swapDown} style={{ marginLeft: '95.5%'}} className="btn btn-outline-primary" title="Swap down"><i className="fas fa-chevron-down "></i> </button>
                     {this.handelHover(this.state.onEnter,this.state.onLeave)}

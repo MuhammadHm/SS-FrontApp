@@ -9,7 +9,16 @@ const ar = {
     Analyze:"تحليل النتائج",
     Generate :"انشاء تقرير",
     Back:"رجوع",
-    Question:"السؤال"
+    Question:"السؤال",
+    Enterquestion: "أدخل السؤال",
+    Required :"مطلوب",
+    QuestionType :"نوع السؤال",
+    MultipleChoice :"متعدد الخيارات",
+    Checkboxes :"خانات الاختيار",
+    Textbox :"نص",
+    Essay :"مقالة",
+    Scale :"مقياس",
+    Date :"تاريخ "
 }
 
 export default ar;

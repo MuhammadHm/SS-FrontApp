@@ -65,9 +65,9 @@ dataSource=(question) =>{
 renderQuestionType=(type,question)=>{
     
         if(type === "mulchoice")
-          return this.dataSource(question);        
+          return (<div> {this.dataSource(question)}</div>);        
         else if(type === "checkbox")
-          return this.dataSource(question);        
+          return (<div> {this.dataSource(question)}</div>);       
         else if(type === "textbox")
             return(<div> 
                 {question.report.map((answer, index) => {

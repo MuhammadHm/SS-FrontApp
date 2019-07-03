@@ -29,7 +29,6 @@ class Publish extends Component {
     }
     
     render() {
-
         let link=`http://localhost:3000/userpreview/${this.props.survey_id}`;
 
         return (

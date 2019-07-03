@@ -1,7 +1,7 @@
 const en = {
     save : "Save",
     saveAsTemp : "Save as Template",
-    create:"Creat Survey ",
+    create:"Create Survey ",
     Preview:"Preview",
     Print:"Print",
     Publish:"Publish Survey",
@@ -9,7 +9,16 @@ const en = {
     Analyze:"Analyze Results",
     Generate :"Generate Report",
     Back:"Back to home",
-    Question:"Question"
+    Question:"Question",
+    Enterquestion: "Enter your question",
+    Required :" Required",
+    QuestionType :"Question Type",
+    MultipleChoice :"Multiple Choice",
+    Checkboxes :"Check boxes",
+    Textbox :"Textbox",
+    Essay :"Essay",
+    Scale :"Scale",
+    Date :"Date "
   }
 
 export default en;
