@@ -220,9 +220,15 @@ class Survey extends Component {
   }
   decideStyle(){
     if(this.props.styleLang==="ar")
-        return "nav2"
+        return {
+          icon : "icon-btn-arabic",
+          text : "icon-btn-arabic-txt"
+        }
     else
-        return "nav1"           
+        return {
+          icon :"icon-btn",
+          text : "btn-txt "
+        }           
 }
  
   render() {
@@ -270,7 +276,7 @@ class Survey extends Component {
           </ul>
           <div>
             <hr className="main-hr" />
-            <button className="icon-btn add-btn" onClick={this.addQuestionHandler}>
+            <button className={this.decideStyle().icon} onClick={this.addQuestionHandler}>
               <div className="add-icon"></div>
               <div className="btn-txt">NEW </div>
             </button>
