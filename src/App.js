@@ -7,7 +7,7 @@ import Sidebar from './Side Bar/Sidebar';
 import Edit from './Survey/edit';
 import EditTemplate from './Survey/EditTemplate';
 import Analyze from './Analyze/analyze';
-//import Chart from './Analyze/test';
+import Chart from './Analyze/test';
 import Pageerr from './pageerr';
 import UserPreview from './Preview/UserPreview';
 import Responses from './Responses/Responses';
