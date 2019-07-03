@@ -122,7 +122,7 @@ decidePrint = (isPrint)=>{
                 lang={this.props.lang} 
                 styleLang={this.props.styleLang}
                 />  </div>
-                <button onClick={this.printSurvey} style={buttonStyle} className="btn btn-secondary btn-lg">Print Survey</button>
+                <button onClick={this.printSurvey} style={buttonStyle} className="btn btn-secondary btn-lg"><i class="fa fa-print" aria-hidden="true"></i>Print </button>
             </div>
             );
     }

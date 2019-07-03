@@ -14,7 +14,13 @@ class MultiChoice extends Component {
             Body: ""
         }
     }
-
+   /* componentDidMount(){
+        console.log("olsAnswers : ",this.props.oldAnswers)
+        if(this.props.oldAnswers != undefined)
+            this.setState({
+                choicesArray : this.props.oldAnswers
+            })
+    }*/
     addChoiceHandler = () => {
         let arr = this.state.choicesArray;
         arr.push({ body: this.state.Body });

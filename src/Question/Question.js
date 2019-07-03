@@ -43,6 +43,7 @@ decideStyle(){
         return "question"           
 }
 
+
 render() {
     const textStyle = {
         width: '80%',
