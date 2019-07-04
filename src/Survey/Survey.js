@@ -8,7 +8,8 @@ import Scale from "../QuestionTypes/scale";
 import Textbox from "../QuestionTypes/textbox";
 import Date from "../QuestionTypes/date";
 import Cookies from 'js-cookie';
-
+const Cryptr = require('cryptr');
+const cryptr = new Cryptr('myTotalySecretKey');
 
 class Survey extends Component {
 
@@ -176,6 +177,7 @@ class Survey extends Component {
       welcomeMessage: this.props.welcomeMessage,
       questionsArray: this.state.questionsArray
     };
+    console.log("template",cryptr.decrypt(this.props.survey_id))
     if (navigator.onLine){
     fetch('http://localhost:8080/survey/saveastemplate', {
       method: 'POST',
@@ -195,6 +197,7 @@ class Survey extends Component {
     { 
       localStorage.setItem('template',JSON.stringify(survey));
     }
+
   }
   swapUp = (index) =>{
     let questions=this.state.questionsArray;

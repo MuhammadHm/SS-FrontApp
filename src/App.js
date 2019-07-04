@@ -35,7 +35,6 @@ class App extends Component {
       allow : true
     }
   }
-  
   sendFile=(link,value,message) =>{
     if (localStorage.getItem(value) !== null)
     {let result=localStorage.getItem(value);
@@ -58,13 +57,14 @@ class App extends Component {
 
   async componentDidMount() {
       let link;
-      //console.log(Cookies.get("template"))
-      //if(Cookies.get("template") == "true" )
-        //link=`http://localhost:8080/survey/sendtemplate/${Cookies.get("survey")}` ;   
+
+     // console.log("App template",Cookies.get("template"))
+     // if(Cookies.get("template") == "true" )
+      //  link=`http://localhost:8080/survey/sendtemplate/${Cookies.get("template")}` ;   
      // else 
+        link=`http://localhost:8080/survey/sendsurveyinfo/${Cookies.get("survey")}`;
 
-      link=`http://localhost:8080/survey/sendsurveyinfo/${Cookies.get("survey")}`;
-
+      // console.log("link ",link) 
       if (Cookies.get("user") !== undefined){
         this.state.allow=true;
         

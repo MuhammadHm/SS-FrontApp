@@ -30,8 +30,7 @@ class EditTemplate extends Component {
     }
   }
   componentDidMount() {
-    Cookies.set("template", "true");
-    Cookies.set("survey",this.props.survey_id);
+
     fetch(`http://localhost:8080/survey/sendtemplate/${this.props.survey_id}`)
     .then(response => response.json())
     .then(data => {
@@ -42,7 +41,7 @@ class EditTemplate extends Component {
         welcomeMessage: data.welcomeMessage,
         questionsArray : data.questionsArray
       });
-      
+      console.log(this.state)
     })
     .catch(error => {
       console.log(error);
