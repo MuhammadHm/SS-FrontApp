@@ -18,7 +18,15 @@ const ar = {
     Textbox :"نص",
     Essay :"مقالة",
     Scale :"مقياس",
-    Date :"تاريخ "
+    Date :"تاريخ ",
+    answerchoice :"ادخل الاجابة",
+    Addchoice :"اضافة خيار",
+    Minvalue :"القيمة الدنيا",
+    Maxvalue :"القيمةالعليا",
+    Step : "الخطوة",
+    Day  :"اليوم",
+    Month :"الشهر ",
+    Year : "السنة"
 }
 
 export default ar;

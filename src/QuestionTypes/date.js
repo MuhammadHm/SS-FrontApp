@@ -12,9 +12,9 @@ class Date extends Component {
         
         return (
             <div className="textbox">
-                <input  name="day" type="text" style={style} placeholder= "Day" />
-                <input  name="month" type="text" style={style} placeholder= "Month" />
-                <input  name="year" type="text" style={style} placeholder= "Year" /> 
+                <input  name="day" type="text" style={style} placeholder= {this.props.lang.Day} />
+                <input  name="month" type="text" style={style} placeholder= {this.props.lang.Month} />
+                <input  name="year" type="text" style={style} placeholder= {this.props.lang.Year}  /> 
             </div>
         );
     }

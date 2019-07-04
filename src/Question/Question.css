@@ -80,6 +80,16 @@ input[type=text], select {
 .dropdown-item{
     color: #E7EAF6;
 }
-
+.btn-success{
+    background-color: #2E3353 !important;
+    border-color: #2E3353 !important;
+    padding: 10px;
+    margin: 10px;
+}
+.btn-danger{
+    background-color: #2E3353 !important;
+    border-color: #2E3353 !important;
+    padding: 10px;
+}
 
   

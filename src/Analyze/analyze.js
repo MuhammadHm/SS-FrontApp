@@ -7,6 +7,7 @@ import FusionCharts from 'fusioncharts/core';
 import Column2D from 'fusioncharts/viz/column2d';
 import FusionTheme from 'fusioncharts/themes/es/fusioncharts.theme.fusion';
 import ReactFC from 'react-fusioncharts';
+import './analyze.css'
 ReactFC.fcRoot(FusionCharts, Column2D, FusionTheme);
 
 // Resolves charts dependancy
@@ -72,9 +73,9 @@ arithmeticMean=(arr)=>{
 renderQuestionType=(type,question)=>{
     
         if(type === "mulchoice")
-          return (<div> {this.dataSource(question)}</div>);        
+          return (<div className="analyze"> {this.dataSource(question)}</div>);        
         else if(type === "checkbox")
-          return (<div> {this.dataSource(question)}</div>);       
+          return (<div  className="analyze"> {this.dataSource(question)}</div>);       
         else if(type === "textbox")
             return(<div> 
                 {question.report.map((answer, index) => {

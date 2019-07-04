@@ -51,8 +51,8 @@ class MultiChoice extends Component {
         
         return (
             <div className="mulChoice">
-                <input name="choice" type="text" placeholder="Enter choice" onChange={this.setChioceText} />
-                <button onClick={()=>{this.addChoiceHandler();this.passChoicesArray()}} className="add-choice"><span>Add choice</span></button>
+                <input name="choice" type="text" placeholder= {this.props.lang.answerchoice} onChange={this.setChioceText} />
+                <button onClick={()=>{this.addChoiceHandler();this.passChoicesArray()}} className="add-choice"><span>{this.props.lang.Addchoice}</span></button>
                 <div className="control">
                 {
                     this.state.choicesArray.map((choice, index) => {
