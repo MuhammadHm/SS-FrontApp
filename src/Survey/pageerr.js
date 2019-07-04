@@ -1,4 +1,5 @@
 import React,{Component} from 'react';
+import './Survey.css';
 
 
 class Pageerr extends Component {
@@ -12,7 +13,7 @@ constructor(){
 render(){
   
     return(
-    <div>                         
+    <div className="error">                         
         <h1>please signin first  </h1>
         <a href="http://localhost:8080/signin">signin</a>
         <br />

@@ -157,3 +157,10 @@ body{
  margin-left: 25px;
   
 }
+.error{
+  text-align: center;
+  margin-top: 20%;
+}
+.error a{
+  text-decoration: none;
+}
