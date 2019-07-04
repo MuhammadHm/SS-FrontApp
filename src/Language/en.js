@@ -18,7 +18,15 @@ const en = {
     Textbox :"Textbox",
     Essay :"Essay",
     Scale :"Scale",
-    Date :"Date "
+    Date :"Date ",
+    answerchoice :"Enter an answer choice",
+    Addchoice :"Add choice",
+    Minvalue :" Min value",
+    Maxvalue :"Max value",
+    Step : "Step ",
+    Day  :"Day ",
+    Month :"Month ",
+    Year : "Year"
   }
 
 export default en;

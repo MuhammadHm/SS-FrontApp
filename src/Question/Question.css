@@ -26,11 +26,14 @@ input[type=text], select {
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+    width: 300px;
   }
 
 .question .question-input{
     border: none;
     border-bottom: #2E3353 3px solid;
+    width: 700px !important;
+   
 }
 .question-text{
    margin: 2%;
@@ -77,6 +80,16 @@ input[type=text], select {
 .dropdown-item{
     color: #E7EAF6;
 }
-
+.btn-success{
+    background-color: #2E3353 !important;
+    border-color: #2E3353 !important;
+    padding: 10px;
+    margin: 10px;
+}
+.btn-danger{
+    background-color: #2E3353 !important;
+    border-color: #2E3353 !important;
+    padding: 10px;
+}
 
   

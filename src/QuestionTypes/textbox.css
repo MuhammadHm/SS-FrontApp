@@ -1,6 +1,5 @@
 .textbox input[type="text"]{
- 
-   padding: 5px;
-   width: max-content;
+   padding: 5px !important;
+   width: 500px !important;
 
 }

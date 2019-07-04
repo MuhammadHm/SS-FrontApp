@@ -45,17 +45,17 @@ class Scale extends Component {
         return (
             <div>
                 <div  >
-                    <label className="value">Min value : </label>
+                    <label className="value">{this.props.lang.Minvalue} : </label>
                     <input onBlur={this.passParams} type="text"  className="value" onChange={this.handleMin} placeholder="0" />
                 </div>
                 
                 <div >
-                    <label className="value">Max value : </label>
+                    <label className="value">{this.props.lang.Maxvalue} : </label>
                     <input onBlur={this.passParams} type="text"  className="value" onChange={this.handleMax} placeholder="10" />
                 </div>
 
                 <div >
-                    <label className="value">Step : </label>
+                    <label className="value">{this.props.lang.Step} : </label>
                     <input onBlur={this.passParams} type="text"  className="value" onChange={this.handleStep} placeholder="1" />
                 </div>
        
