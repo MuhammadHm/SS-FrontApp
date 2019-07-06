@@ -7,7 +7,6 @@ import FusionCharts from 'fusioncharts/core';
 import Column2D from 'fusioncharts/viz/column2d';
 import FusionTheme from 'fusioncharts/themes/es/fusioncharts.theme.fusion';
 import ReactFC from 'react-fusioncharts';
-import './analyze.css'
 ReactFC.fcRoot(FusionCharts, Column2D, FusionTheme);
 
 // Resolves charts dependancy
@@ -73,9 +72,9 @@ arithmeticMean=(arr)=>{
 renderQuestionType=(type,question)=>{
     
         if(type === "mulchoice")
-          return (<div className="analyze"> {this.dataSource(question)}</div>);        
+          return (<div> {this.dataSource(question)}</div>);        
         else if(type === "checkbox")
-          return (<div  className="analyze"> {this.dataSource(question)}</div>);       
+          return (<div> {this.dataSource(question)}</div>);       
         else if(type === "textbox")
             return(<div> 
                 {question.report.map((answer, index) => {
@@ -84,7 +83,7 @@ renderQuestionType=(type,question)=>{
         else if(type === "essay")
             return(<div> 
                 {question.report.map((answer, index) => {
-                    return(<li> A {index+1}: {answer} </li>)
+                    return(<li key={index}> A {index+1}: {answer} </li>)
             })}  </div>);
         else if(type === "scale")
             return(<div>                                
@@ -105,8 +104,8 @@ renderQuestionType=(type,question)=>{
                 {
                     this.state.result.map((question, index) => {
                         return (
-                            <div>
-                                <div key={index}>    
+                            <div key={index}>
+                                <div >    
                                     <h2>Q {index+1} : {question.questionbody} ?</h2> 
                                     <h5 style={{"marginLeft" : "10%"}}>Answers : {question.count}</h5>                           
                                     {

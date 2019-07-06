@@ -7,6 +7,7 @@ import Sidebar from './Side Bar/Sidebar';
 import Edit from './Survey/edit';
 import EditTemplate from './Survey/EditTemplate';
 import Analyze from './Analyze/analyze';
+import Chart from './Analyze/test';
 import Pageerr from './Survey/pageerr';
 import UserPreview from './Preview/UserPreview';
 import Responses from './Responses/Responses';
@@ -93,7 +94,6 @@ class App extends Component {
       this.sendFile('http://localhost:8080/survey/saveastemplate','etemplate','Your template saved successfully');
       await this.getJsonLanguage();
   }
-  
   getJsonLanguage= ()=>{
     
     if(this.state.language === 'ar'){
@@ -108,7 +108,6 @@ class App extends Component {
     }
 
   }
-
 
   render() {
     return (
@@ -206,11 +205,9 @@ class App extends Component {
                   lang={this.state.jsonLang} 
                   styleLang={this.state.language}/>  
                   <br/><br/>
-                  <div style={{ margin: '100px 10px'}}>
                     <Analyze 
                       survey_id={match.params.id}  
                       styleLang={this.state.language}/>
-                  </div>
               </div>: <Pageerr />
                 }</div>
             )} />

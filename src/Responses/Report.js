@@ -117,6 +117,7 @@ class Report extends Component {
             <div>
             {this.decidePrint(this.state.isPrint)}
             <div className="report" style={{"marginLeft" : "20%"}} >
+                <h1 style={{fontSize : "70px" ,color : "#1E1E1E"}}>Survey Space </h1><br />
                 <h2 className="report-item">Creator : {this.state.userName}</h2>
                 <h2 className="report-item">Title :  {this.state.title}</h2>
                 <h2 className="report-item">Message : {this.state.welcomeMessage}</h2>
